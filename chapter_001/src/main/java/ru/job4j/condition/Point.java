@@ -2,7 +2,7 @@ package ru.job4j.condition;
 /**
  *Class Point implements point on the coordinate plane.
  *@author Prokopov Artem
- *@since 10.03.2017
+ *@since 12.03.2017
  *@version 1.0
  */
 public class Point {
@@ -16,8 +16,8 @@ public class Point {
     private int y;
     /**
      *Constructor will create object Point with coordinate x and y.
-     *@param x - the first coordinate point, stored in the x field class.
-     *@param y - the second coordinate point, stored in the y field class.
+     *@param x - the first coordinate point, stored in the x  class field.
+     *@param y - the second coordinate point, stored in the y class field.
      */
     public  Point(int x, int y) {
 	this.x = x;
@@ -25,14 +25,14 @@ public class Point {
     }
     /**
      *Getter for field x the class.
-     *@return - the value of field x.
+     *@return - the value of class field x.
      */
     public int getX() {
 	return this.x;
     }
     /**
      *Getter for field y the class.
-     *@return - the value of field y.
+     *@return - the value of class field y.
      */
     public int getY() {
 	return this.y;
