@@ -40,42 +40,26 @@ public class Triangle {
 	return Math.sqrt(Math.pow(firstPoint.getX() - secondPoint.getX(), 2)
 			+ Math.pow(firstPoint.getY() - secondPoint.getY(), 2));
     }
-	/**
-     *Calculates the length of AB sides of the triangle.
-     *@return the length of the AB side of the triangle.
-     */
-    public double lengtABSide() {
-	return Triangle.lengthSide(this.aPoint, this.bPoint);
-    }
-    /**
-     *Calculates the length of BC sides of the triangle.
-     *@return the length of the BC side of the triangle.
-     */
-    public double lengtBCSide() {
-	return Triangle.lengthSide(this.bPoint, this.cPoint);
-    }
-    /**
-     *Calculates the length of CA sides of the triangle.
-     *@return the length of the CA side of the triangle.
-     */
-    public double lengtCASide() {
-	return Triangle.lengthSide(this.cPoint, this.aPoint);
-    }
     /**
      *Calculates the perimeter of the triangle.
      *@return the length of the perimeter of the triangle.
      */
     public double perimeter() {
-	return lengtABSide() + lengtBCSide() + lengtCASide();
+	return Triangle.lengthSide(this.aPoint, this.bPoint)
+	    + Triangle.lengthSide(this.bPoint, this.cPoint)
+	    + Triangle.lengthSide(this.cPoint, this.aPoint);
     }
     /**
      *Check for existence of the triangle.
      *@return true, if triangle exist.
      */
     public boolean checkTriangleExist() {
-	return lengtABSide() < lengtBCSide() +  lengtCASide()
-		&& lengtBCSide() < lengtABSide() + lengtCASide()
-		&& lengtCASide() < lengtABSide() + lengtBCSide();
+	double lengtABSide = Triangle.lengthSide(this.aPoint, this.bPoint);
+	double lengtBCSide = Triangle.lengthSide(this.bPoint, this.cPoint);
+	double lengtCASide = Triangle.lengthSide(this.cPoint, this.aPoint);
+	return lengtABSide < lengtBCSide +  lengtCASide
+		&& lengtBCSide < lengtABSide + lengtCASide
+		&& lengtCASide < lengtABSide + lengtBCSide;
     }
     /**
      *Method calculates the area of a trangle.
@@ -84,11 +68,14 @@ public class Triangle {
      */
     public double area() {
 	double areaTriangle = 0;
+	double lengtABSide = Triangle.lengthSide(this.aPoint, this.bPoint);
+	double lengtBCSide = Triangle.lengthSide(this.bPoint, this.cPoint);
+	double lengtCASide = Triangle.lengthSide(this.cPoint, this.aPoint);
 	double halfPerimeter = perimeter() / 2;
 	if (checkTriangleExist()) {
-	    areaTriangle = Math.sqrt(halfPerimeter * (halfPerimeter - lengtABSide())
-				    * (halfPerimeter - lengtBCSide())
-				    * (halfPerimeter - lengtCASide()));
+	    areaTriangle = Math.sqrt(halfPerimeter * (halfPerimeter - lengtABSide)
+				    * (halfPerimeter - lengtBCSide)
+				    * (halfPerimeter - lengtCASide));
 	} else {
 	    areaTriangle = -1;
 	}
