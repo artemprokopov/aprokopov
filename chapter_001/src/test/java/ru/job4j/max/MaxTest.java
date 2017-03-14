@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 /**
- *Tests for Max class is implements a method that returns the maximum of the two number.
+ *Tests for Max class is implements a method that returns the maximum of the two and three number.
  *@author Prokopov Artem
  *@since 14.03.2017
  *@version 1.0
