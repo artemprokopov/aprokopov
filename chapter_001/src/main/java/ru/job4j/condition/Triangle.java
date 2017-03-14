@@ -8,69 +8,19 @@ package ru.job4j.condition;
  */
 public class Triangle {
     /**
-     *The field aPoint stores  the first point the triangle.
+     *The field aPoint stores  the first point "A" the triangle.
      */
     private Point aPoint;
     /**
-     *The field bPoint stores  the second point the triangle.
+     *The field bPoint stores  the second point "B" the triangle.
      */
     private Point bPoint;
     /**
-     *The field cPoint stores  the third point the triangle.
+     *The field cPoint stores  the third point "C" the triangle.
      */
     private Point cPoint;
-    /**
-     *The field lengthFirstSideTriangl stores  the length first side of the triangle.
-     */
-    private double lengthFirstSideTriangle;
-     /**
-     *The field lengthSecondSideTriangl stores  the length second side of the triangle.
-     */
-    private double lengthSecondSideTriangle;
-     /**
-     *The field lengthSecondSideTriangl stores  the length third side of the triangle.
-     */
-    private double lengthThirdSideTriangle;
-     /**
-     *The field halfPerimeter stores  the length semi-perimeter of the triangle.
-     */
-    private double halfPerimeter;
-     /**
-     *If a triangle exists holds true.
-     */
-    private boolean triangleExist;
-    /**
-     *Calculates the length of sides of the triangle.
-     *@param firstPoint - the first point of the side triangle
-     *@param secondPoint - the second point of the side triangle
-     *@return the length of a side of the triangle.
-     */
-    private  double lengthSideTriangle(Point firstPoint, Point secondPoint) {
-	return Math.sqrt(Math.pow(firstPoint.getX() - secondPoint.getX(), 2)
-			 + Math.pow(firstPoint.getY() - secondPoint.getY(), 2));
-    }
-    /**
-     *Calculates the semi-perimeter of the triangle.
-     *@param aLength length first side triangle.
-     *@param bLength length second side triangle.
-     *@param cLength length third side triangle.
-     *@return the length of the semi-perimeter of the triangle.
-     */
-    private double calculateHalfPerimeter(double aLength, double bLength, double cLength) {
-	return (aLength + bLength + cLength) / 2;
-    }
-    /**
-     *Check for existence of the triangle.
-     *@param aLength length first side triangle.
-     *@param bLength length second side triangle.
-     *@param cLength length third side triangle.
-     *@return true, if triangle exist.
-     */
-    private boolean checkTriangleExist(double aLength, double bLength, double cLength) {
-	return aLength < bLength +  cLength && bLength < aLength + cLength && cLength < aLength + bLength;
-    }
-    /**
-     *Constructor will create object Triangle by points a, b, c.
+	 /**
+     *Constructor will create object Triangle(ABC) by points a, b, c.
      *@param a - the first the triangle point, stored in the aPoint class field.
      *@param b - the second triangle point, stored in the bPoint class field.
      *@param c - the third triangle point, stored in the cPoint class field
@@ -79,11 +29,53 @@ public class Triangle {
 	this.aPoint = a;
 	this.bPoint = b;
 	this.cPoint = c;
-	this.lengthFirstSideTriangle = this.lengthSideTriangle(this.aPoint, this.bPoint);
-	this.lengthSecondSideTriangle = this.lengthSideTriangle(this.bPoint, this.cPoint);
-	this.lengthThirdSideTriangle = this.lengthSideTriangle(this.cPoint, this.aPoint);
-	this.halfPerimeter = this.calculateHalfPerimeter(this.lengthFirstSideTriangle, this.lengthSecondSideTriangle, this.lengthThirdSideTriangle);
-	this.triangleExist = this.checkTriangleExist(this.lengthFirstSideTriangle, this.lengthSecondSideTriangle, this.lengthThirdSideTriangle);
+    }
+    /**
+     *Calculates the length of sides of the triangle.
+     *@param firstPoint - the first point of the side triangle
+     *@param secondPoint - the second point of the side triangle
+     *@return the length of a side of the triangle.
+     */
+    public static double lengthSide(Point firstPoint, Point secondPoint) {
+	return Math.sqrt(Math.pow(firstPoint.getX() - secondPoint.getX(), 2)
+					+ Math.pow(firstPoint.getY() - secondPoint.getY(), 2));
+    }
+	/**
+     *Calculates the length of AB sides of the triangle.
+     *@return the length of the AB side of the triangle.
+     */
+	public double lengtABSide() {
+		return Triangle.lengthSide(this.aPoint, this.bPoint);
+	}
+	/**
+     *Calculates the length of BC sides of the triangle.
+     *@return the length of the BC side of the triangle.
+     */
+	public double lengtBCSide() {
+		return Triangle.lengthSide(this.bPoint, this.cPoint);
+	}
+	/**
+     *Calculates the length of CA sides of the triangle.
+     *@return the length of the CA side of the triangle.
+     */
+	public double lengtCASide() {
+		return Triangle.lengthSide(this.cPoint, this.aPoint);
+	}
+    /**
+     *Calculates the perimeter of the triangle.
+     *@return the length of the perimeter of the triangle.
+     */
+    public double perimeter() {
+		return lengtABSide() + lengtBCSide() + lengtCASide();
+    }
+    /**
+     *Check for existence of the triangle.
+     *@return true, if triangle exist.
+     */
+    public boolean checkTriangleExist() {
+	return lengtABSide() < lengtBCSide() +  lengtCASide() 
+			&& lengtBCSide() < lengtABSide() + lengtCASide()
+			&& lengtCASide() < lengtABSide() + lengtBCSide();
     }
     /**
      *Method calculates the area of a trangle.
@@ -92,10 +84,11 @@ public class Triangle {
      */
     public double area() {
 	double areaTriangle = 0;
-	if (triangleExist) {
-	    areaTriangle = Math.sqrt(this.halfPerimeter * (this.halfPerimeter - this.lengthFirstSideTriangle)
-				     * (this.halfPerimeter - this.lengthSecondSideTriangle)
-				     * (this.halfPerimeter - this.lengthThirdSideTriangle));
+	double halfPerimeter = perimeter() / 2;
+	if (checkTriangleExist()) {
+	    areaTriangle = Math.sqrt(halfPerimeter * (halfPerimeter - lengtABSide())
+				     * (halfPerimeter - lengtBCSide())
+				     * (halfPerimeter - lengtCASide()));
 	} else {
 	    areaTriangle = -1;
 	}
