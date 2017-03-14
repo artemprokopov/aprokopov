@@ -38,44 +38,44 @@ public class Triangle {
      */
     public static double lengthSide(Point firstPoint, Point secondPoint) {
 	return Math.sqrt(Math.pow(firstPoint.getX() - secondPoint.getX(), 2)
-					+ Math.pow(firstPoint.getY() - secondPoint.getY(), 2));
+			+ Math.pow(firstPoint.getY() - secondPoint.getY(), 2));
     }
 	/**
      *Calculates the length of AB sides of the triangle.
      *@return the length of the AB side of the triangle.
      */
-	public double lengtABSide() {
-		return Triangle.lengthSide(this.aPoint, this.bPoint);
-	}
-	/**
+    public double lengtABSide() {
+	return Triangle.lengthSide(this.aPoint, this.bPoint);
+    }
+    /**
      *Calculates the length of BC sides of the triangle.
      *@return the length of the BC side of the triangle.
      */
-	public double lengtBCSide() {
-		return Triangle.lengthSide(this.bPoint, this.cPoint);
-	}
-	/**
+    public double lengtBCSide() {
+	return Triangle.lengthSide(this.bPoint, this.cPoint);
+    }
+    /**
      *Calculates the length of CA sides of the triangle.
      *@return the length of the CA side of the triangle.
      */
-	public double lengtCASide() {
-		return Triangle.lengthSide(this.cPoint, this.aPoint);
-	}
+    public double lengtCASide() {
+	return Triangle.lengthSide(this.cPoint, this.aPoint);
+    }
     /**
      *Calculates the perimeter of the triangle.
      *@return the length of the perimeter of the triangle.
      */
     public double perimeter() {
-		return lengtABSide() + lengtBCSide() + lengtCASide();
+	return lengtABSide() + lengtBCSide() + lengtCASide();
     }
     /**
      *Check for existence of the triangle.
      *@return true, if triangle exist.
      */
     public boolean checkTriangleExist() {
-	return lengtABSide() < lengtBCSide() +  lengtCASide() 
-			&& lengtBCSide() < lengtABSide() + lengtCASide()
-			&& lengtCASide() < lengtABSide() + lengtBCSide();
+	return lengtABSide() < lengtBCSide() +  lengtCASide()
+		&& lengtBCSide() < lengtABSide() + lengtCASide()
+		&& lengtCASide() < lengtABSide() + lengtBCSide();
     }
     /**
      *Method calculates the area of a trangle.
@@ -87,8 +87,8 @@ public class Triangle {
 	double halfPerimeter = perimeter() / 2;
 	if (checkTriangleExist()) {
 	    areaTriangle = Math.sqrt(halfPerimeter * (halfPerimeter - lengtABSide())
-				     * (halfPerimeter - lengtBCSide())
-				     * (halfPerimeter - lengtCASide()));
+				    * (halfPerimeter - lengtBCSide())
+				    * (halfPerimeter - lengtCASide()));
 	} else {
 	    areaTriangle = -1;
 	}
