@@ -1,5 +1,4 @@
 package ru.job4j.loop;
-
 /**
  *The class Counter shows the work loop .
  *@author Prokopov Artem
@@ -7,7 +6,7 @@ package ru.job4j.loop;
  *@version 1.0
  */
  public class Counter (
- /**
+	/**
      *Calculates the sum of even numbers.
      *@param start - the first number in the range.
      *@param finish - the last number in the range.
