@@ -12,8 +12,8 @@ package ru.job4j.loop;
      *@param finish - the last number in the range.
      *@return the sum of even numbers.
      */
-	public void piramid(int h) {
-		 StringBuilder stringBuilder = new StringBuilder();
+	public String piramid(int h) {
+		StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < h; i++) {
             for (int j = 0; j < h - i - 1 ; j++) {
                 stringBuilder.append("%1$s");
@@ -26,6 +26,6 @@ package ru.job4j.loop;
             }
             stringBuilder.append("\n");
         }
-        System.out.print(String.format(stringBuilder.toString(), " ", "^"));
+        return String.format(stringBuilder.toString(), " ", "^");
 	}
  )
