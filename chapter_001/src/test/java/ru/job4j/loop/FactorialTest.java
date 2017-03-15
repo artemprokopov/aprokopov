@@ -17,9 +17,9 @@ public class FactorialTest {
      */
     @Test
     public void whenCalcFiveThenOneHundredTwenty() {
-        Factorial factorial = new Factorial();
-        int result = factorial.calc(5);
-        boolean expected = 120;
+        Factorial f = new Factorial();
+        int result = f.calc(5);
+        int expected = 120;
         assertThat(result, is(expected));
     }
 	/**
@@ -29,9 +29,9 @@ public class FactorialTest {
      */
     @Test
     public void whenCalcZeroThenOne() {
-        Factorial factorial = new Factorial();
-        int result = factorial.calc(0);
-        boolean expected = 1;
+        Factorial f = new Factorial();
+        int result = f.calc(0);
+        int expected = 1;
         assertThat(result, is(expected));
     }
 	/**
@@ -41,9 +41,9 @@ public class FactorialTest {
      */
     @Test
     public void whenCalcMinusOneThenZero() {
-        Factorial factorial = new Factorial();
-        int result = factorial.calc(-1);
-        boolean expected = 0;
+        Factorial f = new Factorial();
+        int result = f.calc(-1);
+        int expected = 0;
         assertThat(result, is(expected));
     }
 }

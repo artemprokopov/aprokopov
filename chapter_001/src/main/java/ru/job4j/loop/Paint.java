@@ -5,17 +5,16 @@ package ru.job4j.loop;
  *@since 15.03.2017
  *@version 1.0
  */
- public class Counter (
+ public class Paint {
 	/**
      *Draws a pyramid with the symbols "^" and gaps.
-     *@param start - the first number in the range.
-     *@param finish - the last number in the range.
-     *@return the sum of even numbers.
+     *@param h - the height of the pyramid.
+     *@return line of the pyramid.
      */
 	public String piramid(int h) {
 		StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < h; i++) {
-            for (int j = 0; j < h - i - 1 ; j++) {
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < h - i - 1; j++) {
                 stringBuilder.append("%1$s");
             }
             for (int k = 0; k <  2 * i + 1; k++) {
@@ -28,4 +27,4 @@ package ru.job4j.loop;
         }
         return String.format(stringBuilder.toString(), " ", "^");
 	}
- )
+ }

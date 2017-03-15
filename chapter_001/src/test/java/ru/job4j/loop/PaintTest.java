@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 * @since 15.03.2017
 * @version 1.0
 */
-public class CalculateTest {
+public class PaintTest {
 /**
 *Test method piramid.
 *Tested the result of the  method "piramide" n = 2.

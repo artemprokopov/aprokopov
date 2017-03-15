@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
  *@since 15.03.2017
  *@version 1.0
  */
-public class PointTest {
+public class CounterTest {
     /**
      *Test for method "add".
      *Tested the result of the  method "add" for the range of numder 1..10.
@@ -19,7 +19,7 @@ public class PointTest {
     public void whenAddOneToTenThenThirty() {
         Counter counter = new Counter();
         int result = counter.add(1, 10);
-        boolean expected = 30;
+        int expected = 30;
         assertThat(result, is(expected));
     }
 	/**
@@ -31,7 +31,7 @@ public class PointTest {
     public void whenAddFifteenToTwentyOneThenFiftyFour() {
         Counter counter = new Counter();
         int result = counter.add(15, 21);
-        boolean expected = 54;
+        int expected = 54;
         assertThat(result, is(expected));
     }
 }
