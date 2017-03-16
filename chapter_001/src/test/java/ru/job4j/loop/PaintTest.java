@@ -15,7 +15,7 @@ public class PaintTest {
 /**
 *Test method piramid.
 *Tested the result of the  method "piramide" n = 2.
-*The exeptede result is " ^ \n
+*The exepted result is " ^ \n
 *						 ^^^\n"
 */
     @Test

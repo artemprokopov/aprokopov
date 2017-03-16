@@ -13,7 +13,7 @@ public class FactorialTest {
     /**
      *Test for method "calc".
      *Tested the result of the  method "calc" for the  number 5.
-     *The exepted result is 120.
+     *The expected result is 120.
      */
     @Test
     public void whenCalcFiveThenOneHundredTwenty() {
@@ -25,7 +25,7 @@ public class FactorialTest {
 	/**
      *Test for method "calc".
      *Tested the result of the  method "calc" for the  number 0.
-     *The exepted result is 1.
+     *The expected result is 1.
      */
     @Test
     public void whenCalcZeroThenOne() {
@@ -34,10 +34,10 @@ public class FactorialTest {
         int expected = 1;
         assertThat(result, is(expected));
     }
-	/**
+    /**
      *Test for method "calc".
      *Tested the result of the  method "calc" for the  number -1.
-     *The exepted result is 0.
+     *The expected result is 0.
      */
     @Test
     public void whenCalcMinusOneThenZero() {
