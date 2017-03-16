@@ -5,8 +5,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 /**
  *Tests for Counter class.
- *@author Prokopov Artem
- *@since 15.03.2017
+ *@author Prokopov Artem(mailto:art1828@mail.ru)
+ *@since 15.03.2017.
  *@version 1.0
  */
 public class CounterTest {

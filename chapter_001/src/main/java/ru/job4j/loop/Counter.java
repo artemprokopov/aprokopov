@@ -1,6 +1,6 @@
 package ru.job4j.loop;
 /**
- *The class Counter shows the work loop .
+ *The class Counter shows the work loop.
  *@author Prokopov Artem
  *@since 15.03.2017
  *@version 1.0
