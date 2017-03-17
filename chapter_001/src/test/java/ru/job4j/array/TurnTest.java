@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 /**
- *Tests for Triangle class.
+ *Tests for Turn class.
  *@author Prokopov Artem
  *@since 10.03.2017
  *@version 1.0
