@@ -1,4 +1,4 @@
-package ru.jab4j.loop;
+package ru.job4j.loop;
 /**
  *The class Factorial calculates factorial.
  *@author Prokopov Artem
