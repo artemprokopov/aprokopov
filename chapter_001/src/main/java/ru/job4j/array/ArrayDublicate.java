@@ -1,28 +1,36 @@
 package ru.job4j.array;
+
+import java.util.Arrays;
 /**
- *Class Arraydublicate demonstrates the array sorting method Bubble.
+ *Class ArrayDublicate deletes duplicate elements from an array.
  *@author Prokopov Artem
  *@since 20.03.2017
  *@version 1.0
  */
-public class ArrrayDublicate {
+public class ArrayDublicate {
     /**
-     *Sort the sort method of the array.
-     *@param array - passed the array to sort.
-     *@return deployed in the back of the array.
+     *Method the deletes duplicate elements from an array.
+     *@param array - the array to remove duplicate elements.
+     *@return an array of remote replays.
      */
 	public String[] remove(String[] array) {
 	    String temp = "";
 	    int count = 0;
 	    for (int i = 0; i < array.length - count; i++) {
-		for (int j = i + 1; j < array.length; j++) {
+		for (int j = i + 1; j < array.length - count; j++) {
 		    if (array[j].equals(array[i])) {
-			while (array[j].equals(array[array.length - 1 - count]) {
-				count++;	
+			if (!array[j].equals(array[array.length - 1 - count])) {
+			    temp = array[j];
+			    array[j] = array[array.length - 1 - count];
+			    array[array.length - 1 - count] = array[j];
+			    count++;
+			} else {
+			    count++;
+			    j--;
 			}
-			    temp
-			    }
+		    }
 		}
 	    }
+	    return Arrays.copyOf(array, array.length - count);
 	}
 }
