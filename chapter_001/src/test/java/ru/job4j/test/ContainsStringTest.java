@@ -108,4 +108,18 @@ public class ContainsStringTest {
         boolean expected = false;
 	assertThat(result, is(expected));
     }
+     /**
+     *Test for method "contains".
+     *Test the checks whether a string is a substring of the given string, "bbaabbbaa" and "bbb".
+     *The exepted result is false.
+     */
+    @Test
+    public void whenStringBbaabbbaaAndBbbThenTrue() {
+        String originString = "bbaabbbaa";
+	String subString = "bbb";
+	ContainsString contain = new ContainsString();
+        boolean result = contain.contains(originString, subString);
+        boolean expected = true;
+	assertThat(result, is(expected));
+    }
 }
