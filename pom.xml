@@ -13,9 +13,19 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+            <compilerVersion>1.8</compilerVersion>
+        </configuration>
+    </plugin>
+
 
   <modules>
     <module>chapter_001</module>
+      <module>chapter_002</module>
   </modules>
   
   <dependencies>
