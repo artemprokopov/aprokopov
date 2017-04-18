@@ -1,11 +1,11 @@
 package ru.job4j.professions;
 
 /**
- * Created by art18 on 12.04.2017.
+ *  Класс результата работы Доктора, наследуется от Result, не предоставляет нового функционала, пока выступает для красоты.
+ * @author Prokopov Artem
+ * @since 18.04.2017
+ * @version 1.0
  */
 public class ResultDoctorWork extends Result {
-    @Override
-    public void resultWork(String resultWork, boolean statusResultWork) {
-        super.resultWork(resultWork, statusResultWork);
-    }
+
 }

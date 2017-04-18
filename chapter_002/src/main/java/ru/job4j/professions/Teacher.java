@@ -7,7 +7,7 @@ package ru.job4j.professions;
  */
 public class Teacher extends Professions {
     /**
-     Основной конструктор инициализтрующий классб через вызов
+     Основной конструктор инициализтрующий классб через вызов.
      * @param profile - профиль профессии
      * @param education - образование подкрепляющее профиль профессии
      * @param experience - опыт в годах, полученный по данной профессии

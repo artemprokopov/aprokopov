@@ -46,7 +46,7 @@ public class Doctor extends Professions {
         stringResultWork.append(super.getProfile());
         stringResultWork.append(" сообщает: Работа с пациентом ");
         stringResultWork.append(patient.getPatient());
-        stringResultWork.append(" выполнена");
+        stringResultWork.append(" выполнена.");
         resultDoctorWork.resultWork(stringResultWork.toString(), true);
         return resultDoctorWork;
     }

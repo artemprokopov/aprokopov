@@ -7,7 +7,7 @@ package ru.job4j.professions;
  */
 public class Engineer extends Professions {
     /**
-     Основной конструктор инициализтрующий классб через вызов
+     Основной конструктор инициализтрующий классб через вызов.
      * @param profile - профиль профессии
      * @param education - образование подкрепляющее профиль профессии
      * @param experience - опыт в годах, полученный по данной профессии
@@ -17,13 +17,24 @@ public class Engineer extends Professions {
     public Engineer(String profile, String education, int experience, String skills, String position) {
         super(profile, education, experience, skills, position);
     }
-
+    /**
+     * Метод выполняет работу(выполнения работ про проекту) в группе работников(персонала) в соответствии
+     * с предписаниями объекта Project.
+     * @param project - объект выполняемый проект.
+     * @param personal - объект описывающий персонал участвующий в проекте под руководством Инженера
+     * @return - результат проведения экзамена, объект ResultEngineerWork
+     */
     public ResultEngineerWork work(Project project, Personal personal) {
         ResultEngineerWork resultEngineerWork = new ResultEngineerWork();
         StringBuilder stringResultWork = new StringBuilder();
         return resultEngineerWork;
     }
-
+    /**
+     * Метод выполняет работу(выполнения работ про проекту) непосредственно инженером
+     * по предписаниями объекта Project.
+     * @param project - объект выполняемый проект.
+     * @return - результат проведения экзамена, объект ResultEngineerWork
+     */
     public ResultEngineerWork work(Project project) {
         ResultEngineerWork resultEngineerWork = new ResultEngineerWork();
         StringBuilder stringResultWork = new StringBuilder();

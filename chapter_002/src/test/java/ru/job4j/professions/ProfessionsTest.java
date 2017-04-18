@@ -2,7 +2,7 @@ package ru.job4j.professions;
 
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 /**
  * Группа тестов класса Professions.
  * @author Prokopov Artem
