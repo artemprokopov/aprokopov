@@ -22,7 +22,7 @@ public class Doctor extends Professions {
      * выполнения работы так как данный вид работы данному классу не известен, перегружает соответствующий
      * метод класса Professions.
      * @param obj - набор объектовнад которыми производится работа
-     * @return возвращает результат работы ввиде ссылки на объект Result
+     * @return возвращает результат работы ввиде ссылки на объект ResultDoctorWork
      */
     @Override
     public ResultDoctorWork work(Object... obj) {
@@ -69,7 +69,6 @@ public class Doctor extends Professions {
         resultDoctorWork.resultWork(stringResultWork.toString(), true);
         return resultDoctorWork;
     }
-
     /**
      * Метод производит работу с пациентомб производится осмотр пациента на предмет его жалоб.
      * @param patient пациент над которым производит работу доктор.

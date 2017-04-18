@@ -12,7 +12,7 @@ public class Professions {
      *  education - образование подкрепляющее профиль профессии
      *  experience - опыт в годах, полученный по данной профессии
      *  skills - основныенаправления умения по данной профессии
-     *  position - должность занимаемая исвязанная сданной профессией
+     *  position - должность занимаемая и связанная с данной профессией
      */
     private String profile;
     private String education;
@@ -25,7 +25,7 @@ public class Professions {
      * @param education - образование подкрепляющее профиль профессии
      * @param experience - опыт в годах, полученный по данной профессии
      * @param skills - основныенаправления умения по данной профессии
-     * @param position - должность занимаемая исвязанная сданной профессией
+     * @param position - должность занимаемая и связанная с данной профессией
      */
     Professions(String profile, String education, int experience, String skills, String position) {
         this.profile = profile;
