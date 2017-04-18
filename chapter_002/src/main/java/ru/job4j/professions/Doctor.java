@@ -27,11 +27,10 @@ public class Doctor extends Professions {
     @Override
     public ResultDoctorWork work(Object... obj) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        StringBuilder stringResultWork = new StringBuilder();
-        stringResultWork.append("Доктор ");
-        stringResultWork.append(super.getProfile());
-        stringResultWork.append(" сообщает: Работа не выполнена, мне не известен данный вид работы");
-        resultDoctorWork.resultWork(stringResultWork.toString(), false);
+        String stringResultWork = "Доктор " +
+                super.getProfile() +
+                " сообщает: Работа не выполнена, мне не известен данный вид работы";
+        resultDoctorWork.resultWork(stringResultWork, false);
         return resultDoctorWork;
     }
     /**
@@ -41,13 +40,12 @@ public class Doctor extends Professions {
      */
     public ResultDoctorWork work(Patient patient) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        StringBuilder stringResultWork = new StringBuilder();
-        stringResultWork.append("Доктор ");
-        stringResultWork.append(super.getProfile());
-        stringResultWork.append(" сообщает: Работа с пациентом ");
-        stringResultWork.append(patient.getPatient());
-        stringResultWork.append(" выполнена.");
-        resultDoctorWork.resultWork(stringResultWork.toString(), true);
+        String stringResultWork = "Доктор " +
+                super.getProfile() +
+                " сообщает: Работа с пациентом " +
+                patient.getPatient() +
+                " выполнена.";
+        resultDoctorWork.resultWork(stringResultWork, true);
         return resultDoctorWork;
     }
     /**
@@ -58,15 +56,14 @@ public class Doctor extends Professions {
      */
     public ResultDoctorWork work(Patient patient, ClinicalRecord clinicalRecord) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        StringBuilder stringResultWork = new StringBuilder();
-        stringResultWork.append("Доктор ");
-        stringResultWork.append(super.getProfile());
-        stringResultWork.append(" сообщает: Работа с пациентом ");
-        stringResultWork.append(patient.getPatient());
-        stringResultWork.append(" выполнена. ");
-        stringResultWork.append(clinicalRecord.getClinicalRecord());
-        stringResultWork.append(" заполнена.");
-        resultDoctorWork.resultWork(stringResultWork.toString(), true);
+        String stringResultWork = "Доктор " +
+                super.getProfile() +
+                " сообщает: Работа с пациентом " +
+                patient.getPatient() +
+                " выполнена. " +
+                clinicalRecord.getClinicalRecord() +
+                " заполнена.";
+        resultDoctorWork.resultWork(stringResultWork, true);
         return resultDoctorWork;
     }
     /**
@@ -77,16 +74,15 @@ public class Doctor extends Professions {
      */
     public ResultDoctorWork work(Patient patient, ExaminePatient examinePatient) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        StringBuilder stringResultWork = new StringBuilder();
-        stringResultWork.append("Доктор ");
-        stringResultWork.append(super.getProfile());
-        stringResultWork.append(" сообщает: Работа с пациентом ");
-        stringResultWork.append(patient.getPatient());
-        stringResultWork.append(" выполнена. ");
-        stringResultWork.append("Осмотр на предмет ");
-        stringResultWork.append(examinePatient.getExaminePatient());
-        stringResultWork.append(" выполнен.");
-        resultDoctorWork.resultWork(stringResultWork.toString(), true);
+        String stringResultWork = "Доктор " +
+                super.getProfile() +
+                " сообщает: Работа с пациентом " +
+                patient.getPatient() +
+                " выполнена. " +
+                "Осмотр на предмет " +
+                examinePatient.getExaminePatient() +
+                " выполнен.";
+        resultDoctorWork.resultWork(stringResultWork, true);
         return resultDoctorWork;
     }
 }
