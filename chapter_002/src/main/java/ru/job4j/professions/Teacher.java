@@ -25,7 +25,14 @@ public class Teacher extends Professions {
      */
     public ResultTeacherWork work(Students students, Lesson lesson) {
         ResultTeacherWork resultTeacherWork = new ResultTeacherWork();
-        StringBuilder stringResultWork = new StringBuilder();
+        String stringResultWork = "Учитель "
+                + super.getProfile()
+                + " сообщает: Работа с "
+                + students.getStudents()
+                + " по теме "
+                + lesson.getLesson()
+                + " выполнена.";
+        resultTeacherWork.resultWork(stringResultWork, true);
         return resultTeacherWork;
     }
     /**
@@ -36,7 +43,14 @@ public class Teacher extends Professions {
      */
     public ResultTeacherWork work(Students students, HomeWork homeWork) {
         ResultTeacherWork resultTeacherWork = new ResultTeacherWork();
-        StringBuilder stringResultWork = new StringBuilder();
+        String stringResultWork = "Учитель "
+                + super.getProfile()
+                + " сообщает: Работа с "
+                + students.getStudents()
+                + " по выдачи "
+                + homeWork.getHomework()
+                + " выполнена.";
+        resultTeacherWork.resultWork(stringResultWork, true);
         return resultTeacherWork;
     }
     /**
@@ -47,7 +61,14 @@ public class Teacher extends Professions {
      */
     public ResultTeacherWork work(Students students, Examine examine) {
         ResultTeacherWork resultTeacherWork = new ResultTeacherWork();
-        StringBuilder stringResultWork = new StringBuilder();
+        String stringResultWork = "Учитель "
+                + super.getProfile()
+                + " сообщает: Работа с "
+                + students.getStudents()
+                + " по приему "
+                + examine.getExamine()
+                + " выполнена.";
+        resultTeacherWork.resultWork(stringResultWork, true);
         return resultTeacherWork;
     }
     /**

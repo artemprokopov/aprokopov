@@ -114,8 +114,8 @@ public class DoctorTest {
         Patient patient = new Patient();
         ExaminePatient examinePatient = new ExaminePatient();
         ResultDoctorWork result = doctor.work(patient, examinePatient);
-        String expected = "Доктор Хирург сообщает: Работа с пациентом пациент выполнена. " +
-                            "Осмотр на предмет жалоб пациента выполнен.";
+        String expected = "Доктор Хирург сообщает: Работа с пациентом пациент выполнена. "
+                + "Осмотр на предмет жалоб пациента выполнен.";
         assertThat(result.getResultWork(), is(expected));
     }
 }

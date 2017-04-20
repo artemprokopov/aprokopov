@@ -9,7 +9,7 @@ public class Lesson {
     /**
      * Поле предоставляющий строку информацию о классе.
      */
-    private String lesson = "урок";
+    private String lesson = "урока";
     /**
      * Геттер возвращающий поле класса заглушки.
      * @return поле класса  lesson

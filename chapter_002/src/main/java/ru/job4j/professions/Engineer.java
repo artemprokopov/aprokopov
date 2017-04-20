@@ -26,14 +26,14 @@ public class Engineer extends Professions {
      */
     public ResultEngineerWork work(Project project, Personal personal) {
         ResultEngineerWork resultEngineerWork = new ResultEngineerWork();
-        String stringResultWork = "Инженер " +
-                super.getProfile() +
-                " сообщает: Работа по проекту " +
-                project.getProject() +
-                " выполнена." +
-                " Использован подчиненный " +
-                personal.getPersonal() +
-                ".";
+        String stringResultWork = "Инженер "
+                + super.getProfile()
+                + " сообщает: Работа по проекту "
+                + project.getProject()
+                + " выполнена."
+                + " Использован подчиненный "
+                + personal.getPersonal()
+                + ".";
         resultEngineerWork.resultWork(stringResultWork, true);
         return resultEngineerWork;
     }
@@ -45,11 +45,11 @@ public class Engineer extends Professions {
      */
     public ResultEngineerWork work(Project project) {
         ResultEngineerWork resultEngineerWork = new ResultEngineerWork();
-        String stringResultWork = "Инженер " +
-                super.getProfile() +
-                " сообщает: Работа по проекту " +
-                project.getProject() +
-                " выполнена.";
+        String stringResultWork = "Инженер "
+                + super.getProfile()
+                + " сообщает: Работа по проекту "
+                + project.getProject()
+                + " выполнена.";
         resultEngineerWork.resultWork(stringResultWork, true);
         return resultEngineerWork;
     }
@@ -63,9 +63,9 @@ public class Engineer extends Professions {
     @Override
     public ResultEngineerWork work(Object... obj) {
         ResultEngineerWork resultEngineerWork = new ResultEngineerWork();
-        String stringResultWork = "Инженер " +
-                super.getProfile() +
-                " сообщает: Работа не выполнена, мне не известен данный вид работы";
+        String stringResultWork = "Инженер "
+                + super.getProfile()
+                + " сообщает: Работа не выполнена, мне не известен данный вид работы";
         resultEngineerWork.resultWork(stringResultWork, false);
         return resultEngineerWork;
     }

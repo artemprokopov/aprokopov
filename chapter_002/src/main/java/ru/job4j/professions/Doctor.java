@@ -27,9 +27,9 @@ public class Doctor extends Professions {
     @Override
     public ResultDoctorWork work(Object... obj) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        String stringResultWork = "Доктор " +
-                super.getProfile() +
-                " сообщает: Работа не выполнена, мне не известен данный вид работы";
+        String stringResultWork = "Доктор "
+                + super.getProfile()
+                + " сообщает: Работа не выполнена, мне не известен данный вид работы";
         resultDoctorWork.resultWork(stringResultWork, false);
         return resultDoctorWork;
     }
@@ -40,11 +40,11 @@ public class Doctor extends Professions {
      */
     public ResultDoctorWork work(Patient patient) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        String stringResultWork = "Доктор " +
-                super.getProfile() +
-                " сообщает: Работа с пациентом " +
-                patient.getPatient() +
-                " выполнена.";
+        String stringResultWork = "Доктор "
+                + super.getProfile()
+                + " сообщает: Работа с пациентом "
+                + patient.getPatient()
+                + " выполнена.";
         resultDoctorWork.resultWork(stringResultWork, true);
         return resultDoctorWork;
     }
@@ -56,13 +56,13 @@ public class Doctor extends Professions {
      */
     public ResultDoctorWork work(Patient patient, ClinicalRecord clinicalRecord) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        String stringResultWork = "Доктор " +
-                super.getProfile() +
-                " сообщает: Работа с пациентом " +
-                patient.getPatient() +
-                " выполнена. " +
-                clinicalRecord.getClinicalRecord() +
-                " заполнена.";
+        String stringResultWork = "Доктор "
+                + super.getProfile()
+                + " сообщает: Работа с пациентом "
+                + patient.getPatient()
+                + " выполнена. "
+                + clinicalRecord.getClinicalRecord()
+                + " заполнена.";
         resultDoctorWork.resultWork(stringResultWork, true);
         return resultDoctorWork;
     }
@@ -74,14 +74,14 @@ public class Doctor extends Professions {
      */
     public ResultDoctorWork work(Patient patient, ExaminePatient examinePatient) {
         ResultDoctorWork resultDoctorWork = new ResultDoctorWork();
-        String stringResultWork = "Доктор " +
-                super.getProfile() +
-                " сообщает: Работа с пациентом " +
-                patient.getPatient() +
-                " выполнена. " +
-                "Осмотр на предмет " +
-                examinePatient.getExaminePatient() +
-                " выполнен.";
+        String stringResultWork = "Доктор "
+                + super.getProfile()
+                + " сообщает: Работа с пациентом "
+                + patient.getPatient()
+                + " выполнена. "
+                + "Осмотр на предмет "
+                + examinePatient.getExaminePatient()
+                + " выполнен.";
         resultDoctorWork.resultWork(stringResultWork, true);
         return resultDoctorWork;
     }

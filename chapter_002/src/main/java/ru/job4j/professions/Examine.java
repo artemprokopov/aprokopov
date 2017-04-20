@@ -9,7 +9,7 @@ public class Examine {
     /**
      * Поле предоставляющий строку информацию о классе.
      */
-    private String examine = "экзамен";
+    private String examine = "экзамена";
     /**
      * Геттер возвращающий поле класса заглушки.
      * @return поле класса  examine
