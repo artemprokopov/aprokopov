@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="2440.0" y="247.0">ru.job4j.professions.ResultEngineerWork</node>
+    <node x="2256.0" y="415.0">ru.job4j.professions.Engineer</node>
+    <node x="148.36363636363626" y="594.0">ru.job4j.professions.DoctorTest</node>
+    <node x="2442.3193181818183" y="616.0">ru.job4j.professions.EngineerTest</node>
+    <node x="332.0" y="404.0">ru.job4j.professions.Doctor</node>
+    <node x="1259.8636363636363" y="594.0">ru.job4j.professions.TeacherTest</node>
+    <node x="2768.0" y="448.5">ru.job4j.professions.Personal</node>
+    <node x="1415.0" y="448.5">ru.job4j.professions.Students</node>
+    <node x="907.0000000000001" y="247.0">ru.job4j.professions.ResultTeacherWork</node>
+    <node x="1731.0" y="448.5">ru.job4j.professions.Examine</node>
+    <node x="1882.0" y="437.5">ru.job4j.professions.ProfessionsTest</node>
+    <node x="1873.25" y="0.0">ru.job4j.professions.Result</node>
+    <node x="1275.0" y="448.5">ru.job4j.professions.Lesson</node>
+    <node x="2624.0" y="448.5">ru.job4j.professions.Project</node>
+    <node x="891.0000000000001" y="404.0">ru.job4j.professions.Teacher</node>
+    <node x="349.5" y="247.0">ru.job4j.professions.ResultDoctorWork</node>
+    <node x="2614.0" y="225.0">ru.job4j.professions.ResultTest</node>
+    <node x="710.0" y="448.5">ru.job4j.professions.ClinicalRecord</node>
+    <node x="1567.0" y="448.5">ru.job4j.professions.HomeWork</node>
+    <node x="144.0" y="448.5">ru.job4j.professions.ExaminePatient</node>
+    <node x="1795.25" y="169.0">ru.job4j.professions.Professions</node>
+    <node x="0.0" y="448.5">ru.job4j.professions.Patient</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.job4j.professions.Engineer" target="ru.job4j.professions.Professions">
+      <point x="-87.0" y="-59.0" />
+      <point x="2343.0" y="384.0" />
+      <point x="2164.5" y="384.0" />
+      <point x="158.25" y="92.5" />
+    </edge>
+    <edge source="ru.job4j.professions.TeacherTest" target="ru.job4j.professions.Teacher">
+      <point x="-190.4000000000001" y="-102.5" />
+      <point x="1307.4636363636362" y="569.0" />
+      <point x="1073.0" y="569.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="ru.job4j.professions.Doctor" target="ru.job4j.professions.ResultDoctorWork">
+      <point x="-89.5" y="-70.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ru.job4j.professions.DoctorTest" target="ru.job4j.professions.Patient">
+      <point x="-178.5" y="-102.5" />
+      <point x="207.86363636363626" y="569.0" />
+      <point x="62.0" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.TeacherTest" target="ru.job4j.professions.Students">
+      <point x="0.0" y="-102.5" />
+      <point x="1497.8636363636363" y="569.0" />
+      <point x="1481.0" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.ResultTeacherWork" target="ru.job4j.professions.Result">
+      <point x="0.0" y="-14.5" />
+      <point x="982.0000000000001" y="149.0" />
+      <point x="1953.0500000000002" y="149.0" />
+      <point x="-53.200000000000045" y="59.5" />
+    </edge>
+    <edge source="ru.job4j.professions.Teacher" target="ru.job4j.professions.ResultTeacherWork">
+      <point x="-91.0" y="-70.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ru.job4j.professions.ResultDoctorWork" target="ru.job4j.professions.Result">
+      <point x="0.0" y="-14.5" />
+      <point x="421.5" y="139.0" />
+      <point x="1899.85" y="139.0" />
+      <point x="-106.40000000000009" y="59.5" />
+    </edge>
+    <edge source="ru.job4j.professions.Doctor" target="ru.job4j.professions.Professions">
+      <point x="89.5" y="-70.0" />
+      <point x="600.5" y="374.0" />
+      <point x="1848.0" y="374.0" />
+      <point x="-158.25" y="92.5" />
+    </edge>
+    <edge source="ru.job4j.professions.TeacherTest" target="ru.job4j.professions.HomeWork">
+      <point x="95.19999999999982" y="-102.5" />
+      <point x="1593.063636363636" y="569.0" />
+      <point x="1639.0" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.ResultEngineerWork" target="ru.job4j.professions.Result">
+      <point x="0.0" y="-14.5" />
+      <point x="2517.0" y="149.0" />
+      <point x="2059.4500000000003" y="149.0" />
+      <point x="53.200000000000045" y="59.5" />
+    </edge>
+    <edge source="ru.job4j.professions.ProfessionsTest" target="ru.job4j.professions.Professions">
+      <point x="0.0" y="-36.5" />
+      <point x="52.75" y="92.5" />
+    </edge>
+    <edge source="ru.job4j.professions.DoctorTest" target="ru.job4j.professions.Doctor">
+      <point x="59.5" y="-102.5" />
+      <point x="445.86363636363626" y="569.0" />
+      <point x="511.0" y="569.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="ru.job4j.professions.Teacher" target="ru.job4j.professions.Professions">
+      <point x="91.0" y="-70.0" />
+      <point x="1164.0" y="384.0" />
+      <point x="1953.5" y="384.0" />
+      <point x="-52.75" y="92.5" />
+    </edge>
+    <edge source="ru.job4j.professions.DoctorTest" target="ru.job4j.professions.ClinicalRecord">
+      <point x="178.5" y="-102.5" />
+      <point x="564.8636363636363" y="569.0" />
+      <point x="790.5" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.Professions" target="ru.job4j.professions.Result">
+      <point x="0.0" y="-92.5" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="ru.job4j.professions.DoctorTest" target="ru.job4j.professions.ExaminePatient">
+      <point x="-59.5" y="-102.5" />
+      <point x="326.86363636363626" y="569.0" />
+      <point x="228.0" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.Engineer" target="ru.job4j.professions.ResultEngineerWork">
+      <point x="87.0" y="-59.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="ru.job4j.professions.EngineerTest" target="ru.job4j.professions.Engineer">
+      <point x="-145.33333333333326" y="-80.5" />
+      <point x="2514.985984848485" y="569.0" />
+      <point x="2430.0" y="569.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="ru.job4j.professions.TeacherTest" target="ru.job4j.professions.Lesson">
+      <point x="-95.19999999999982" y="-102.5" />
+      <point x="1402.6636363636364" y="569.0" />
+      <point x="1335.0" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.TeacherTest" target="ru.job4j.professions.Examine">
+      <point x="190.4000000000001" y="-102.5" />
+      <point x="1688.2636363636364" y="569.0" />
+      <point x="1796.5" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.ResultTest" target="ru.job4j.professions.Result">
+      <point x="0.0" y="-36.5" />
+      <point x="2762.0" y="139.0" />
+      <point x="2112.65" y="139.0" />
+      <point x="106.40000000000009" y="59.5" />
+    </edge>
+    <edge source="ru.job4j.professions.EngineerTest" target="ru.job4j.professions.Personal">
+      <point x="145.33333333333326" y="-80.5" />
+      <point x="2805.652651515152" y="569.0" />
+      <point x="2834.0" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="ru.job4j.professions.EngineerTest" target="ru.job4j.professions.Project">
+      <point x="0.0" y="-80.5" />
+      <point x="2660.3193181818183" y="569.0" />
+      <point x="2686.0" y="569.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9" x="2357.1249999999973" y="182.05952380952309" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
