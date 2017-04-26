@@ -4,7 +4,7 @@ package ru.job4j.accApplications;
  * Created by Prokopov on 26.04.2017.
  */
 public class Tracker {
-    private Item[] items;
+    private Item[] items = Tracker.NULL_ITEM_ARRAY;
     private final static Item[] NULL_ITEM_ARRAY = new  Item[0];
 
     public void add(Item item) throws ArrayIndexOutOfBoundsException {
