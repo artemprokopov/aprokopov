@@ -8,7 +8,7 @@ public class Tracker {
     private final static Item[] NULL_ITEM_ARRAY = new  Item[0];
 
     public void add(Item item) throws ArrayIndexOutOfBoundsException {
-        if (this.items != null && item.equals(Item.EMPTY_ITEM)) {
+        if (this.items != null && !item.equals(Item.EMPTY_ITEM)) {
            Item[] temp = new Item[this.items.length + 1];
            System.arraycopy(this.items, 0, temp, 0, this.items.length);
            temp[temp.length - 1] = item;
