@@ -3,25 +3,63 @@ package ru.job4j.accApplications;
 import java.util.Date;
 
 /**
- * Created by Prokopov on 26.04.2017.
+ * Класс описывающий структуру заявки.
+ * @author Artem Prokopov
+ * @since 27.04.2017
+ * @version 1.0
  */
 public class Item {
+    /**
+     * Поле id содержит уникальную идентификационную строку заявки.
+     */
     private final String id;
+
+    /**
+     *  Поле name содержит имя создавшего заявку
+     */
     private String name;
+
+    /**
+     * Поле desc содержит описание заявки.
+     */
     private String desc;
+
+    /**
+     * Поле created содержит врея создание заявки.
+     */
     private long created;
+
+    /**
+     * Поле comments содержит массив строк комментариев  заявке.
+     */
     private String[] comments;
 
+    /**
+     * Константа пустой заявки с id равному строке empty.
+     */
     public static final Item EMPTY_ITEM = new Item("empty");;
 
+    /**
+     * Private конструктод для создания пустой заявки.
+     * @param str
+     */
     private Item(String str) {
         this.id = str;
     }
 
+    /**
+     * Конструктор создающий базовую заявку.
+     */
     public Item() {
-        this.id = Long.toString((new Date().getTime())/(long) (Math.random() * 100))
+        this.created = new Date().getTime();
+        this.id = Long.toString((this.created)/(long) (Math.random() * 100))
                     + "-" + this.hashCode();
     }
+
+    /**
+     * Геттер возвращает значение поля id.
+     * @return возвращает значение поля id
+     */
     public String getId() {
         return id;
     }
