@@ -12,16 +12,13 @@ public class Item {
     private long created;
     private String[] comments;
 
-    public static final Item EMPTY_ITEM;
-    static {
-        EMPTY_ITEM = new Item("empty");
-    }
+    public static final Item EMPTY_ITEM = new Item("empty");;
 
     private Item(String str) {
         this.id = str;
     }
 
-    Item() {
+    public Item() {
         this.id = Long.toString((new Date().getTime())/(long) (Math.random() * 100))
                     + "-" + this.hashCode();
     }
