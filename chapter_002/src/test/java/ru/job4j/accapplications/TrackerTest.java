@@ -1,4 +1,4 @@
-package ru.job4j.accApplications;
+package ru.job4j.accapplications;
 
 /**
  * Группа тестов класса Tracker.

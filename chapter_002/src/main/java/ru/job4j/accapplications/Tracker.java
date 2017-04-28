@@ -1,4 +1,4 @@
-package ru.job4j.accApplications;
+package ru.job4j.accapplications;
 
 /**
  * Основной класс системы заявок Tracker, работает с массивом заявок, осуществляет добавление удаление заявок,
@@ -16,48 +16,47 @@ public class Tracker {
     /**
      * Добавляет заявку в массив items.
      * @param item добавляемая заявка
-     * @throws ArrayIndexOutOfBoundsException
      * @return в случае успеха операции возвращает true, иначе false.
      */
-    public boolean add(Item item) throws ArrayIndexOutOfBoundsException {
-        boolean result = false;
-        if (this.items != null && !item.equals(Item.EMPTY_ITEM)) {
+    public boolean add(Item item) {
+        if (this.items != null) {
+            for (Item i: this.items) {
+                if (i.equals(item)){
+                    return false;
+                }
+            }
            Item[] temp = new Item[this.items.length + 1];
            System.arraycopy(this.items, 0, temp, 0, this.items.length);
            temp[temp.length - 1] = item;
            this.items = temp;
-           result = true;
-        } else if (!item.equals(Item.EMPTY_ITEM)){
+           return true;
+        } else  {
             this.items = new Item[] {item};
-            result = true;
+            return true;
         }
-        return result;
     }
 
     /**
      * Обновляет заявку в массиве items.
      * @param item обновляемая заявка
-     * @throws ArrayIndexOutOfBoundsException
      * @return в случае успеха операции возвращает true, иначе false.
      */
-    public boolean update(Item item) throws ArrayIndexOutOfBoundsException {
-       boolean result = false;
+    public boolean update(Item item) {
         for (int i = 0; i < items.length; i++) {
-            if (item.equalsId(this.items[i])) {
+            if (item.equals(this.items[i])) {
                 items[i] = item;
-               result = true;
+               return true;
             }
         }
-        return result;
+        return false;
     }
 
     /**
-     * Удаляет указанную заявку
+     * Удаляет указанную заявку.
      * @param item удаляемая заявка
-     * @throws ArrayIndexOutOfBoundsException
      * @return в случае успеха операции возвращает true, иначе false.
      */
-    public boolean delete(Item item) throws ArrayIndexOutOfBoundsException {
+    public boolean delete(Item item) {
         boolean result = false;
         for (int i = 0; i < items.length; i++) {
             if (item.equals(this.items[i])) {
@@ -83,9 +82,8 @@ public class Tracker {
      * Ищет заявку по совпадению поля @name в заявках массива items.
      * @param key ключевое слово для поиска
      * @return возвращает массив Item[] содержащий найденные заявкиб если заявок не найдено возвращает NULL_ITEM_ARRAY.
-     * @throws ArrayIndexOutOfBoundsException
      */
-    public Item[] findByName(String key) throws ArrayIndexOutOfBoundsException {
+    public Item[] findByName(String key) {
         Item[] result = Item.NULL_ITEM_ARRAY;
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i].getName().equals(key)) {
@@ -103,7 +101,7 @@ public class Tracker {
      * @param id значение поля id
      * @return найденую заявку, в противном случае возвращает EMPTY_ITEM.
      */
-    public Item FindById(String id) {
+    public Item findById(String id) {
         Item result = Item.EMPTY_ITEM;
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i].getId().equals(id)) {

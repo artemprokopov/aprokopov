@@ -1,5 +1,6 @@
-package ru.job4j.accApplications;
+package ru.job4j.accapplications;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -12,19 +13,20 @@ public class Item {
     /**
      * Константа ссылающаяся на массив 0 длины, означающий пустой массив.
      */
-    public final static Item[] NULL_ITEM_ARRAY = new  Item[0];
+    public static final Item[] NULL_ITEM_ARRAY = new  Item[0];
 
     /**
      * Константа пустой заявки с id равному строке empty.
      */
     public static final Item EMPTY_ITEM = new Item("empty");
+
     /**
      * Поле id содержит уникальную идентификационную строку заявки.
      */
     private final String id;
 
     /**
-     *  Поле name содержит имя создавшего заявку
+     *  Поле name содержит имя создавшего заявку.
      */
     private String name = "";
 
@@ -43,10 +45,9 @@ public class Item {
      */
     private String[] comments = new String[0];
 
-
     /**
      * Private конструктод для создания пустой заявки.
-     * @param str
+     * @param str строка иницализации поля id
      */
     private Item(String str) {
         this.id = str;
@@ -57,8 +58,8 @@ public class Item {
      */
     public Item() {
         this.created = new Date().getTime();
-        this.id = Long.toString((this.created)/(long) (Math.random() * 100))
-                    + "-" + this.hashCode();
+        this.id = Long.toString((this.created) / (long) (Math.random() * 100))
+                    + "-" + super.hashCode();
     }
 
     /**
@@ -133,8 +134,8 @@ public class Item {
     }
 
     /**
-     * Добавляет комментарий
-     * @param comments
+     * Добавляет комментарий.
+     * @param comments массив комментариев.
      */
     protected void setComments(String[] comments) {
         this.comments = comments;
@@ -143,21 +144,16 @@ public class Item {
     /**
      * Добавляет комментарий к заявке.
      * @param comment содержание комментария
-     * @return возвращает true, если комментарий добавлен успешно, иначе false.
      */
-    public boolean addComments(String comment) {
-        boolean result = false;
+    public void addComments(String comment) {
         if (this.comments.length == 0) {
             this.comments = new String[]{comment};
-            result = true;
         } else {
             String[] temp = new String[this.comments.length + 1];
             System.arraycopy(this.comments, 0, temp, 0, this.comments.length);
             temp[temp.length - 1] = comment;
             this.comments = temp;
-            result = true;
         }
-        return result;
     }
 
     /**
@@ -165,8 +161,7 @@ public class Item {
      * @param delComment удаляемый комментарий.
      * @return возвращает true если операция зовершена успешно, иначе возвращает false.
      */
-    public boolean deletComments(String delComment) {
-        boolean result = false;
+    public boolean deletComment(String delComment) {
         if (this.comments.length != 0) {
             for (int i = 0; i < this.comments.length; i++) {
                 if (delComment.equals(this.comments[i])) {
@@ -174,12 +169,11 @@ public class Item {
                     System.arraycopy(this.comments, 0, temp, 0, i);
                     System.arraycopy(this.comments, i + 1, temp, i, this.comments.length - i - 1);
                     this.comments = temp;
-                    result = true;
-                    break;
+                    return true;
                 }
             }
         }
-        return  result;
+        return  false;
     }
 
     /**
@@ -189,17 +183,15 @@ public class Item {
      * @return вовращает true если операция завершена успешно, иначе возвращает false/
      */
     public boolean updateComment(String upComment, String newComment) {
-        boolean result = false;
         if (this.comments.length != 0) {
             for (int i = 0; i < this.comments.length; i++) {
                 if (upComment.equals(this.comments[i])) {
                     this.comments[i] = newComment;
-                    result = true;
-                    break;
+                    return true;
                 }
             }
         }
-        return result;
+        return false;
     }
 
     /**
@@ -207,37 +199,95 @@ public class Item {
      * @param item объект с которым сравниваем.
      * @return true если поля равны.
      */
-    public boolean equalsId (Item item) {
+    public boolean equalsId(Item item) {
         return this.id.equals(item.id);
     }
 
     /**
+     * Метод сравнения объектов Item по содержанию полей кроме уникального поля id,
+     * и даты создания.
+     * @param item объект с которым сравниваем.
+     * @return true если поля равны.
+     */
+    public boolean equalsItem(Item item) {
+        if (!this.name.equals(item.name)) {
+            return false;
+        }
+        if (!this.desc.equals(item.desc)) {
+            return false;
+        }
+        return Arrays.deepEquals(this.comments, item.comments);
+    }
+
+    /**
+     * Метод получения копии объекта Item с сохранением уникального поля id,
+     * и даты создания created.
+     * @return копию объекта Item с сохранением idб и даты создания created.
+     */
+    public Item getCopyItemSafeIdAndCreated() {
+        Item item = new Item(this.id);
+        item.setName(this.name);
+        item.setDesc(this.desc);
+        item.setCreated(this.created);
+        item.setComments(this.comments);
+        return  item;
+    }
+
+    /**
+     * Метод получения копии объекта Item с созданием уникального поля id,
+     * и новой даты создания created.
+     * @return копию объекта Item с сохранением id.
+     */
+    public Item getCopyItemWithNewIdAndCreated() {
+        Item item = new Item();
+        item.setName(this.name);
+        item.setDesc(this.desc);
+        item.setComments(this.comments);
+        return  item;
+    }
+
+    /**
      * Перегружаем метод equals класса Object.
-     * @param obj объект с которым сравниваем.
+     * @param o объект с которым сравниваем.
      * @return true если объекты равны, иначе false.
      */
     @Override
-    public boolean equals (Object obj) {
-        boolean result = false;
-        if (obj == null || obj.getClass() != this.getClass()) {
-            result = false;
-        } else {
-            Item item = (Item) obj;
-            if (this.id.equals(item.id)
-                    && this.name.equals(item.name)
-                    && this.desc.equals(item.desc)
-                    && this.created == item.created
-                    && this.comments.length == item.comments.length) {
-                for (int i = 0; i < this.comments.length; i++) {
-                    if (this.comments[i].equals(item.comments[i])) {
-                        result = true;
-                    } else {
-                        result = false;
-                        break;
-                    }
-                }
-            }
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
-        return  result;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Item item = (Item) o;
+
+        if (this.created != item.created) {
+            return false;
+        }
+        if (!this.id.equals(item.id)) {
+            return false;
+        }
+        if (!this.name.equals(item.name)) {
+            return false;
+        }
+        if (!this.desc.equals(item.desc)) {
+            return false;
+        }
+        return Arrays.deepEquals(this.comments, item.comments);
+    }
+
+    /**
+     * Перегружаем метод hashCode.
+     * @return возвращает hashCode.
+     */
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + desc.hashCode();
+        result = 31 * result + (int) (created ^ (created >>> 32));
+        result = 31 * result + Arrays.hashCode(comments);
+        return result;
     }
 }

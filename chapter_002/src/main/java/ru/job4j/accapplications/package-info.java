@@ -4,4 +4,4 @@
  * @version $Id$
  * @since 27.04.2017
  */
-package ru.job4j.accApplications;
+package ru.job4j.accapplications;
