@@ -21,7 +21,7 @@ public class Tracker {
     public boolean add(Item item) {
         if (this.items != null) {
             for (Item i: this.items) {
-                if (i.equals(item)){
+                if (i.equals(item)) {
                     return false;
                 }
             }
