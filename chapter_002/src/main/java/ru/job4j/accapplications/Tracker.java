@@ -9,9 +9,13 @@ package ru.job4j.accapplications;
  */
 public class Tracker {
     /**
+     * Константа ссылающаяся на массив 0 длины, означающий пустой массив.
+     */
+    public static final Item[] NULL_ITEM_ARRAY = new  Item[0];
+    /**
      * Массив заявок.
      */
-    private Item[] items = Item.NULL_ITEM_ARRAY;
+    private Item[] items = NULL_ITEM_ARRAY;
 
     /**
      * Добавляет заявку в массив items.
@@ -84,7 +88,7 @@ public class Tracker {
      * @return возвращает массив Item[] содержащий найденные заявкиб если заявок не найдено возвращает NULL_ITEM_ARRAY.
      */
     public Item[] findByName(String key) {
-        Item[] result = Item.NULL_ITEM_ARRAY;
+        Item[] result = NULL_ITEM_ARRAY;
         for (int i = 0; i < this.items.length; i++) {
             if (this.items[i].getName().equals(key)) {
                 Item[] temp = new Item[result.length + 1];

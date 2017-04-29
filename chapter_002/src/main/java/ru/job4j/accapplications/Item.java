@@ -10,10 +10,6 @@ import java.util.Date;
  * @version 1.0
  */
 public class Item {
-    /**
-     * Константа ссылающаяся на массив 0 длины, означающий пустой массив.
-     */
-    public static final Item[] NULL_ITEM_ARRAY = new  Item[0];
 
     /**
      * Константа пустой заявки с id равному строке empty.
@@ -59,7 +55,7 @@ public class Item {
     public Item() {
         this.created = new Date().getTime();
         this.id = Long.toString((this.created) / (long) (Math.random() * 100))
-                    + "-" + super.hashCode();
+                    + "-" + (long) (Math.random() * 1000000);
     }
 
     /**
