@@ -54,7 +54,7 @@ public class Item {
      */
     Item() {
         this.created = new Date().getTime();
-        this.id = Long.toString((this.created) / (long) (Math.random() * 100))
+        this.id = Long.toString((this.created) / ((long) (Math.random() * 100) + 1L))
                     + "-" + (long) (Math.random() * 1000000);
     }
 

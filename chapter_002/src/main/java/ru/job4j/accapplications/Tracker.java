@@ -23,33 +23,29 @@ public class Tracker {
      * @return в случае успеха операции возвращает true, иначе false.
      */
     public boolean add(Item item) {
-        if (this.items != null) {
-            for (Item i: this.items) {
-                if (i.equals(item)) {
-                    return false;
-                }
+        for (Item i : this.items) {
+            if (i.equals(item)) {
+                return false;
             }
-           Item[] temp = new Item[this.items.length + 1];
-           System.arraycopy(this.items, 0, temp, 0, this.items.length);
-           temp[temp.length - 1] = item;
-           this.items = temp;
-           return true;
-        } else  {
-            this.items = new Item[] {item};
-            return true;
         }
+        Item[] temp = new Item[this.items.length + 1];
+        System.arraycopy(this.items, 0, temp, 0, this.items.length);
+        temp[temp.length - 1] = item;
+        this.items = temp;
+        return true;
     }
 
     /**
      * Обновляет заявку в массиве items.
      * @param item обновляемая заявка
+     * @param newItem новая заявка
      * @return в случае успеха операции возвращает true, иначе false.
      */
-    public boolean update(Item item) {
+    public boolean update(Item item, Item newItem) {
         for (int i = 0; i < items.length; i++) {
             if (item.equals(this.items[i])) {
-                items[i] = item;
-               return true;
+                items[i] = newItem;
+                return true;
             }
         }
         return false;
@@ -115,5 +111,4 @@ public class Tracker {
         }
         return result;
     }
-
 }

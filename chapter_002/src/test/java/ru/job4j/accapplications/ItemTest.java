@@ -2,9 +2,8 @@ package ru.job4j.accapplications;
 
 import org.junit.Test;
 
-import java.util.Date;
-
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -14,105 +13,6 @@ import static org.junit.Assert.assertThat;
  * @version 1.0
  */
 public class ItemTest {
-    /**
-     * Тест проводит проверку выполнения метода getName.
-     * Проверяется результат возвращаемый методом getName, ожидается пустая строка.
-     */
-    @Test
-    public void getNameWhenCreateItemThenGetNameReturnEmptyString() {
-        Item item = new Item();
-        String expected = "";
-        assertThat(item.getName(), is(expected));
-    }
-
-    /**
-     * Тест проводит проверку выполнения метода setName.
-     * Проверяется результат устанавливаемый методом setName, ожидается "Avrora" .
-     */
-    @Test
-    public void setNameWhenSetAvroraGetNameAvrora() {
-        Item item = new Item();
-        item.setName("Avrora");
-        String expected = "Avrora";
-        assertThat(item.getName(), is(expected));
-    }
-
-    /**
-     * Тест проводит проверку выполнения метода getDesc.
-     * Проверяется результат возвращаемый методом getDesc, ожидается пустая строка.
-     */
-    @Test
-    public void getDescWhenCreateItemGetDeskReturnEmptyString() {
-        Item item = new Item();
-        String expected = "";
-        assertThat(item.getDesc(), is(expected));
-    }
-
-    /**
-     * Тест проводит проверку выполнения метода setDesc.
-     * Проверяется результат устанавливаемый методом setDesc, ожидается "Avrora" .
-     */
-    @Test
-    public void setDescWhenSetAvroraGetDescAvrora() {
-        Item item = new Item();
-        item.setDesc("Avrora");
-        String expected = "Avrora";
-        assertThat(item.getDesc(), is(expected));
-    }
-
-    /**
-     * Тест проводит проверку выполнения метода getCreated.
-     * Проверяется результат получаемы методом getCreated, ожидается разница с
-     * текущей датой меньше 5.
-     */
-    @Test
-    public void getCreatedWhenCreateItemThenDateMinusGetCreatedLess5() {
-        Item item = new Item();
-        long result = new Date().getTime() - item.getCreated();
-        assertThat(true, is(result < 5));
-    }
-
-    /**
-     * Тест проводит проверку выполнения метода setCreated.
-     * Проверяется результат получаемы методом setCreated, передаем методу 12
-     * ожидаем результат возвращаемый методом getCreated равный 12.
-     */
-    @Test
-    public void setCreatedWhenSet12GetCreatedReturn12() {
-        Item item = new Item();
-        item.setCreated(12L);
-        long result = item.getCreated();
-        assertThat(result, is(12L));
-    }
-
-    /**
-     * Тест проводит проверку выполнения метода setCreated.
-     * Проверяется результат получаемы методом setCreated, вызываем метод
-     * ожидаем результат возвращаемый методом getCreated и разницей с текущей
-     * датой менее 5.
-     */
-    @Test
-    public void setCreatedWhenSetThenDateMinusGetCreatedLess5() {
-        Item item = new Item();
-        item.setCreated();
-        long result = new Date().getTime() - item.getCreated();
-        assertThat(true, is(result < 5));
-    }
-
-    /**
-     * Тестируем методы setComments и getComments передаем массив строк, получаем
-     * тот же массив обратно.
-     */
-    @Test
-    public void setGetCommentsWhenSetArrayStringThenGetArrayString() {
-        Item item = new Item();
-        String[] comments = {"Привет мир",
-                "Да здравствует мир",
-                "Я люблю тебя мир"};
-        item.setComments(comments);
-        assertThat(item.getComments(), is(comments));
-    }
-
     /**
      * Тестируем метод equalsId и getCopyItemSafeIdAndCreated, сравниваем объект
      * и его копию, по полю id, ожидаем true.
@@ -181,7 +81,7 @@ public class ItemTest {
         String comment = "Привет мир";
         item.addComments(comment);
         String[] expected = {"Привет мир"};
-        assertThat(item.getComments(), is(expected));
+        assertArrayEquals(item.getComments(), expected);
     }
 
     /**
@@ -195,7 +95,7 @@ public class ItemTest {
         item.addComments(comment);
         item.addComments(comment);
         String[] expected = {"Привет мир", "Привет мир"};
-        assertThat(item.getComments(), is(expected));
+        assertArrayEquals(item.getComments(), expected);
     }
 
     /**
@@ -212,7 +112,7 @@ public class ItemTest {
         item.setComments(comment);
         boolean result = item.deletComment(delComment);
         String[] expected = {"Привет мир", "Я люблю тебя мир"};
-        assertThat(item.getComments(), is(expected));
+        assertArrayEquals(item.getComments(), expected);
         assertThat(result, is(true));
     }
 
@@ -230,7 +130,7 @@ public class ItemTest {
         item.setComments(comment);
         boolean result = item.deletComment(delComment);
         String[] expected = {"Привет мир", "Да здравствует мир", "Я люблю тебя мир"};
-        assertThat(item.getComments(), is(expected));
+        assertArrayEquals(item.getComments(), expected);
         assertThat(result, is(false));
     }
 
@@ -250,7 +150,7 @@ public class ItemTest {
         item.setComments(comment);
         boolean result = item.updateComment(updateComment, newComment);
         String[] expected = {"Привет мир", "Мир прекрасен", "Я люблю тебя мир"};
-        assertThat(item.getComments(), is(expected));
+        assertArrayEquals(item.getComments(), expected);
         assertThat(result, is(true));
     }
     /**
@@ -264,7 +164,7 @@ public class ItemTest {
         String newComment = "Мир прекрасен";
         boolean result = item.updateComment(updateComment, newComment);
         String[] expected = new String[0];
-        assertThat(item.getComments(), is(expected));
+        assertArrayEquals(item.getComments(), expected);
         assertThat(result, is(false));
     }
 
