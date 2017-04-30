@@ -52,7 +52,7 @@ public class Item {
     /**
      * Конструктор создающий базовую заявку.
      */
-    public Item() {
+    Item() {
         this.created = new Date().getTime();
         this.id = Long.toString((this.created) / (long) (Math.random() * 100))
                     + "-" + (long) (Math.random() * 1000000);
