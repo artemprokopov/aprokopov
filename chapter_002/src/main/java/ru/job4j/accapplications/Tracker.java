@@ -24,13 +24,13 @@ public class Tracker {
      * @return в случае успеха операции возвращает true, иначе false.
      */
     public boolean add(Item item) {
-        for (Item i : this.items) {
+        for (Item i : items) {
             if (i.equals(item)) {
                 return false;
             }
         }
-        Item[] temp = new Item[this.items.length + 1];
-        System.arraycopy(this.items, 0, temp, 0, this.items.length);
+        Item[] temp = new Item[items.length + 1];
+        System.arraycopy(items, 0, temp, 0,items.length);
         temp[temp.length - 1] = item;
         this.items = temp;
         return true;
@@ -44,7 +44,7 @@ public class Tracker {
      */
     public boolean update(Item item, Item newItem) {
         for (int i = 0; i < items.length; i++) {
-            if (item.equals(this.items[i])) {
+            if (item.equals(items[i])) {
                 items[i] = newItem;
                 return true;
             }
@@ -61,10 +61,10 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < items.length; i++) {
             if (item.equals(this.items[i])) {
-                Item[] temp = new Item[this.items.length - 1];
-                System.arraycopy(this.items, 0, temp, 0, i);
-                System.arraycopy(this.items, i + 1, temp, i, this.items.length - i  - 1);
-                this.items = temp;
+                Item[] temp = new Item[items.length - 1];
+                System.arraycopy(items, 0, temp, 0, i);
+                System.arraycopy(items, i + 1, temp, i, items.length - i  - 1);
+                items = temp;
                result = true;
             }
         }
@@ -76,7 +76,7 @@ public class Tracker {
      * @return items массив заявок.
      */
     public Item[] findAll() {
-        return this.items;
+        return items;
     }
 
     /**
@@ -86,8 +86,8 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         Item[] result = NULL_ITEM_ARRAY;
-        for (int i = 0; i < this.items.length; i++) {
-            if (this.items[i].getName().equals(key)) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].getName().equals(key)) {
                 Item[] temp = new Item[result.length + 1];
                 System.arraycopy(result, 0, temp, 0, result.length);
                 temp[temp.length - 1] = items[i];
@@ -104,9 +104,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = Item.EMPTY_ITEM;
-        for (int i = 0; i < this.items.length; i++) {
-            if (this.items[i].getId().equals(id)) {
-                result = this.items[i];
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].getId().equals(id)) {
+                result = items[i];
                 break;
             }
         }
