@@ -1,6 +1,11 @@
 package ru.job4j.accapplications;
 
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertArrayEquals;
@@ -13,25 +18,32 @@ import static org.junit.Assert.assertThat;
  * @version 1.0
  */
 public class TrackerTest {
-    /**
-     * Тестируем метод add и findAll, добавляем Item, ожидаем возвращение
-     * массива Item.
-     */
-    @Test
-    public void addAndFindAllAddItemReturnTrue() {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        Item item1 = new Item();
-        Item item2 = new Item();
+    Item item;
+    Item item1;
+    Item item2;
+    Tracker tracker = new Tracker();
+    @Before
+    public void createItem() {
+        item = new Item();
+        item1 = new Item();
+        item2 = new Item();
         item.setName("name");
         item.setDesc("desc");
         item.setComments(new String[]{"111", "2222", "3333"});
         item1.setName("name1");
         item1.setDesc("desc1");
         item1.setComments(new String[]{"1111", "22222", "33333"});
-        item2.setName("name2");
+        item2.setName("name");
         item2.setDesc("desc2");
         item2.setComments(new String[]{"11111", "222222", "333333"});
+    }
+    /**
+     * Тестируем метод add и findAll, добавляем Item, ожидаем возвращение
+     * массива Item.
+     *
+     */
+    @Test
+    public void addAndFindAllAddItemReturnTrue() {
         assertThat(tracker.add(item), is(true));
         assertThat(tracker.add(item1), is(true));
         assertThat(tracker.add(item2), is(true));
@@ -45,15 +57,7 @@ public class TrackerTest {
      */
     @Test
     public void addAddEqualItemReturnFalse() {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        Item item1 = item;
-        item.setName("name");
-        item.setDesc("desc");
-        item.setComments(new String[]{"111", "2222", "3333"});
-        item1.setName("name1");
-        item1.setDesc("desc1");
-        item1.setComments(new String[]{"1111", "22222", "33333"});
+        item = item1;
         assertThat(tracker.add(item), is(true));
         assertThat(tracker.add(item1), is(false));
         Item[] expected = {item};
@@ -65,19 +69,6 @@ public class TrackerTest {
      */
     @Test
     public void updateSelectItem1AndUpdateForItem2() {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        Item item1 = new Item();
-        Item item2 = new Item();
-        item.setName("name");
-        item.setDesc("desc");
-        item.setComments(new String[]{"111", "2222", "3333"});
-        item1.setName("name1");
-        item1.setDesc("desc1");
-        item1.setComments(new String[]{"1111", "22222", "33333"});
-        item2.setName("name2");
-        item2.setDesc("desc2");
-        item2.setComments(new String[]{"11111", "222222", "333333"});
         tracker.add(item);
         tracker.add(item1);
         assertThat(tracker.update(item1, item2), is(true));
@@ -91,19 +82,6 @@ public class TrackerTest {
      */
     @Test
     public void updateSelectNewItemAndUpdateForItem2() {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        Item item1 = new Item();
-        Item item2 = new Item();
-        item.setName("name");
-        item.setDesc("desc");
-        item.setComments(new String[]{"111", "2222", "3333"});
-        item1.setName("name1");
-        item1.setDesc("desc1");
-        item1.setComments(new String[]{"1111", "22222", "33333"});
-        item2.setName("name2");
-        item2.setDesc("desc2");
-        item2.setComments(new String[]{"11111", "222222", "333333"});
         tracker.add(item);
         tracker.add(item1);
         assertThat(tracker.update(new Item(), item2), is(false));
@@ -117,19 +95,6 @@ public class TrackerTest {
      */
     @Test
     public void delete() {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        Item item1 = new Item();
-        Item item2 = new Item();
-        item.setName("name");
-        item.setDesc("desc");
-        item.setComments(new String[]{"111", "2222", "3333"});
-        item1.setName("name1");
-        item1.setDesc("desc1");
-        item1.setComments(new String[]{"1111", "22222", "33333"});
-        item2.setName("name2");
-        item2.setDesc("desc2");
-        item2.setComments(new String[]{"11111", "222222", "333333"});
         tracker.add(item);
         tracker.add(item1);
         tracker.add(item2);
@@ -145,19 +110,6 @@ public class TrackerTest {
      */
     @Test
     public void findByName() {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        Item item1 = new Item();
-        Item item2 = new Item();
-        item.setName("name");
-        item.setDesc("desc");
-        item.setComments(new String[]{"111", "2222", "3333"});
-        item1.setName("name1");
-        item1.setDesc("desc1");
-        item1.setComments(new String[]{"1111", "22222", "33333"});
-        item2.setName("name");
-        item2.setDesc("desc2");
-        item2.setComments(new String[]{"11111", "222222", "333333"});
         tracker.add(item);
         tracker.add(item1);
         tracker.add(item2);
@@ -171,23 +123,51 @@ public class TrackerTest {
      */
     @Test
     public void findById() {
-        Tracker tracker = new Tracker();
-        Item item = new Item();
-        Item item1 = new Item();
-        Item item2 = new Item();
-        item.setName("name");
-        item.setDesc("desc");
-        item.setComments(new String[]{"111", "2222", "3333"});
-        item1.setName("name1");
-        item1.setDesc("desc1");
-        item1.setComments(new String[]{"1111", "22222", "33333"});
-        item2.setName("name");
-        item2.setDesc("desc2");
-        item2.setComments(new String[]{"11111", "222222", "333333"});
         tracker.add(item);
         tracker.add(item1);
         tracker.add(item2);
         Item expected = item1;
         assertThat(tracker.findById(item1.getId()), is(expected));
+    }
+
+    /**
+     * Тест производитльности метода add, по сравнению с методом add ArrayList.
+     * Выполняется по 10 прогонов, добавляем 100_000 заявок.
+     */
+    @Test
+    @Ignore
+    public void testSpeedAdd() {
+        long[] timeArrayAddTracker = new long[10];
+        long[] timeArrayListAdd = new long[10];
+        long timeStart = 0;
+        for (int i = 0; i < 10; i++) {
+            Tracker tracker = new Tracker();
+            timeStart = new Date().getTime();
+            for (int j = 0; j < 100000 ; j++) {
+                tracker.add(new Item());
+            }
+            timeArrayAddTracker[i] = new Date().getTime() - timeStart;
+            System.out.println("ta: " + i);
+        }
+        for (int i = 0; i < 10; i++) {
+            ArrayList<Item> itemArrayList = new ArrayList<>();
+            timeStart = new Date().getTime();
+            for (int j = 0; j < 100000 ; j++) {
+                itemArrayList.add(new Item());
+            }
+            timeArrayListAdd[i] = new Date().getTime() - timeStart;
+            System.out.println("aa: " + i);
+        }
+        for (int i = 0; i < 10; i++) {
+            String st = "Tarcker add: "
+                    + timeArrayAddTracker[i]
+                    + " "
+                    + "ArrayList add: "
+                    + timeArrayListAdd[i]
+                    + " "
+                    + "subtraction Time Tracker Add - Time ArrayList add: "
+                    + (timeArrayAddTracker[i] - timeArrayListAdd[i]);
+            System.out.println(st);
+        }
     }
 }

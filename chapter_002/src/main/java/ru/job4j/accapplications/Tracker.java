@@ -11,7 +11,8 @@ public class Tracker {
     /**
      * Константа ссылающаяся на массив 0 длины, означающий пустой массив.
      */
-    public static final Item[] NULL_ITEM_ARRAY = new  Item[0];
+    public static final Item[] NULL_ITEM_ARRAY = {};
+
     /**
      * Массив заявок.
      */
