@@ -48,8 +48,8 @@ public class AccArrayTest {
         System.out.println("add");
         Item o = new Item();
         instance.add(o);
-        Object[] result = instance.toArray();
-        Object[] expResult = {o.getCopyItemSafeIdAndCreated()};
+        Item[] result = instance.toArray(new Item[instance.size()]);
+        Item[] expResult = {o.getCopyItemSafeIdAndCreated()};
         assertArrayEquals(expResult, result);
     }
 
