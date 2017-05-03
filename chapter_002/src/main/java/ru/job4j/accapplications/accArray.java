@@ -50,8 +50,11 @@ public class accArray<T> {
     }
 
     public T get(int index) {
+      if (array != EMPTY_ARRAY) {
         chekIndex(index);
         return array[index];
+      }
+      return null;
     }
 
     public void set(int index, T o) {
@@ -102,6 +105,10 @@ public class accArray<T> {
         //Первичная иницилизация массива.
         if (chek == 1 && array == EMPTY_ARRAY) {
             array = (T[]) new Object[INIT_SIZE];
+        }
+        //Без значений обнуляем массив
+        if (chek == 0) {
+          array = (T[])EMPTY_ARRAY;
         }
         //Ловим не корректное знчение
         if(chek > array.length) {
