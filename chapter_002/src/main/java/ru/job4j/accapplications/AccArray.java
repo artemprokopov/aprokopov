@@ -5,29 +5,29 @@ import java.util.Arrays;
 /**
  * Created by Prokopov on 02.05.2017.
  */
-public class accArray<T> {
-    private T[] array;
+public class AccArray<T> {
+    private Object[] array;
 
     private int INIT_SIZE = 10;
     private int MAX_SIZE = Integer.MAX_VALUE - 10;
     private static final Object[] EMPTY_ARRAY = {};
     private int size = 0;
 
-    public accArray() {
-        this.array = (T[])accArray.EMPTY_ARRAY;
+    public AccArray() {
+        this.array = AccArray.EMPTY_ARRAY;
     }
 
-    public accArray(int initSize) {
+    public AccArray(int initSize) {
         INIT_SIZE = initSize;
     }
 
-    public void add(T o) {
+    public void add(Object o) {
         chekSize(size + 1);
         ++size;
         array[size - 1] = o;
     }
 
-    public void delete(T o) {
+    public void delete(Object o) {
         chekSize(size - 1);
         --size;
         int index = indexOf(o);
@@ -49,8 +49,8 @@ public class accArray<T> {
         return this.size;
     }
 
-    public T get(int index) {
-      if (array != EMPTY_ARRAY) {
+    public Object get(int index) {
+      if (array != AccArray.EMPTY_ARRAY) {
         chekIndex(index);
         return array[index];
       }
@@ -62,7 +62,7 @@ public class accArray<T> {
         array[index] = o;
     }
 
-    public int indexOf(T o) {
+    public int indexOf(Object o) {
         if (o == null) {
             for (int i = 0; i < size; i++) {
                 if (array[i] == null) {
@@ -79,8 +79,11 @@ public class accArray<T> {
         return -1;
     }
 
-    public T[] toArray() {
+    public Object[] toArray() {
+      if (array != AccArray.EMPTY_ARRAY) {
         return Arrays.copyOf(array, size);
+      }
+        return AccArray.EMPTY_ARRAY;
     }
 
     private void chekSize(int chek) {
@@ -92,23 +95,23 @@ public class accArray<T> {
             } else {
                 maxSize = array.length * 2;
             }
-            T[] temp =(T[]) new Object[maxSize];
+            Object[] temp = new Object[maxSize];
             temp = Arrays.copyOf(array, chek);
             array = temp;
         }
         //Смотрим на уменьшение элементов в массиве, если меньше половины обрезаем массив
         if (chek < size && chek < array.length / 2 && chek != 0) {
-            T[] temp =(T[]) new Object[array.length / 2];
+            Object[] temp = new Object[array.length / 2];
             temp = Arrays.copyOf(array, chek);
             array = temp;
         }
         //Первичная иницилизация массива.
-        if (chek == 1 && array == EMPTY_ARRAY) {
-            array = (T[]) new Object[INIT_SIZE];
+        if (chek == 1 && array == AccArray.EMPTY_ARRAY) {
+            array = new Object[INIT_SIZE];
         }
         //Без значений обнуляем массив
         if (chek == 0) {
-          array = (T[])EMPTY_ARRAY;
+          array = AccArray.EMPTY_ARRAY;
         }
         //Ловим не корректное знчение
         if(chek > array.length) {
@@ -136,9 +139,6 @@ public class accArray<T> {
     }
 
     public boolean isEmpty() {
-        if (array == EMPTY_ARRAY || array.length == 0) {
-            return true;
-        }
-        return false;
+            return size == 0;
     }
 }
