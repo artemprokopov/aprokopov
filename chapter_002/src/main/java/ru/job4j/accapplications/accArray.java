@@ -93,7 +93,7 @@ public class accArray<T> {
             temp = Arrays.copyOf(array, chek);
             array = temp;
         }
-        //Смотрим уменьшение элементов в массиве, если меньше половины обрезаем массив
+        //Смотрим на уменьшение элементов в массиве, если меньше половины обрезаем массив
         if (chek < size && chek < array.length / 2 && chek != 0) {
             T[] temp =(T[]) new Object[array.length / 2];
             temp = Arrays.copyOf(array, chek);
