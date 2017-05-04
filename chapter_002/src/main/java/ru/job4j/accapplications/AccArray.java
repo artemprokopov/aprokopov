@@ -29,14 +29,16 @@ public class AccArray<T> {
 
     public void delete(Object o) {
         chekSize(size - 1);
-        --size;
         int index = indexOf(o);
-        if (index != -1) {
-            System.arraycopy(array, index + 1, array, index, size - index -1 );
+        if (index != -1 && index != size - 1) {
+            System.arraycopy(array, index + 1, array, index, size - index);
+        } else if (index == size - 1 && o != null) {
+          array[index] = null;
         }
         if (index == -1) {
             throw new IllegalArgumentException("No object in array");
         }
+        --size;
     }
 
     public void delete(int index) {
@@ -110,7 +112,7 @@ public class AccArray<T> {
             array = temp;
         }
         //Смотрим на уменьшение элементов в массиве, если меньше половины обрезаем массив
-        if (chek < size && chek < array.length / 2 && chek != 0) {
+        if (chek < size && chek < array.length / 2 && chek != 0 && chek > INIT_SIZE) {
             Object[] temp = new Object[array.length / 2];
             temp = Arrays.copyOf(array, chek);
             array = temp;

@@ -45,7 +45,6 @@ public class AccArrayTest {
      */
     @Test
     public void testAdd() {
-        System.out.println("add");
         Item o = new Item();
         instance.add(o);
         Item[] result = instance.toArray(new Item[instance.size()]);
@@ -58,11 +57,14 @@ public class AccArrayTest {
      */
     @Test
     public void testDelete_GenericType() {
-        System.out.println("delete");
         Item o = null;
+        Item o1 = new Item();
+        instance.add(o1);
+        instance.add(o);
         instance.delete(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Item[] result = instance.toArray(new Item[instance.size()]);
+        Item[] expResult = {o1.getCopyItemSafeIdAndCreated()};
+        assertArrayEquals(expResult, result);
     }
 
     /**
