@@ -33,7 +33,7 @@ public class AccArrayTest {
 
     @Before
     public void setUp() {
-      instance = new AccArray<Item>();
+      instance = new AccArray<>();
     }
 
     @After
@@ -109,7 +109,7 @@ public class AccArrayTest {
         System.out.println("set");
         int index = 0;
         Object o = null;
-        instance.set(index, o);
+        instance.set(index, (Item) o);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -147,7 +147,7 @@ public class AccArrayTest {
         System.out.println("toArray");
         Item[] expResult = {new Item()};
         instance.add(new Item());
-        Item[] result = instance.toArray();
+        Item[] result = (Item[]) instance.toArray();
         assertArrayEquals(expResult, result);
     }
 
@@ -161,5 +161,4 @@ public class AccArrayTest {
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
     }
-
 }
