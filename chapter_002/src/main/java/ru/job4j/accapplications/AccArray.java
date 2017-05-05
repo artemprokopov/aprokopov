@@ -4,12 +4,13 @@ import java.util.Arrays;
 
 /**
  * Created by Prokopov on 02.05.2017.
+ * @param <T>
  */
 public class AccArray<T> {
     private Object[] array;
 
     private int INIT_SIZE = 10;
-    private int MAX_SIZE = Integer.MAX_VALUE - 10;
+    private final int MAX_SIZE = Integer.MAX_VALUE - 10;
     private static final Object[] EMPTY_ARRAY = {};
     private int size = 0;
 
@@ -28,22 +29,23 @@ public class AccArray<T> {
     }
 
     public void delete(Object o) {
-        chekSize(size - 1);
         int index = indexOf(o);
-        if (index != -1 && index != size - 1) {
+        chekSize(size - 1);
+        if (index != -1 && index != size - 1 && size != 0) {
             System.arraycopy(array, index + 1, array, index, size - index);
+            --size;
         } else if (index == size - 1 && o != null) {
           array[index] = null;
+          --size;
         }
         if (index == -1) {
             throw new IllegalArgumentException("No object in array");
         }
-        --size;
     }
 
     public void delete(int index) {
         chekIndex(index);
-        chekSize(index);
+        chekSize(size - 1);
         System.arraycopy(array, index + 1, array, index, size - index -1 );
     }
 
@@ -117,6 +119,7 @@ public class AccArray<T> {
             temp = Arrays.copyOf(array, chek);
             array = temp;
         }
+        
         //Первичная иницилизация массива.
         if (chek == 1 && array == AccArray.EMPTY_ARRAY) {
             array = new Object[INIT_SIZE];
@@ -124,6 +127,7 @@ public class AccArray<T> {
         //Без значений обнуляем массив
         if (chek == 0) {
           array = AccArray.EMPTY_ARRAY;
+          size = 0;
         }
         //Ловим не корректное знчение
         if(chek > array.length) {
@@ -146,7 +150,7 @@ public class AccArray<T> {
             throw new IllegalArgumentException("chekIndex index > MAX_SIZE");
         }
         if (index > size) {
-            throw new IllegalArgumentException("chekIndex index > 0");
+            throw new IllegalArgumentException("chekIndex index > size array");
         }
     }
 
