@@ -59,11 +59,11 @@ public class AccArrayTest {
     public void testDelete_GenericType() {
         Item o = null;
         Item o1 = new Item();
-        instance.add(o1);
+        //instance.add(o1);
         instance.add(o);
         instance.delete(o);
         Item[] result = instance.toArray(new Item[instance.size()]);
-        Item[] expResult = {o1.getCopyItemSafeIdAndCreated()};
+        Item[] expResult = {};
         assertArrayEquals(expResult, result);
     }
 
@@ -72,11 +72,10 @@ public class AccArrayTest {
      */
     @Test
     public void testDelete_int() {
-        System.out.println("delete");
         int index = 0;
+        instance.add(new Item());
+        //instance.add(new Item());
         instance.delete(index);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
