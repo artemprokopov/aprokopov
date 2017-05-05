@@ -19,6 +19,9 @@ import static org.junit.Assert.*;
 public class AccArrayTest {
   
     AccArray<Item> instance;
+    AccArray<Item> instance10;
+    AccArray<Item> instance0;
+    AccArray<Item> instance01;
 
     public AccArrayTest() {
     }
@@ -33,6 +36,13 @@ public class AccArrayTest {
 
     @Before
     public void setUp() {
+      instance10 = new AccArray<>();
+      for (int i = 0; i < 10; i++) {
+        instance10.add(new Item());
+      }
+      instance01 = new AccArray<>();
+      instance01.add(null);
+      instance01.add(new Item());
       instance = new AccArray<>();
     }
 
@@ -71,24 +81,36 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test
-    public void testDelete_int() {
-        int index = 0;
-        instance.add(new Item());
-        //instance.add(new Item());
-        instance.delete(index);
+    public void testDelete_int10element() {
+      int index = 5;
+      Item[] result = instance10.toArray(new Item[instance10.size()]);
+      System.arraycopy(result, index + 1, result, index, instance10.size() - index - 1);
+      instance10.delete(index);
+      Item[] expResult = instance10.toArray(new Item[instance10.size()]);
+      assertArrayEquals(expResult, result);
+    }
+    
+    /**
+     * Test of delete method, of class AccArray.
+     */
+    @Test
+    public void testDelete_int2element() {
+      int index = 0;
+      Item[] result = instance01.toArray(new Item[instance01.size()]);
+      System.arraycopy(result, index + 1, result, index, instance01.size() - index - 1);
+      instance01.delete(index);
+      Item[] expResult = instance01.toArray(new Item[instance01.size()]);
+      assertArrayEquals(expResult, result);
     }
 
     /**
      * Test of size method, of class AccArray.
      */
     @Test
-    public void testSize() {
-        System.out.println("size");
+    public void testSize0() {
         int expResult = 0;
         int result = instance.size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -96,10 +118,10 @@ public class AccArrayTest {
      */
     @Test
     public void testGet() {
-        System.out.println("get");
         int index = 0;
-        Object expResult = null;
-        Object result = instance.get(index);
+        Item[] expResult = instance10.toArray(new Item[instance10.size()]);
+        Object result = instance10.get(index);
+        assertEquals(expResult[index], result);
     }
 
     /**
@@ -109,10 +131,11 @@ public class AccArrayTest {
     public void testSet() {
         System.out.println("set");
         int index = 0;
-        Object o = null;
-        instance.set(index, (Item) o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Item o = new Item();
+        instance01.set(index, o);
+        Item[] expResult = instance01.toArray(new Item[instance01.size()]);
+        Object result = instance01.get(index);
+         assertEquals(expResult[index], result);
     }
 
     /**
@@ -120,13 +143,10 @@ public class AccArrayTest {
      */
     @Test
     public void testIndexOf() {
-        System.out.println("indexOf");
-        Object o = null;
-        int expResult = 0;
-        int result = instance.indexOf(o);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      int expResult = 5;
+      Item o = instance10.get(expResult);
+      int result = instance10.indexOf(o);
+      assertEquals(expResult, result);
     }
 
     /**
@@ -145,11 +165,10 @@ public class AccArrayTest {
      */
     @Test
     public void testToArrayAddOneArray() {
-        System.out.println("toArray");
-        Item[] expResult = {new Item()};
-        instance.add(new Item());
-        Item[] result = (Item[]) instance.toArray();
-        assertArrayEquals(expResult, result);
+      instance.add(new Item());
+      Item[] result = (Item[]) instance.toArray();
+      Item[] expResult = {instance.get(0)};
+      assertArrayEquals(expResult, result);
     }
 
     /**

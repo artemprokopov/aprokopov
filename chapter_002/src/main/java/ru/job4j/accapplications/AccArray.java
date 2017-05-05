@@ -53,10 +53,10 @@ public class AccArray<T> {
         return this.size;
     }
 
-    public Object get(int index) {
+    public T get(int index) {
       if (array != AccArray.EMPTY_ARRAY) {
         chekIndex(index);
-        return array[index];
+        return (T)array[index];
       }
       return null;
     }
@@ -84,19 +84,19 @@ public class AccArray<T> {
     }
 
     public Object[] toArray() {
-      if (array != AccArray.EMPTY_ARRAY) {
-        return Arrays.copyOf(array, size);
-      }
-        return AccArray.EMPTY_ARRAY;
+        return  toArray(new Object[size]);
     }
     
+    @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        if (a.length < size)
-            // Make a new array of a's runtime type, but my contents:
-            return (T[]) Arrays.copyOf(array, size, a.getClass());
+        if (a.length < size) {
+          // Make a new array of a's runtime type, but my contents:
+          return (T[]) Arrays.copyOf(array, size, a.getClass());
+        }
         System.arraycopy(array, 0, a, 0, size);
-        if (a.length > size)
+        if (a.length > size){
             a[size] = null;
+        }
         return a;
     }
 
