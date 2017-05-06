@@ -99,6 +99,10 @@ public class AccArray<T> {
         }
         return a;
     }
+    
+    private void checkSizeAdd(int chek) {
+      
+    }
 
     private void chekSize(int chek) {
         // Проверяем на достижение конца выделенного массива если да, увеличиваем массив
