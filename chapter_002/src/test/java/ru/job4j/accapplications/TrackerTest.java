@@ -143,7 +143,7 @@ public class TrackerTest {
         for (int i = 0; i < 10; i++) {
             Tracker tracker = new Tracker();
             timeStart = new Date().getTime();
-            for (int j = 0; j < 10000 ; j++) {
+            for (int j = 0; j < 10000; j++) {
                 tracker.add(new Item());
             }
             timeArrayAddTracker[i] = new Date().getTime() - timeStart;
@@ -152,7 +152,7 @@ public class TrackerTest {
         for (int i = 0; i < 10; i++) {
             ArrayList<Item> itemArrayList = new ArrayList<>();
             timeStart = new Date().getTime();
-            for (int j = 0; j < 10000 ; j++) {
+            for (int j = 0; j < 10000; j++) {
                 itemArrayList.add(new Item());
             }
             timeArrayListAdd[i] = new Date().getTime() - timeStart;

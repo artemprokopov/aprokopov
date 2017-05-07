@@ -9,14 +9,14 @@ package ru.job4j.accapplications;
  */
 public class Tracker {
     /**
-     * Константа ссылающаяся на массив 0 длины, означающий пустой массив.
+     *
      */
-    public static final Item[] NULL_ITEM_ARRAY = {};
+    private static final Item[] NULL_ITEM_ARRAY = {};
 
     /**
      * Массив заявок.
      */
-    private Item[] items = NULL_ITEM_ARRAY;
+    private AccArray<Item> items = new AccArray<>();
 
     /**
      * Добавляет заявку в массив items.
@@ -24,15 +24,12 @@ public class Tracker {
      * @return в случае успеха операции возвращает true, иначе false.
      */
     public boolean add(Item item) {
-        for (Item i : items) {
-            if (i.equals(item)) {
+        for (int i = 0; i < items.size(); ++i) {
+            if (items.get(i).equals(item)) {
                 return false;
             }
         }
-        Item[] temp = new Item[items.length + 1];
-        System.arraycopy(items, 0, temp, 0,items.length);
-        temp[temp.length - 1] = item;
-        this.items = temp;
+        items.add(item);
         return true;
     }
 
@@ -43,9 +40,9 @@ public class Tracker {
      * @return в случае успеха операции возвращает true, иначе false.
      */
     public boolean update(Item item, Item newItem) {
-        for (int i = 0; i < items.length; i++) {
-            if (item.equals(items[i])) {
-                items[i] = newItem;
+        for (int i = 0; i < items.size(); i++) {
+            if (item.equals(items.get(i))) {
+                items.set(i, newItem);
                 return true;
             }
         }
@@ -57,17 +54,10 @@ public class Tracker {
      * @param item удаляемая заявка
      * @return в случае успеха операции возвращает true, иначе false.
      */
-    public boolean delete(Item item) {
+    public boolean delete(Item item) throws IllegalArgumentException{
         boolean result = false;
-        for (int i = 0; i < items.length; i++) {
-            if (item.equals(this.items[i])) {
-                Item[] temp = new Item[items.length - 1];
-                System.arraycopy(items, 0, temp, 0, i);
-                System.arraycopy(items, i + 1, temp, i, items.length - i  - 1);
-                items = temp;
-               result = true;
-            }
-        }
+        items.delete(item);
+        result = true;
         return result;
     }
 
@@ -76,7 +66,7 @@ public class Tracker {
      * @return items массив заявок.
      */
     public Item[] findAll() {
-        return items;
+        return items.toArray(new Item[items.size()]);
     }
 
     /**
@@ -85,12 +75,13 @@ public class Tracker {
      * @return возвращает массив Item[] содержащий найденные заявкиб если заявок не найдено возвращает NULL_ITEM_ARRAY.
      */
     public Item[] findByName(String key) {
-        Item[] result = NULL_ITEM_ARRAY;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getName().equals(key)) {
+        Item[] result = Tracker.NULL_ITEM_ARRAY;
+        for (int i = 0; i < items.size(); i++) {
+            Item count = items.get(i);
+            if (count.getName().equals(key)) {
                 Item[] temp = new Item[result.length + 1];
                 System.arraycopy(result, 0, temp, 0, result.length);
-                temp[temp.length - 1] = items[i];
+                temp[temp.length - 1] = count;
                 result = temp;
             }
         }
@@ -104,9 +95,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = Item.EMPTY_ITEM;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getId().equals(id)) {
-                result = items[i];
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                result = items.get(i);
                 break;
             }
         }

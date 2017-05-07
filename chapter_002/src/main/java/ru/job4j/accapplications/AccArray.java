@@ -7,58 +7,101 @@ import java.util.Arrays;
  * @param <T>
  */
 public class AccArray<T> {
-    private Object[] array;
+    /**
+     *
+     */
+    Object[] array;
 
-    private int INIT_SIZE = 10;
-    private final int MAX_SIZE = Integer.MAX_VALUE - 10;
+    /**
+     *
+     */
+    private static final int INIT_SIZE = 10;
+
+    /**
+     *
+     */
+    private static final int MAX_SIZE = Integer.MAX_VALUE - 10;
+
+    /**
+     *
+     */
     private static final Object[] EMPTY_ARRAY = {};
+
+    /**
+     *
+     */
     private int size = 0;
 
+    /**
+     *
+     */
     public AccArray() {
         this.array = AccArray.EMPTY_ARRAY;
     }
 
-    public AccArray(int initSize) {
-        INIT_SIZE = initSize;
-    }
-
+    /**
+     *
+     */
     public void add(Object o) {
-        chekSize(size + 1);
+        checkSizeAdd(size + 1);
         ++size;
         array[size - 1] = o;
     }
 
+    /**
+     *
+     * @param o
+     */
     public void delete(Object o) {
-        int index = indexOf(o);
-        chekSize(size - 1);
-        if (index != -1 && index != size - 1 && size != 0) {
-            System.arraycopy(array, index + 1, array, index, size - index);
-            --size;
-        } else if (index == size - 1 && o != null) {
-          array[index] = null;
-          --size;
+        if (array == AccArray.EMPTY_ARRAY) {
+            throw new IllegalArgumentException("Array EMPTY");
         }
+        int index = indexOf(o);
         if (index == -1) {
             throw new IllegalArgumentException("No object in array");
         }
+        checkSizeDelete(size - 1);
+        if (size != 1) {
+            System.arraycopy(array, index + 1, array, index, size - index);
+            --size;
+        } else if (size == 1) {
+          array = AccArray.EMPTY_ARRAY;
+          --size;
+        }
     }
 
+    /**
+     *
+     * @param index
+     */
     public void delete(int index) {
         chekIndex(index);
-        chekSize(size - 1);
+        checkSizeDelete(size - 1);
         System.arraycopy(array, index + 1, array, index, size - index -1 );
+        array[size - 1] = null;
+        --size;
     }
 
+
+    /**
+     *
+     * @return
+     */
     public int size() {
         return this.size;
     }
 
+    /**
+     *
+     * @param index
+     * @return T
+     */
     public T get(int index) {
-      if (array != AccArray.EMPTY_ARRAY) {
-        chekIndex(index);
-        return (T)array[index];
+      if (array == AccArray.EMPTY_ARRAY ) {
+          throw new IllegalArgumentException("Array empty");
       }
-      return null;
+      chekIndex(index);
+      return (T)array[index];
     }
 
     public void set(int index, T o) {
@@ -66,6 +109,11 @@ public class AccArray<T> {
         array[index] = o;
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     public int indexOf(Object o) {
         if (o == null) {
             for (int i = 0; i < size; i++) {
@@ -83,69 +131,62 @@ public class AccArray<T> {
         return -1;
     }
 
+    /**
+     *
+     * @return
+     */
     public Object[] toArray() {
         return  toArray(new Object[size]);
     }
     
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        if (a.length < size) {
-          // Make a new array of a's runtime type, but my contents:
-          return (T[]) Arrays.copyOf(array, size, a.getClass());
-        }
-        System.arraycopy(array, 0, a, 0, size);
-        if (a.length > size){
-            a[size] = null;
-        }
-        return a;
-    }
-    
-    private void checkSizeAdd(int chek) {
-      
+        return (T[]) Arrays.copyOf(array, size, a.getClass());
     }
 
-    private void chekSize(int chek) {
-        // Проверяем на достижение конца выделенного массива если да, увеличиваем массив
-        if (chek > size && chek == array.length) {
-            int maxSize;
-            if (array.length * 2 > MAX_SIZE || array.length * 2 < 0) {
-                maxSize = MAX_SIZE;
-            } else {
-                maxSize = array.length * 2;
+    /**
+     *
+     * @param check
+     */
+    private void checkSizeAdd(int check) {
+        if (check > AccArray.MAX_SIZE) {
+            throw new OutOfMemoryError("chek > MAX_SIZE: "
+                    + check + " > "
+                    + AccArray.MAX_SIZE);
+        }
+        if (check == array.length) {
+            long newSizeTest = array.length * 2;
+            int newSize;
+            if (newSizeTest > AccArray.MAX_SIZE) {
+                newSizeTest = AccArray.MAX_SIZE;
             }
-            Object[] temp = new Object[maxSize];
-            temp = Arrays.copyOf(array, chek);
+            newSize = (int) newSizeTest;
+            Object[] temp = new Object[newSize];
+            System.arraycopy(array, 0, temp, 0, size);
             array = temp;
         }
-        //Смотрим на уменьшение элементов в массиве, если меньше половины обрезаем массив
-        if (chek < size && chek < array.length / 2 && chek != 0 && chek > INIT_SIZE) {
-            Object[] temp = new Object[array.length / 2];
-            temp = Arrays.copyOf(array, chek);
-            array = temp;
-        }
-        
-        //Первичная иницилизация массива.
-        if (chek == 1 && array == AccArray.EMPTY_ARRAY) {
-            array = new Object[INIT_SIZE];
-        }
-        //Без значений обнуляем массив
-        if (chek == 0) {
-          array = AccArray.EMPTY_ARRAY;
-          size = 0;
-        }
-        //Ловим не корректное знчение
-        if(chek > array.length) {
-            throw new IllegalArgumentException("chekSize chek > " + array.length + " " + chek);
-        }
-        if (chek < 0) {
-            throw new IllegalArgumentException("chekSize chek < 0");
-        }
-        if (chek > MAX_SIZE) {
-            throw new IllegalArgumentException("chekSize chek > " + MAX_SIZE + " " + chek);
+        if (array == AccArray.EMPTY_ARRAY) {
+            array = new Object[AccArray.INIT_SIZE];
         }
     }
 
+    /**
+     *
+     * @param check
+     */
+    private void checkSizeDelete(int check) {
+        int newSize = array.length / 2;
+        if (check < newSize && check != 0) {
+            Object[] temp = new Object[array.length / 2];
+            System.arraycopy(array,0, temp, 0, newSize);
+            array = temp;
+        }
+    }
 
+    /**
+     *
+     * @param index
+     */
     private void chekIndex(int index) {
         if (index < 0) {
             throw new IllegalArgumentException("chekIndex index < 0");
@@ -158,6 +199,10 @@ public class AccArray<T> {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isEmpty() {
             return size == 0;
     }
