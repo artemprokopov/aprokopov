@@ -34,11 +34,6 @@ public class AccArrayTest {
     /**
      *
      */
-    AccArray<Item> instance0;
-
-    /**
-     *
-     */
     AccArray<Item> instance01;
 
     /**
