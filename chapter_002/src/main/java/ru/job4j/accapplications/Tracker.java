@@ -54,7 +54,7 @@ public class Tracker {
      * @param item удаляемая заявка
      * @return в случае успеха операции возвращает true, иначе false.
      */
-    public boolean delete(Item item) throws IllegalArgumentException{
+    public boolean delete(Item item) {
         boolean result = false;
         items.delete(item);
         result = true;

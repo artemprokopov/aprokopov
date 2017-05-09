@@ -5,59 +5,43 @@
  */
 package ru.job4j.accapplications;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
- *
- * @author smetchik
+ * Группа тестов класса AccArray.
+ * @author Prokopov Artem
+ * @since 09.05.2017
+ * @version 1.0
  */
 public class AccArrayTest {
     /**
-     *
+     * Object for test methods.
      */
-    AccArray<Item> instance;
+    private AccArray<Item> instance;
 
     /**
-     *
+     * Object for test methods.
      */
-    AccArray<Item> instance10;
+    private AccArray<Item> instance10;
 
     /**
-     *
+     * Object for test methods.
      */
-    AccArray<Item> instance01;
+    private AccArray<Item> instance01;
 
     /**
-     *
+     *Test class.
      */
     public AccArrayTest() {
     }
 
     /**
-     *
-     */
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    /**
-     *
-     */
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    /**
-     *
+     * Create object for test methods.
      */
     @Before
     public void setUp() {
@@ -72,13 +56,6 @@ public class AccArrayTest {
     }
 
     /**
-     *
-     */
-    @After
-    public void tearDown() {
-    }
-
-    /**
      * Test of add method, of class AccArray.
      */
     @Test
@@ -90,6 +67,9 @@ public class AccArrayTest {
         assertArrayEquals(expResult, result);
     }
 
+    /**
+     * Test of add method, of class AccArray.
+     */
     @Test
     public void testAddOneMillionElement() {
         Item o = new Item();
@@ -117,7 +97,7 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test
-    public void testDelete_GenericTypeAddTwoDeletOne() {
+    public void testDeleteGenericTypeAddTwoDeleteOne() {
         Item o = null;
         Item o1 = new Item();
         instance.add(o1);
@@ -132,7 +112,7 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test
-    public void testDelete_GenericTypeAddOneDeletOne() {
+    public void testDeleteGenericTypeAddOneDeleteOne() {
         Item o1 = new Item();
         instance.add(o1);
         instance.delete(o1);
@@ -145,7 +125,7 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void testDelete_GenericTypeAddNullDeleteOneExpectedIllegalArgumentException() {
+    public void testDeleteGenericTypeAddNullDeleteOneExpectedIllegalArgumentException() {
         Item o = null;
         instance.delete(o);
     }
@@ -154,7 +134,7 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void testDelete_GenericTypeAddTwoDeletObjectNotAdd() {
+    public void testDeleteGenericTypeAddTwoDeleteObjectNotAdd() {
         Item o = null;
         Item o1 = new Item();
         Item o2 = new Item();
@@ -167,11 +147,11 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test
-    public void testDelete_int10element() {
+    public void testDeleteint10element() {
       int index = 5;
       Item[] result = new Item[instance10.size() - 1];
-      System.arraycopy(instance10.array, 0, result, 0, index);
-      System.arraycopy(instance10.array, index + 1, result, index, instance10.size() - index - 1);
+      System.arraycopy(instance10.toArray(result), 0, result, 0, index);
+      System.arraycopy(instance10.toArray(result), index + 1, result, index, instance10.size() - index - 1);
       instance10.delete(index);
       Item[] expResult = instance10.toArray(new Item[instance10.size()]);
       assertArrayEquals(expResult, result);
@@ -181,13 +161,13 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test
-    public void testDelete_intAdd100_000ElementDelet50_000() {
+    public void testDeleteintAdd100000ElementDelete50000() {
         Item o = new Item();
         for (int i = 0; i < 100_000; i++) {
             instance.add(o);
         }
         Item[] result = new Item[50_000];
-        System.arraycopy(instance.array, 50_000, result, 0, 50_000);
+        System.arraycopy(instance.toArray(result), 50_000, result, 0, 50_000);
         for (int i = 0; i < 50_000; i++) {
             instance.delete(i);
         }
@@ -199,10 +179,10 @@ public class AccArrayTest {
      * Test of delete method, of class AccArray.
      */
     @Test
-    public void testDelete_int2elementDeleteFirst() {
+    public void testDeleteint2elementDeleteFirst() {
       int index = 0;
       Item[] result = new Item[instance01.size() - 1];
-      result = Arrays.copyOfRange(instance01.toArray(result), index + 1, instance01.size() );
+      result = Arrays.copyOfRange(instance01.toArray(result), index + 1, instance01.size());
       instance01.delete(index);
       Item[] expResult = instance01.toArray(new Item[instance01.size()]);
       assertArrayEquals(expResult, result);
@@ -253,7 +233,6 @@ public class AccArrayTest {
      */
     @Test
     public void testSet() {
-        System.out.println("set");
         int index = 0;
         Item o = new Item();
         instance01.set(index, o);
@@ -278,12 +257,11 @@ public class AccArrayTest {
      */
     @Test
     public void testToArrayEmptyArray() {
-        System.out.println("toArray");
         Object[] expResult = {};
         Object[] result = instance.toArray();
         assertArrayEquals(expResult, result);
     }
-    
+
     /**
      * Test of toArray method, of class AccArray.
      */

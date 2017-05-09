@@ -18,10 +18,29 @@ import static org.junit.Assert.assertThat;
  * @version 1.0
  */
 public class TrackerTest {
-    Item item;
-    Item item1;
-    Item item2;
-    Tracker tracker = new Tracker();
+    /**
+     * Объект для работы тестов.
+     */
+    private Item item;
+
+    /**
+     * Объект для работы тестов.
+     */
+    private Item item1;
+
+    /**
+     * Объект для работы тестов.
+     */
+    private Item item2;
+
+    /**
+     * Объект для работы тестов.
+     */
+    private Tracker tracker = new Tracker();
+
+    /**
+     * Метод подготовкиданный перед тестами.
+     */
     @Before
     public void createItem() {
         item = new Item();
@@ -37,10 +56,10 @@ public class TrackerTest {
         item2.setDesc("desc2");
         item2.setComments(new String[]{"11111", "222222", "333333"});
     }
+
     /**
      * Тестируем метод add и findAll, добавляем Item, ожидаем возвращение
      * массива Item.
-     *
      */
     @Test
     public void addAndFindAllAddItemReturnTrue() {

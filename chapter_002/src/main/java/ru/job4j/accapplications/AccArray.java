@@ -8,27 +8,28 @@ import java.util.Arrays;
  */
 public class AccArray<T> {
     /**
-     *
+     * Базовый массив.
      */
-    Object[] array;
+    private Object[] array;
 
     /**
-     *
+     * Размер массива для первой инициализации.
      */
     private static final int INIT_SIZE = 10;
 
     /**
-     *
+     * Максимально количество элементов массиве.
      */
     private static final int MAX_SIZE = Integer.MAX_VALUE - 10;
 
     /**
-     *
+     * Пустой массив, для ситуаций удаления всех элементов, и состояния массива
+     * до добавления первого эллемента.
      */
     private static final Object[] EMPTY_ARRAY = {};
 
     /**
-     *
+     * Количество элементов находящихся в массиве в данный момент времени.
      */
     private int size = 0;
 
@@ -40,7 +41,8 @@ public class AccArray<T> {
     }
 
     /**
-     *
+     * Метод добавляет объект в массив.
+     *@param o добавляемый объект.
      */
     public void add(Object o) {
         checkSizeAdd(size + 1);
@@ -49,8 +51,8 @@ public class AccArray<T> {
     }
 
     /**
-     *
-     * @param o
+     *Метод удаляет объект из массива.
+     * @param o удаляемый объект.
      */
     public void delete(Object o) {
         if (array == AccArray.EMPTY_ARRAY) {
@@ -64,55 +66,61 @@ public class AccArray<T> {
         if (size != 1) {
             System.arraycopy(array, index + 1, array, index, size - index);
             --size;
-        } else if (size == 1) {
+        } else {
           array = AccArray.EMPTY_ARRAY;
           --size;
         }
     }
 
     /**
-     *
-     * @param index
+     * Удаляет объект по индексу в массиве.
+     * @param index индекс удаляемого объекта.
      */
     public void delete(int index) {
         chekIndex(index);
         checkSizeDelete(size - 1);
-        System.arraycopy(array, index + 1, array, index, size - index -1 );
+        System.arraycopy(array, index + 1, array, index, size - index - 1);
         array[size - 1] = null;
         --size;
     }
 
 
     /**
-     *
-     * @return
+     * Метод возвращает текущий размер массива.
+     * @return size текущи размер массива
      */
     public int size() {
         return this.size;
     }
 
     /**
-     *
-     * @param index
-     * @return T
+     * Возвращает элемент массива по индексу.
+     * @param index индекс элемента массива.
+     * @return T возвращаемый объект массива.
      */
     public T get(int index) {
-      if (array == AccArray.EMPTY_ARRAY ) {
+      if (array == AccArray.EMPTY_ARRAY) {
           throw new IllegalArgumentException("Array empty");
       }
       chekIndex(index);
-      return (T)array[index];
+      return (T) array[index];
     }
 
+    /**
+     * Добавлет элемент в массив по заданному индексу.
+     * @param index индекс массива.
+     * @param o добавляемый объект.
+     */
     public void set(int index, T o) {
         chekIndex(index);
         array[index] = o;
     }
 
     /**
-     *
-     * @param o
-     * @return
+     * Обределяет индекс первого вхождения элемента в массиве.
+     * @param o объект индекс которого требуется определить.
+     * @return int возвращаемый индекс объекта,
+     * либо в случае отсутстви объекта возвращается -1.
      */
     public int indexOf(Object o) {
         if (o == null) {
@@ -132,21 +140,27 @@ public class AccArray<T> {
     }
 
     /**
-     *
-     * @return
+     * Возвразает находящиеся в массиве объекты.
+     * @return Object[] возвращается массив объектов.
      */
     public Object[] toArray() {
         return  toArray(new Object[size]);
     }
-    
+
+    /**
+     * Возвращает находящиеся в массиве объекты приведенные к заданному типу.
+     * @param a Массив требуемый тип.
+     * @param <T> Контрольный тип.
+     * @return T[] массив  объектов заданного типа.
+     */
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         return (T[]) Arrays.copyOf(array, size, a.getClass());
     }
 
     /**
-     *
-     * @param check
+     * Служебный метод, контролирует размер базового массива, при добовлении элемента.
+     * @param check проверяемое значение размера базового массива.
      */
     private void checkSizeAdd(int check) {
         if (check > AccArray.MAX_SIZE) {
@@ -171,21 +185,21 @@ public class AccArray<T> {
     }
 
     /**
-     *
-     * @param check
+     * Служебный метод, контролирует размер базового массива, при удалении элемента.
+     * @param check проверяемое значение размера базового массива.
      */
     private void checkSizeDelete(int check) {
         int newSize = array.length / 2;
         if (check < newSize && check != 0) {
             Object[] temp = new Object[array.length / 2];
-            System.arraycopy(array,0, temp, 0, newSize);
+            System.arraycopy(array, 0, temp, 0, newSize);
             array = temp;
         }
     }
 
     /**
-     *
-     * @param index
+     * Служебный метод, проверяет индекс массива на вхождение в диапазон.
+     * @param index проверяемый индекс.
      */
     private void chekIndex(int index) {
         if (index < 0) {
@@ -200,8 +214,8 @@ public class AccArray<T> {
     }
 
     /**
-     *
-     * @return
+     * Метод проверяет есть ли объекты в базовом массиве.
+     * @return true если базовый масси пуст, в противном случае false.
      */
     public boolean isEmpty() {
             return size == 0;
