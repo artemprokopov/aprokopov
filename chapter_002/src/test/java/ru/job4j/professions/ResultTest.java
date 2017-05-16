@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
  * @since 20.03.2017
  * @version 1.0
  */
-
+@Ignore
 public class ResultTest {
     /**
      * Тест проверяющи работу метода resultWork при передаче строки и значения true.
