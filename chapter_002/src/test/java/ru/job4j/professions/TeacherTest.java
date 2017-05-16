@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
  * @since 18.04.2017
  * @version 1.0
  */
-@Ignore
+
 public class TeacherTest {
     /**
      * Тест проводит проверку выполнения метода work, в который передается произвольный объект Object.
