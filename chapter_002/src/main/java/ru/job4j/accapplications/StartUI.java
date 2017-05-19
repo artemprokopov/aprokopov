@@ -8,15 +8,18 @@ public class StartUI {
      *
      * @param args параметры командной строки.
      */
+    private Input input;
+
+
+    StartUI(Input input) {
+        this.input = input;
+    }
+
     public static void main(String[] args) {
-        StartUI startUI = new StartUI();
-        startUI.init();
+         new StartUI(new ConsoleInput(new MenuUI())).init();
     }
 
     public void init() {
-        MenuUI menu = new MenuUI();
-        ConsoleInput consoleInput = new ConsoleInput();
-        menu.printMenu();
-        System.out.println(consoleInput.ask(menu));
+        input.ask();
     }
 }

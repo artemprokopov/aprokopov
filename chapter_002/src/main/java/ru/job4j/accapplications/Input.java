@@ -9,5 +9,6 @@ public interface Input {
      * @param question параметр запроса.
      * @return String
      */
-    String ask(Object question);
+    String ask(String question);
+    int ask();
 }
