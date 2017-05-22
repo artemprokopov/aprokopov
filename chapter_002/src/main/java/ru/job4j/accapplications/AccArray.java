@@ -26,7 +26,7 @@ public class AccArray<T> {
      * Пустой массив, для ситуаций удаления всех элементов, и состояния массива
      * до добавления первого эллемента.
      */
-    private static final Object[] EMPTY_ARRAY = {};
+    public static final Object[] EMPTY_ARRAY = {};
 
     /**
      * Количество элементов находящихся в массиве в данный момент времени.
@@ -64,7 +64,7 @@ public class AccArray<T> {
         }
         checkSizeDelete(size - 1);
         if (size != 1) {
-            System.arraycopy(array, index + 1, array, index, size - index);
+            System.arraycopy(array, index + 1, array, index, size - 1 - index);
             --size;
         } else {
           array = AccArray.EMPTY_ARRAY;

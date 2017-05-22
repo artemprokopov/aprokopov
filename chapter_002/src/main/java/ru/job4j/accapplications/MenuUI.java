@@ -5,16 +5,25 @@ package ru.job4j.accapplications;
  */
 public class MenuUI {
     private final String[] itemMenu = {
-                                    "0. Add new Item",
-                                    "1. Show all items",
-                                    "2. Edit item",
-                                    "3. Delete item",
-                                    "4. Find item by Id",
-                                    "5. Find items by name",
-                                    "6. Exit Program"
-                                };
+            "0. Add new Item",
+            "1. Show all items",
+            "2. Edit item",
+            "3. Delete item",
+            "4. Find item by Id",
+            "5. Find items by name",
+            "6. Exit Program"
+    };
     public String[] getMenu() {
         return itemMenu;
+    }
+
+    public int getItemMenu(String str) {
+        for(int i = 0; i < itemMenu.length; ++i) {
+            if (itemMenu[i].equals(str)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public  String getItemMenu (int i) {

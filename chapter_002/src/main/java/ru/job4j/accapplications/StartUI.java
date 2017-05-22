@@ -4,22 +4,25 @@ package ru.job4j.accapplications;
  * Created by Prokopov on 10.05.2017.
  */
 public class StartUI {
+
+
     /**
      *
      * @param args параметры командной строки.
      */
-    private Input input;
-
-
-    StartUI(Input input) {
-        this.input = input;
-    }
+    private Tracker tracker = new Tracker();
 
     public static void main(String[] args) {
-         new StartUI(new ConsoleInput(new MenuUI())).init();
+         new StartUI().init();
     }
 
     public void init() {
-        input.ask();
+        Input input = new ConsoleInput(new MenuUI());
+        ActionFactory actionFactory = new ActionFactory();
+        ActionType notExit = ActionType.NORMAL;
+        while(notExit != ActionType.EXIT)
+        {
+            notExit = actionFactory.prodact(input.ask()).execute(tracker, input);
+        }
     }
 }

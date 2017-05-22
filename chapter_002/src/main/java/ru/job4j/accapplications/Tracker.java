@@ -11,7 +11,7 @@ public class Tracker {
     /**
      *
      */
-    private static final Item[] NULL_ITEM_ARRAY = {};
+    public static final Item[] NULL_ITEM_ARRAY = {};
 
     /**
      * Массив заявок.
@@ -66,6 +66,9 @@ public class Tracker {
      * @return items массив заявок.
      */
     public Item[] findAll() {
+        if (items.isEmpty()) {
+            return Tracker.NULL_ITEM_ARRAY;
+        }
         return items.toArray(new Item[items.size()]);
     }
 
