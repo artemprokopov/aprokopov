@@ -62,10 +62,8 @@ public class AccArray<T> {
         if (index == -1) {
             throw new IllegalArgumentException("No object in array");
         }
-        checkSizeDelete(size - 1);
         if (size != 1) {
-            System.arraycopy(array, index + 1, array, index, size - 1 - index);
-            --size;
+            delete(index);
         } else {
           array = AccArray.EMPTY_ARRAY;
           --size;
