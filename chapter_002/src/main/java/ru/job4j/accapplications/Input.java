@@ -1,14 +1,22 @@
 package ru.job4j.accapplications;
 
 /**
- * Created by Prokopov on 10.05.2017.
+ * Интерфейс ввод информации.
+ * @author Artem Prokopov
+ * @since 22.05.2017
+ * @version 1.0
  */
 public interface Input {
     /**
-     *
+     *  Метод запроса на ввод информации.
      * @param question параметр запроса.
-     * @return String
+     * @return String возвращает введеную строку.
      */
     String ask(String question);
+
+    /**
+     * Метод запроса на ввод информации.
+     * @return возвращает введеное число.
+     */
     int ask();
 }

@@ -59,7 +59,7 @@ public class Item {
     }
 
     /**
-     * Геттер возвращает значение поля id.
+     * Геттер возвращает значение поля id{@link Item#id}.
      * @return возвращает значение поля id
      */
     public String getId() {

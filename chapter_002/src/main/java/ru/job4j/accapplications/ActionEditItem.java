@@ -18,7 +18,7 @@ public class ActionEditItem implements Action {
             System.out.println("***************************************************************");
             return ActionType.ERROR;
         }
-        ActionShowItem(item);
+        actionShowItem(item);
         item.setName(input.ask("Enter new name: "));
         item.setDesc(input.ask("Enter new desc: "));
         item.addComments(input.ask("Enter new comments: "));

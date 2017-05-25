@@ -1,10 +1,16 @@
 package ru.job4j.accapplications;
 
 /**
- * Created by Prokopov on 22.05.2017.
+ * Класс фабрики объектов Action.
+ * @author Artem Prokopov
+ * @since 22.05.2017
+ * @version 1.0
  */
 public class ActionFactory {
-    private final Action[] ArrayAction = {
+    /**
+     * Массив объектов Action, фабрики.
+     */
+    private final Action[] arrayAction = {
             new ActionAddNewItem(),
             new ActionShowAllItem(),
             new ActionEditItem(),
@@ -14,7 +20,12 @@ public class ActionFactory {
             new ActionExitProgramm()
     };
 
-    public Action prodact (int i) {
-        return ArrayAction[i];
+    /**
+     * Метод поиска объекта действия Action по индентификатору.
+     * @param i индификатор действия.
+     * @return объект типа Action.
+     */
+    public Action prodact(int i) {
+        return arrayAction[i];
     }
 }

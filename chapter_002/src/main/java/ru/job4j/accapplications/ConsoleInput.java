@@ -4,17 +4,29 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by Prokopov on 10.05.2017.
+ * Класс ввода запроса и ввод информации с консоли.
+ * @author Artem Prokopov
+ * @since 22.05.2017
+ * @version 1.0
  */
 public class ConsoleInput implements Input {
-
+    /**
+     * Поле содержащие меню приложения с которым оперирует класс при организации ввода.
+     */
     private MenuUI menuUI;
 
-
+    /**
+     * Конструктор с параметром принемающие объект меню с которым оперирует класс.
+     * @param menuUI объект меню.
+     */
     ConsoleInput(MenuUI menuUI) {
         this.menuUI = menuUI;
     }
 
+    /**
+     * Служебный метод запрашивающий ввод числа для выбора пункта меню приложения.
+     * @return номер выбранного пункта меню.
+     */
     private int printAndWaitSelect() {
         Scanner scanner = new Scanner(System.in);
         int result = -1;
@@ -33,6 +45,11 @@ public class ConsoleInput implements Input {
         }
         return result;
     }
+
+    /**
+     * Метод запроса и ожидания на ввод информации из консоли.
+     * @return возвращает номер выбранного пункта меню.
+     */
     @Override
     public int ask() {
         for (String s: menuUI.getMenu()) {
@@ -41,6 +58,12 @@ public class ConsoleInput implements Input {
         return printAndWaitSelect();
     }
 
+    /**
+     * Метод запроса и ожидания на ввод информации из консоли.
+     * Получает информационную строку какую информацию требуется ввести.
+     * @param str информационная строка, о требуемой к вводу информации.
+     * @return введеную строку.
+     */
     @Override
     public String ask(String str) {
         Scanner scanner = new Scanner(System.in);
@@ -56,5 +79,4 @@ public class ConsoleInput implements Input {
         }
         return result;
     }
-
 }

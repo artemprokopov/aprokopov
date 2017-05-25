@@ -3,9 +3,18 @@ package ru.job4j.accapplications;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by Prokopov on 22.05.2017.
+ * Класс выполнения запроса на поиск заявок по имени.
+ * @author Artem Prokopov
+ * @since 22.05.2017
+ * @version 1.0
  */
 public class ActionFindItemByName implements Action {
+    /**
+     * Метод запускает выполнения задачи, по поиску заявки по имени.
+     * @param tracker хранилище где ведется поиск заявок.
+     * @param input интерфейс получения вводимых данных.
+     * @return ActionType.NORMAL в случае успеха, иначе ActionType.ERROR.
+     */
     @Override
     public ActionType execute(Tracker tracker, Input input) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
@@ -17,7 +26,7 @@ public class ActionFindItemByName implements Action {
             System.out.println("***************************************************************");
             return ActionType.ERROR;
         }
-        ActionShowItemArray(items);
+        actionShowItemArray(items);
         return ActionType.NORMAL;
     }
 }
