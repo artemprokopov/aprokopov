@@ -9,8 +9,29 @@ public class StartUI {
     /**
      * Хранилище заявок.
      */
-    private Tracker tracker = new Tracker();
+    private final Tracker tracker;
+    /**
+     * Интерфейс ввода данных.
+     */
+    private final Input input;
 
+    /**
+     * Конструктор по умолчанию.
+     */
+    public StartUI() {
+        this.input = new ConsoleInput(new MenuUI());
+        this.tracker = new Tracker();
+    }
+
+    /**
+     * Конструктор для замены пользовательского ввода, для тестов.
+     * @param input интерфейс ввода данных
+     * @param tracker хранилище заявок
+     */
+    protected StartUI(Tracker tracker, Input input) {
+        this.input = input;
+        this.tracker = tracker;
+    }
     /**
      * Метод main.
      * @param args параметры командной строки.
@@ -23,7 +44,6 @@ public class StartUI {
      * Метод запускает основной цикл программы.
      */
     public void init() {
-        Input input = new ConsoleInput(new MenuUI());
         ActionFactory actionFactory = new ActionFactory();
         ActionType notExit = ActionType.NORMAL;
         while (notExit != ActionType.EXIT) {

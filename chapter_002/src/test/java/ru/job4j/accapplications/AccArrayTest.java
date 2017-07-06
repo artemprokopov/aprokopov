@@ -6,6 +6,7 @@
 package ru.job4j.accapplications;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -82,8 +83,9 @@ public class AccArrayTest {
     }
 
     /**
-     * Test of delete method, of class AccArray.
+     * Test of OutOfMemoryError, of class AccArray.
      */
+    @Ignore
     @Test(expected = OutOfMemoryError.class)
     public void addMoreMaxElementExpectedOutOfMemoryError() {
         //instance.array = new Item[Integer.MAX_VALUE - 10];

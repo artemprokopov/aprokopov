@@ -1,5 +1,8 @@
 package ru.job4j.accapplications;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,7 +16,7 @@ public class ConsoleInput implements Input {
     /**
      * Поле содержащие меню приложения с которым оперирует класс при организации ввода.
      */
-    private MenuUI menuUI;
+    private final MenuUI menuUI;
 
     /**
      * Конструктор с параметром принемающие объект меню с которым оперирует класс.
@@ -66,15 +69,14 @@ public class ConsoleInput implements Input {
      */
     @Override
     public String ask(String str) {
-        Scanner scanner = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String result = "";
         while (result.equals("")) {
             try {
                 System.out.print(str);
-                result = scanner.next();
-            } catch (InputMismatchException e) {
+                result = reader.readLine();
+            } catch (IOException e) {
                 System.out.println("Error input");
-                scanner.next();
             }
         }
         return result;

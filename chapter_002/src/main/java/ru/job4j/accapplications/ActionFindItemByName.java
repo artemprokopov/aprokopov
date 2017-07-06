@@ -27,6 +27,7 @@ public class ActionFindItemByName implements Action {
             return ActionType.ERROR;
         }
         actionShowItemArray(items);
+        System.out.println("***************************************************************");
         return ActionType.NORMAL;
     }
 }
