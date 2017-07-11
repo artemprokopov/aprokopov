@@ -16,7 +16,7 @@ public class StubInput implements Input {
     private final String[] userInputSimulate;
     /**
      *Счетчик команд для метода ask().
-     * @see StubInput#ask()
+     * @see StubInput#ask(String)
      */
     private int countArray = 0;
     /**
@@ -72,9 +72,77 @@ public class StubInput implements Input {
     @Override
     public String ask(String question) {
         String result = "";
-        //Выбран пункт меню "0. Add new Item"
-        if (selectMenu1 == 0) {
+//        //Выбран пункт меню "0. Add new Item"
+//        if (selectMenu1 == 0  && countArray == 1) {
+//            switch (question) {
+//                case "Enter you name: ":
+//                    result = userInputSimulate[0];
+//                    break;
+//                case "Enter desc: ":
+//                    result = userInputSimulate[1];
+//                    break;
+//                case "Enter comments: ":
+//                    result = userInputSimulate[2];
+//                    break;
+//                default:
+//                    result = "";
+//            }
+//            ++countArray;
+//        }
+//        //Выбран пункт меню "1. Show all items"
+//        if (selectMenu1 == 1  && countArray == 1) {
+//            result = "";
+//            ++countArray;
+//        }
+//        //Выбран пункт меню "2. Edit item"
+//        if (selectMenu1 == 2  && countArray == 1) {
+//            switch (question) {
+//                case "Enter application id to edit: ":
+//                    result = userInputSimulate[0];
+//                    break;
+//                case "Enter new name: ":
+//                    result = userInputSimulate[1];
+//                    break;
+//                case "Enter new desc: ":
+//                    result = userInputSimulate[2];
+//                    break;
+//                case "Enter new comments: ":
+//                    result = userInputSimulate[3];
+//                    break;
+//                default:
+//                    result = "";
+//            }
+//            ++countArray;
+//        }
+//        //Выбран пункт меню "3. Delete item"
+//        if (selectMenu1 == 3 && question.equals("Enter application id to delete: ") && countArray == 1) {
+//            result = userInputSimulate[0];
+//            ++countArray;
+//        }
+//        //Выбран пункт меню "4. Find item by Id"
+//        if (selectMenu1 == 4 && question.equals("Enter application id to find: ")  && countArray == 1) {
+//            result = userInputSimulate[0];
+//            ++countArray;
+//        }
+//        //Выбран пункт меню "5. Find items by name"
+//        if (selectMenu1 == 5 && question.equals("Enter name to find Item: ")  && countArray == 1) {
+//            result = userInputSimulate[0];
+//            ++countArray;
+//        }
+//
+//        if (countArray == 2) {
+//            result = Integer.toString(selectMenu2);
+//        }
+//        if (question.equals("Select: ")  && countArray == 0 ) {
+//            ++countArray;
+//            result = Integer.toString(selectMenu1);
+//        }
+        if (countArray < 2) {
             switch (question) {
+                case "Select: ":
+                    result = Integer.toString(selectMenu1);
+                    ++countArray;
+                    break;
                 case "Enter you name: ":
                     result = userInputSimulate[0];
                     break;
@@ -83,18 +151,8 @@ public class StubInput implements Input {
                     break;
                 case "Enter comments: ":
                     result = userInputSimulate[2];
+                    ++countArray;
                     break;
-                default:
-                    result = "";
-            }
-        }
-        //Выбран пункт меню "1. Show all items"
-        if (selectMenu1 == 1) {
-            result = "";
-        }
-        //Выбран пункт меню "2. Edit item"
-        if (selectMenu1 == 2) {
-            switch (question) {
                 case "Enter application id to edit: ":
                     result = userInputSimulate[0];
                     break;
@@ -106,39 +164,27 @@ public class StubInput implements Input {
                     break;
                 case "Enter new comments: ":
                     result = userInputSimulate[3];
+                    ++countArray;
+                    break;
+                case "Enter application id to delete: ":
+                    result = userInputSimulate[0];
+                    ++countArray;
+                    break;
+                case "Enter application id to find: ":
+                    result = userInputSimulate[0];
+                    ++countArray;
+                    break;
+                case "Enter name to find Item: ":
+                    result = userInputSimulate[0];
+                    ++countArray;
                     break;
                 default:
+                    ++countArray;
                     result = "";
             }
-        }
-        //Выбран пункт меню "3. Delete item"
-        if (selectMenu1 == 3 && question.equals("Enter application id to delete: ")) {
-            result = userInputSimulate[0];
-        }
-        //Выбран пункт меню "4. Find item by Id"
-        if (selectMenu1 == 4 && question.equals("Enter application id to find: ")) {
-            result = userInputSimulate[0];
-        }
-        //Выбран пункт меню "5. Find items by name"
-        if (selectMenu1 == 5 && question.equals("Enter name to find Item: ")) {
-            result = userInputSimulate[0];
-
-            return result;
+        } else {
+            result = Integer.toString(selectMenu2);
         }
         return result;
-    }
-
-    /**
-     * Имплементируемый метод интерфейса {@link Input#ask()}
-     * для симулирования запросов пользователя.
-     * @return возвращает значени выбранного пользователем пункта меню, в данном варианте автономно.
-     */
-    @Override
-    public int ask() {
-        if (countArray == 0) {
-            ++countArray;
-            return selectMenu1;
-        }
-        return selectMenu2;
     }
 }

@@ -13,10 +13,4 @@ public interface Input {
      * @return String возвращает введеную строку.
      */
     String ask(String question);
-
-    /**
-     * Метод запроса на ввод информации.
-     * @return возвращает введеное число.
-     */
-    int ask();
 }

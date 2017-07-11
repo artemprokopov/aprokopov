@@ -1,7 +1,5 @@
 package ru.job4j.accapplications;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Интерфейс выполнения действий над заявками.
@@ -19,30 +17,14 @@ public interface Action {
     ActionType execute(Tracker tracker, Input input);
 
     /**
-     * Метод по умолчани, действие вывода массива заявок на экран.
-     * @param items масив заявок.
+     *  Метод отображения объекта.
+     * @return возвращает строку отображения объекта.
      */
-    default void actionShowItemArray(Item[] items) {
-        for (Item item: items) {
-            actionShowItem(item);
-        }
-    }
+    String show();
 
     /**
-     * Метод по умолчанию вывод заявки на экран.
-     * @param item заявка.
+     * Метод фозвращающий уникальный ключ события.
+     * @return целочисленный уникальный ключ события.
      */
-    default void actionShowItem(Item item) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-            System.out.println("***************************************************************");
-            System.out.println("Id: " + item.getId());
-            System.out.println("Data: " + simpleDateFormat.format(new Date(item.getCreated())));
-            System.out.println("Name: " + item.getName());
-            System.out.println("Desc: " + item.getDesc());
-            System.out.println("Comments: ");
-            for (String str : item.getComments()) {
-                System.out.println(str);
-            }
-            System.out.println("***************************************************************");
-    }
+    int key();
 }

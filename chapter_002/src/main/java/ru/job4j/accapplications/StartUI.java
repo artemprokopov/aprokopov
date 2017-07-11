@@ -19,7 +19,7 @@ public class StartUI {
      * Конструктор по умолчанию.
      */
     public StartUI() {
-        this.input = new ConsoleInput(new MenuUI());
+        this.input = new ConsoleInput();
         this.tracker = new Tracker();
     }
 
@@ -44,10 +44,9 @@ public class StartUI {
      * Метод запускает основной цикл программы.
      */
     public void init() {
-        ActionFactory actionFactory = new ActionFactory();
         ActionType notExit = ActionType.NORMAL;
         while (notExit != ActionType.EXIT) {
-            notExit = actionFactory.prodact(input.ask()).execute(tracker, input);
+            notExit = new MenuTracker(tracker, input).init();
         }
     }
 }

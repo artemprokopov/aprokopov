@@ -51,14 +51,27 @@ public class StubInputTest {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId()
-                + "\n"
-                + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                + "\n"
-                + "Add Item success!\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "Id: " + tracker.findAll()[0].getId() + "\r\n"
+                        + "Data: "
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\r\n"
+                        + "Add Item success!\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
     }
 
     /**
@@ -69,14 +82,29 @@ public class StubInputTest {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getDesc(), is("test desk"));
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId()
-                + "\n"
-                + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                + "\n"
-                + "Add Item success!\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "Id: " + tracker.findAll()[0].getId()
+                        + "\r\n"
+                        + "Data: "
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
+                        + "\r\n"
+                        + "Add Item success!\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
     }
 
     /**
@@ -87,14 +115,27 @@ public class StubInputTest {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getComments()[0], is("test comment"));
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId()
-                + "\n"
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                + "1. Show all items\r\n"
+                + "2. Edit item\r\n"
+                + "3. Delete item\r\n"
+                + "4. Find item by Id\r\n"
+                + "5. Find items by name\r\n"
+                + "6. Exit Program\r\n"
+                + "***************************************************************\r\n"
+                + "Id: " + tracker.findAll()[0].getId() + "\r\n"
                 + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                + "\n"
-                + "Add Item success!\n"
-                + "***************************************************************\n"));
+                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\r\n"
+                + "Add Item success!\r\n"
+                + "***************************************************************\r\n"
+                + "0. Add new Item\r\n"
+                + "1. Show all items\r\n2. "
+                + "Edit item\r\n"
+                + "3. Delete item\r\n"
+                + "4. Find item by Id\r\n"
+                + "5. Find items by name\r\n"
+                + "6. Exit Program\r\n"));
     }
 
     /**
@@ -110,20 +151,56 @@ public class StubInputTest {
         tracker.add(item);
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
-        assertThat(outputStream.toString(),  is("***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId()
-                + "\n"
-                + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                + "\n"
-                + "Name: " + tracker.findAll()[0].getName()
-                + "\n"
-                + "Desc: " + tracker.findAll()[0].getDesc()
-                + "\n"
-                + "Comments: \n"
-                + tracker.findAll()[0].getComments()[0]
-                + "\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(),  is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "Id: " + tracker.findAll()[0].getId()
+                        + "\r\n"
+                        + "Data: "
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
+                        + "\r\n"
+                        + "Name: " + tracker.findAll()[0].getName()
+                        + "\r\n"
+                        + "Desc: " + tracker.findAll()[0].getDesc()
+                        + "\r\n"
+                        + "Comments: \r\n"
+                        + tracker.findAll()[0].getComments()[0]
+                        + "\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "Id: " + tracker.findAll()[0].getId()
+                        + "\r\n"
+                        + "Data: "
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
+                        + "\r\n"
+                        + "Name: " + tracker.findAll()[0].getName()
+                        + "\r\n"
+                        + "Desc: " + tracker.findAll()[0].getDesc()
+                        + "\r\n"
+                        + "Comments: \r\n"
+                        + tracker.findAll()[0].getComments()[0]
+                        + "\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
     }
 
     /**
@@ -138,22 +215,37 @@ public class StubInputTest {
         Input input = new StubInput(2, 6, item.getId(), "test name1", "test desk1", "test comment1");
         tracker.add(item);
         new StartUI(tracker, input).init();
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId()
-                + "\n"
-                + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                + "\n"
-                + "Name: " + "test name"
-                + "\n"
-                + "Desc: " + "test desk"
-                + "\n"
-                + "Comments: \n"
-                + tracker.findAll()[0].getComments()[0]
-                + "\n"
-                + "***************************************************************\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "***************************************************************\r\n"
+                        + "Id: " + tracker.findAll()[0].getId()
+                        + "\r\n"
+                        + "Data: "
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
+                        + "\r\n"
+                        + "Name: " + "test name"
+                        + "\r\n"
+                        + "Desc: " + "test desk"
+                        + "\r\n"
+                        + "Comments: \r\n"
+                        + tracker.findAll()[0].getComments()[0]
+                        + "\r\n"
+                        + "***************************************************************\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
         assertThat(tracker.findAll()[0].getId(), is(item.getId()));
         assertThat(tracker.findAll()[0].getName(), is("test name1"));
         assertThat(tracker.findAll()[0].getDesc(), is("test desk1"));
@@ -174,10 +266,25 @@ public class StubInputTest {
         tracker.add(item);
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll(), is(Tracker.NULL_ITEM_ARRAY));
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "Item removed!"
-                + "\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "Item removed!"
+                        + "\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
     }
 
     /**
@@ -193,10 +300,25 @@ public class StubInputTest {
         tracker.add(item);
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "Item not found!"
-                + "\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "Item not found!"
+                        + "\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
     }
 
     /**
@@ -212,22 +334,37 @@ public class StubInputTest {
         tracker.add(item);
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId()
-                + "\n"
-                + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                + "\n"
-                + "Name: " + tracker.findAll()[0].getName()
-                + "\n"
-                + "Desc: " + tracker.findAll()[0].getDesc()
-                + "\n"
-                + "Comments: \n"
-                + tracker.findAll()[0].getComments()[0]
-                + "\n"
-                + "***************************************************************\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "***************************************************************\r\n"
+                        + "Id: " + tracker.findAll()[0].getId()
+                        + "\r\n"
+                        + "Data: "
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
+                        + "\r\n"
+                        + "Name: " + tracker.findAll()[0].getName()
+                        + "\r\n"
+                        + "Desc: " + tracker.findAll()[0].getDesc()
+                        + "\r\n"
+                        + "Comments: \r\n"
+                        + tracker.findAll()[0].getComments()[0]
+                        + "\r\n"
+                        + "***************************************************************\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
     }
 
     /**
@@ -243,21 +380,36 @@ public class StubInputTest {
         tracker.add(item);
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
-        assertThat(outputStream.toString(), is("***************************************************************\n"
-                + "***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId()
-                + "\n"
-                + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                + "\n"
-                + "Name: " + tracker.findAll()[0].getName()
-                + "\n"
-                + "Desc: " + tracker.findAll()[0].getDesc()
-                + "\n"
-                + "Comments: \n"
-                + tracker.findAll()[0].getComments()[0]
-                + "\n"
-                + "***************************************************************\n"
-                + "***************************************************************\n"));
+        assertThat(outputStream.toString(), is(
+                "0. Add new Item\r\n"
+                        + "1. Show all items\r\n"
+                        + "2. Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"
+                        + "***************************************************************\r\n"
+                        + "***************************************************************\r\n"
+                        + "Id: " + tracker.findAll()[0].getId()
+                        + "\r\n"
+                        + "Data: "
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
+                        + "\r\n"
+                        + "Name: " + tracker.findAll()[0].getName()
+                        + "\r\n"
+                        + "Desc: " + tracker.findAll()[0].getDesc()
+                        + "\r\n"
+                        + "Comments: \r\n"
+                        + tracker.findAll()[0].getComments()[0]
+                        + "\r\n"
+                        + "***************************************************************\r\n"
+                        + "***************************************************************\r\n"
+                        + "0. Add new Item\r\n"
+                        + "1. Show all items\r\n2. "
+                        + "Edit item\r\n"
+                        + "3. Delete item\r\n"
+                        + "4. Find item by Id\r\n"
+                        + "5. Find items by name\r\n"
+                        + "6. Exit Program\r\n"));
     }
 }
