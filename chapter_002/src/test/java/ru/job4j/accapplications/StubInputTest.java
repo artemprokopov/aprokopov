@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,169 +46,172 @@ public class StubInputTest {
     }
     /**
      * Тест выбор пункта меню "0. Add new Item", проверяем значени введеного поля заявки name.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemZeroAddItemTestNameItemAndExit() {
+    public void selectMenuItemZeroAddItemTestNameItemAndExit() throws IOException {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
-                        + "Id: " + tracker.findAll()[0].getId() + "\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
+                        + "Id: " + tracker.findAll()[0].getId() + "\n"
                         + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\r\n"
-                        + "Add Item success!\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\n"
+                        + "Add Item success!\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
     }
 
     /**
      * Тест выбор пункта меню "0. Add new Item", проверяем значени введеного поля заявки desc.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemZeroAddItemTestDescItemAndExit() {
+    public void selectMenuItemZeroAddItemTestDescItemAndExit() throws IOException {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getDesc(), is("test desk"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
                         + "Id: " + tracker.findAll()[0].getId()
-                        + "\r\n"
+                        + "\n"
                         + "Data: "
                         + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\r\n"
-                        + "Add Item success!\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + "\n"
+                        + "Add Item success!\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
     }
 
     /**
      * Тест выбор пункта меню "0. Add new Item", проверяем значени введеного поля заявки coments.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemZeroAddItemTestCommentsItemAndExit() {
+    public void selectMenuItemZeroAddItemTestCommentsItemAndExit() throws IOException {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getComments()[0], is("test comment"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                + "1. Show all items\r\n"
-                + "2. Edit item\r\n"
-                + "3. Delete item\r\n"
-                + "4. Find item by Id\r\n"
-                + "5. Find items by name\r\n"
-                + "6. Exit Program\r\n"
-                + "***************************************************************\r\n"
-                + "Id: " + tracker.findAll()[0].getId() + "\r\n"
+                "0. Add new Item\n"
+                + "1. Show all items\n"
+                + "2. Edit item\n"
+                + "3. Delete item\n"
+                + "4. Find item by Id\n"
+                + "5. Find items by name\n"
+                + "6. Exit Program\n"
+                + "***************************************************************\n"
+                + "Id: " + tracker.findAll()[0].getId() + "\n"
                 + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\r\n"
-                + "Add Item success!\r\n"
-                + "***************************************************************\r\n"
-                + "0. Add new Item\r\n"
-                + "1. Show all items\r\n2. "
-                + "Edit item\r\n"
-                + "3. Delete item\r\n"
-                + "4. Find item by Id\r\n"
-                + "5. Find items by name\r\n"
-                + "6. Exit Program\r\n"));
+                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\n"
+                + "Add Item success!\n"
+                + "***************************************************************\n"
+                + "0. Add new Item\n"
+                + "1. Show all items\n2. "
+                + "Edit item\n"
+                + "3. Delete item\n"
+                + "4. Find item by Id\n"
+                + "5. Find items by name\n"
+                + "6. Exit Program\n"));
     }
 
     /**
      * Тест выбор пункта меню "1. Show all items", проверяем проверяем консольный вывод.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemOneAddItemTestShowAllItemAndExit() {
+    public void selectMenuItemOneAddItemTestShowAllItemAndExit() throws IOException {
         Input input = new StubInput(1, 6, "");
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
         item.addComments("test comment");
         tracker.add(item);
+        Item item1 = new Item();
+        item1.setName("test name1");
+        item1.setDesc("test desk1");
+        item1.addComments("test comment1");
+        tracker.add(item1);
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
         assertThat(outputStream.toString(),  is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
                         + "Id: " + tracker.findAll()[0].getId()
-                        + "\r\n"
+                        + "\n"
                         + "Data: "
                         + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\r\n"
+                        + "\n"
                         + "Name: " + tracker.findAll()[0].getName()
-                        + "\r\n"
+                        + "\n"
                         + "Desc: " + tracker.findAll()[0].getDesc()
-                        + "\r\n"
-                        + "Comments: \r\n"
+                        + "\n"
+                        + "Comments: \n"
                         + tracker.findAll()[0].getComments()[0]
-                        + "\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
-                        + "Id: " + tracker.findAll()[0].getId()
-                        + "\r\n"
+                        + "\n"
+                        + "***************************************************************\n"
+                        + "***************************************************************\n"
+                        + "Id: " + tracker.findAll()[1].getId()
+                        + "\n"
                         + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\r\n"
-                        + "Name: " + tracker.findAll()[0].getName()
-                        + "\r\n"
-                        + "Desc: " + tracker.findAll()[0].getDesc()
-                        + "\r\n"
-                        + "Comments: \r\n"
-                        + tracker.findAll()[0].getComments()[0]
-                        + "\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + new SimpleDateFormat().format(new Date(tracker.findAll()[1].getCreated()))
+                        + "\n"
+                        + "Name: " + tracker.findAll()[1].getName()
+                        + "\n"
+                        + "Desc: " + tracker.findAll()[1].getDesc()
+                        + "\n"
+                        + "Comments: \n"
+                        + tracker.findAll()[1].getComments()[0]
+                        + "\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
     }
 
     /**
      * Тест выбор пункта меню "2. Edit item", проверяем редактируемую заявку, проверяем консольный вывод.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemTwoAddItemTestEditItemAndExit() {
+    public void selectMenuItemTwoAddItemTestEditItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -216,36 +220,36 @@ public class StubInputTest {
         tracker.add(item);
         new StartUI(tracker, input).init();
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
-                        + "***************************************************************\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
+                        + "***************************************************************\n"
                         + "Id: " + tracker.findAll()[0].getId()
-                        + "\r\n"
+                        + "\n"
                         + "Data: "
                         + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\r\n"
+                        + "\n"
                         + "Name: " + "test name"
-                        + "\r\n"
+                        + "\n"
                         + "Desc: " + "test desk"
-                        + "\r\n"
-                        + "Comments: \r\n"
+                        + "\n"
+                        + "Comments: \n"
                         + tracker.findAll()[0].getComments()[0]
-                        + "\r\n"
-                        + "***************************************************************\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + "\n"
+                        + "***************************************************************\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
         assertThat(tracker.findAll()[0].getId(), is(item.getId()));
         assertThat(tracker.findAll()[0].getName(), is("test name1"));
         assertThat(tracker.findAll()[0].getDesc(), is("test desk1"));
@@ -255,9 +259,10 @@ public class StubInputTest {
 
     /**
      * Тест выбор пункта меню "3. Delete item", проверяем удаление заявки, проверяем консольный вывод.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemThreeAddItemTestDeleteItemAndExit() {
+    public void selectMenuItemThreeAddItemTestDeleteItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -267,31 +272,32 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll(), is(Tracker.NULL_ITEM_ARRAY));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
                         + "Item removed!"
-                        + "\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + "\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
     }
 
     /**
      * Тест выбор пункта меню "4. Find item by Id", проверяем нахождение заявки по Id, проверяем консольный вывод.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemThreeNotFindItemTestDeleteItemAndExit() {
+    public void selectMenuItemThreeNotFindItemTestDeleteItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -301,31 +307,32 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
                         + "Item not found!"
-                        + "\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + "\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
     }
 
     /**
      * Тест выбор пункта меню "4. Find item by Id", проверяем нахождение заявки по Id, проверяем консольный вывод.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemFourAddItemTestFindByIdItemAndExit() {
+    public void selectMenuItemFourAddItemTestFindByIdItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -335,43 +342,44 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
-                        + "***************************************************************\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
+                        + "***************************************************************\n"
                         + "Id: " + tracker.findAll()[0].getId()
-                        + "\r\n"
+                        + "\n"
                         + "Data: "
                         + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\r\n"
+                        + "\n"
                         + "Name: " + tracker.findAll()[0].getName()
-                        + "\r\n"
+                        + "\n"
                         + "Desc: " + tracker.findAll()[0].getDesc()
-                        + "\r\n"
-                        + "Comments: \r\n"
+                        + "\n"
+                        + "Comments: \n"
                         + tracker.findAll()[0].getComments()[0]
-                        + "\r\n"
-                        + "***************************************************************\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + "\n"
+                        + "***************************************************************\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
     }
 
     /**
      *  Тест выбор пункта меню "5. Find items by name", проверяем нахождение заявки по Id, проверяем консольный вывод.
+     *  @throws IOException если происходит ошибка ввода вывода.
      */
     @Test
-    public void selectMenuItemFiveAddItemTestFindByNameItemAndExit() {
+    public void selectMenuItemFiveAddItemTestFindByNameItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -381,35 +389,35 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\r\n"
-                        + "1. Show all items\r\n"
-                        + "2. Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"
-                        + "***************************************************************\r\n"
-                        + "***************************************************************\r\n"
+                "0. Add new Item\n"
+                        + "1. Show all items\n"
+                        + "2. Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"
+                        + "***************************************************************\n"
+                        + "***************************************************************\n"
                         + "Id: " + tracker.findAll()[0].getId()
-                        + "\r\n"
+                        + "\n"
                         + "Data: "
                         + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\r\n"
+                        + "\n"
                         + "Name: " + tracker.findAll()[0].getName()
-                        + "\r\n"
+                        + "\n"
                         + "Desc: " + tracker.findAll()[0].getDesc()
-                        + "\r\n"
-                        + "Comments: \r\n"
+                        + "\n"
+                        + "Comments: \n"
                         + tracker.findAll()[0].getComments()[0]
-                        + "\r\n"
-                        + "***************************************************************\r\n"
-                        + "***************************************************************\r\n"
-                        + "0. Add new Item\r\n"
-                        + "1. Show all items\r\n2. "
-                        + "Edit item\r\n"
-                        + "3. Delete item\r\n"
-                        + "4. Find item by Id\r\n"
-                        + "5. Find items by name\r\n"
-                        + "6. Exit Program\r\n"));
+                        + "\n"
+                        + "***************************************************************\n"
+                        + "***************************************************************\n"
+                        + "0. Add new Item\n"
+                        + "1. Show all items\n2. "
+                        + "Edit item\n"
+                        + "3. Delete item\n"
+                        + "4. Find item by Id\n"
+                        + "5. Find items by name\n"
+                        + "6. Exit Program\n"));
     }
 }

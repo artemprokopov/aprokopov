@@ -1,18 +1,13 @@
 package ru.job4j.accapplications;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.regex.Pattern;
-
 /**
- * Класс ввода запроса и ввод информации с консоли.
+ * Класс ввода запроса и ввод информации с консоли, с проверкой вводимой информации.
  * @author Artem Prokopov
- * @since 22.05.2017
+ * @since 21.07.2017
  * @version 1.0
  */
-public class ConsoleInput implements Input {
-
+public class ValidateInput extends ConsoleInput {
     /**
      * Метод запроса и ожидания на ввод информации из консоли.
      * Получает информационную строку какую информацию требуется ввести.
@@ -20,37 +15,34 @@ public class ConsoleInput implements Input {
      * @return введеную строку.
      */
     @Override
-    public String ask(String str) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public String ask(String str) {
         String result = "";
-        while (result.equals("")) {
-                System.out.print(str);
-                result = reader.readLine();
+        try {
+           result = super.ask(str);
+        } catch (IOException ioe) {
+            System.out.println("Input error!!! Enter the correct data.!!!");
         }
         return result;
     }
-
     /**
      * Метод запроса и ожидания на ввод информации из консоли.
      * @param str строка запроса
      * @param rangeMin нижняя граница диапазона возвращаемого целочисленного параметра
      * @param rangeMax верхняя граница диапазона возвращаемого целочисленного параметра
-     * @return целочисленный параметр ответа на запрос, в диапазоне от 0 .. 9.
+     * @return целочисленный параметр ответа на запрос от rangeMin... rangeMax,
+     * в противном случае -1.
      * @throws IOException
      */
     @Override
     public int ask(String str, int rangeMin, int rangeMax) throws IOException {
         int result = -1;
-        String askString;
-        Pattern p = Pattern.compile("^\\d$");
-        while (result == -1) {
-            askString = ask(str);
-            if (p.matcher(askString).matches()) {
-                result = Integer.parseInt(askString);
-
-            } else {
-                System.out.println("Input error!!! Enter validate number of  item menu!!!");
+        try {
+            result = super.ask(str, rangeMin, rangeMax);
+            if (result < rangeMin || result > rangeMax) {
+                throw new MenuOutException("Input error!!! Enter validate number of  item menu!!!");
             }
+        } catch (IOException ioe) {
+            System.out.println("Input error!!!");
         }
         return result;
     }
