@@ -1,4 +1,7 @@
 package ru.job4j.accapplications;
+
+import java.io.IOException;
+
 /**
  * Main класс приложения.
  * @author Artem Prokopov
@@ -19,7 +22,7 @@ public class StartUI {
      * Конструктор по умолчанию.
      */
     public StartUI() {
-        this.input = new ConsoleInput();
+        this.input = new ValidateInput();
         this.tracker = new Tracker();
     }
 
@@ -36,14 +39,14 @@ public class StartUI {
      * Метод main.
      * @param args параметры командной строки.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
          new StartUI().init();
     }
 
     /**
      * Метод запускает основной цикл программы.
      */
-    public void init() {
+    public void init() throws IOException {
         ActionType notExit = ActionType.NORMAL;
         while (notExit != ActionType.EXIT) {
             notExit = new MenuTracker(tracker, input).init();

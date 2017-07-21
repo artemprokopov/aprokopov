@@ -1,6 +1,8 @@
 package ru.job4j.accapplications;
 
 
+import java.io.IOException;
+
 /**
  * Интерфейс выполнения действий над заявками.
  * @author Artem Prokopov
@@ -14,7 +16,7 @@ public interface Action {
      * @param input интерфейс ввода информации с консоли.
      * @return ActionType сигнал результата выполнения заявки.
      */
-    ActionType execute(Tracker tracker, Input input);
+    ActionType execute(Tracker tracker, Input input) throws IOException;
 
     /**
      *  Метод отображения объекта.

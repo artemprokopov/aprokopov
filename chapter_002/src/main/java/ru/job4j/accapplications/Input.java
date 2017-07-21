@@ -1,5 +1,7 @@
 package ru.job4j.accapplications;
 
+import java.io.IOException;
+
 /**
  * Интерфейс ввод информации.
  * @author Artem Prokopov
@@ -12,5 +14,7 @@ public interface Input {
      * @param question параметр запроса.
      * @return String возвращает введеную строку.
      */
-    String ask(String question);
+    String ask(String question) throws IOException;
+
+    int ask(String question, int rangeMin, int rangeMax) throws IOException;
 }

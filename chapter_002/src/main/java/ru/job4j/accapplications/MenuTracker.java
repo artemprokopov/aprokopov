@@ -1,5 +1,6 @@
 package ru.job4j.accapplications;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -52,22 +53,22 @@ public class MenuTracker {
      * @return результат операции типа {@link ActionType}. В случае успеха {@link ActionType#NORMAL}
      * в случае ошибки {@link ActionType#ERROR}, при инициализации выхода из программы {@link ActionType#EXIT}.
      */
-    public ActionType init() {
+    public ActionType init() throws IOException{
         ActionType result = ActionType.NORMAL;
+        int userAction = 6;
         for (Action action: actions) {
             System.out.println(action.show());
         }
-        try {
-            int userAction = Integer.parseInt(input.ask("Select: "));
-            if (actions[userAction] != null) {
-                result = actions[userAction].execute(tracker, input);
+        do {
+            try {
+                userAction = input.ask("Select: ", 0, 6);
+                result = ActionType.NORMAL;
+            } catch (MenuOutException moe) {
+                System.out.println(moe.getMessage());
+                result = ActionType.ERROR;
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Error input!");
-            System.out.println(e.getMessage());
-            result = ActionType.ERROR;
-        }
-
+        } while (result == ActionType.ERROR);
+        result = actions[userAction].execute(tracker, input);
         return result;
     }
 
@@ -91,7 +92,7 @@ public class MenuTracker {
          * @return ActionType.NORMAL в случае успеха, иначе ActionType.ERROR.
          */
         @Override
-        public ActionType execute(Tracker tracker, Input input) {
+        public ActionType execute(Tracker tracker, Input input) throws IOException {
             Item item = new Item();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             System.out.println("***************************************************************");
@@ -159,7 +160,7 @@ public class MenuTracker {
          * @return ActionType.NORMAL в случае успеха, иначе ActionType.ERROR.
          */
         @Override
-        public ActionType execute(Tracker tracker, Input input) {
+        public ActionType execute(Tracker tracker, Input input) throws IOException {
             System.out.println("***************************************************************");
             String id = input.ask("Enter application id to edit: ");
             Item item = tracker.findById(id);
@@ -195,7 +196,7 @@ public class MenuTracker {
          * @return ActionType.NORMAL в случае успеха, иначе ActionType.ERROR.
          */
         @Override
-        public ActionType execute(Tracker tracker, Input input) {
+        public ActionType execute(Tracker tracker, Input input) throws IOException {
             System.out.println("***************************************************************");
             String id = input.ask("Enter application id to delete: ");
             Item item = tracker.findById(id);
@@ -229,7 +230,7 @@ public class MenuTracker {
          * @return ActionType.NORMAL в случае успеха, иначе ActionType.ERROR.
          */
         @Override
-        public ActionType execute(Tracker tracker, Input input) {
+        public ActionType execute(Tracker tracker, Input input) throws IOException {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             System.out.println("***************************************************************");
             String id = input.ask("Enter application id to find: ");
@@ -265,7 +266,7 @@ public class MenuTracker {
          * @return ActionType.NORMAL в случае успеха, иначе ActionType.ERROR.
          */
         @Override
-        public ActionType execute(Tracker tracker, Input input) {
+        public ActionType execute(Tracker tracker, Input input) throws IOException {
             System.out.println("***************************************************************");
             String id = input.ask("Enter name to find Item: ");
             Item[] items = tracker.findByName(id);

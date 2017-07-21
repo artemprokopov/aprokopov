@@ -3,6 +3,8 @@ package ru.job4j.accapplications;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Класс ввода запроса и ввод информации с консоли.
@@ -19,15 +21,28 @@ public class ConsoleInput implements Input {
      * @return введеную строку.
      */
     @Override
-    public String ask(String str) {
+    public String ask(String str) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String result = "";
         while (result.equals("")) {
-            try {
                 System.out.print(str);
                 result = reader.readLine();
-            } catch (IOException e) {
-                System.out.println("Error input");
+        }
+        return result;
+    }
+
+    @Override
+    public int ask(String str, int rangeMin, int rangeMax) throws IOException {
+        int result = -1;
+        String askString;
+        Pattern p = Pattern.compile("^\\d$");
+        while (result == -1) {
+            askString = ask(str);
+            if (p.matcher(askString).matches()) {
+                result = Integer.parseInt(askString);
+
+            } else {
+                System.out.println("Input error!!! Enter validate number of  item menu!!!");
             }
         }
         return result;

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,7 +48,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "0. Add new Item", проверяем значени введеного поля заявки name.
      */
     @Test
-    public void selectMenuItemZeroAddItemTestNameItemAndExit() {
+    public void selectMenuItemZeroAddItemTestNameItemAndExit() throws IOException {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
@@ -78,7 +79,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "0. Add new Item", проверяем значени введеного поля заявки desc.
      */
     @Test
-    public void selectMenuItemZeroAddItemTestDescItemAndExit() {
+    public void selectMenuItemZeroAddItemTestDescItemAndExit() throws IOException {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getDesc(), is("test desk"));
@@ -111,7 +112,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "0. Add new Item", проверяем значени введеного поля заявки coments.
      */
     @Test
-    public void selectMenuItemZeroAddItemTestCommentsItemAndExit() {
+    public void selectMenuItemZeroAddItemTestCommentsItemAndExit() throws IOException {
         Input input = new StubInput(0, 6, "test name", "test desk", "test comment");
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getComments()[0], is("test comment"));
@@ -142,7 +143,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "1. Show all items", проверяем проверяем консольный вывод.
      */
     @Test
-    public void selectMenuItemOneAddItemTestShowAllItemAndExit() {
+    public void selectMenuItemOneAddItemTestShowAllItemAndExit() throws IOException {
         Input input = new StubInput(1, 6, "");
         Item item = new Item();
         item.setName("test name");
@@ -207,7 +208,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "2. Edit item", проверяем редактируемую заявку, проверяем консольный вывод.
      */
     @Test
-    public void selectMenuItemTwoAddItemTestEditItemAndExit() {
+    public void selectMenuItemTwoAddItemTestEditItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -257,7 +258,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "3. Delete item", проверяем удаление заявки, проверяем консольный вывод.
      */
     @Test
-    public void selectMenuItemThreeAddItemTestDeleteItemAndExit() {
+    public void selectMenuItemThreeAddItemTestDeleteItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -291,7 +292,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "4. Find item by Id", проверяем нахождение заявки по Id, проверяем консольный вывод.
      */
     @Test
-    public void selectMenuItemThreeNotFindItemTestDeleteItemAndExit() {
+    public void selectMenuItemThreeNotFindItemTestDeleteItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -325,7 +326,7 @@ public class StubInputTest {
      * Тест выбор пункта меню "4. Find item by Id", проверяем нахождение заявки по Id, проверяем консольный вывод.
      */
     @Test
-    public void selectMenuItemFourAddItemTestFindByIdItemAndExit() {
+    public void selectMenuItemFourAddItemTestFindByIdItemAndExit() throws IOException{
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");
@@ -371,7 +372,7 @@ public class StubInputTest {
      *  Тест выбор пункта меню "5. Find items by name", проверяем нахождение заявки по Id, проверяем консольный вывод.
      */
     @Test
-    public void selectMenuItemFiveAddItemTestFindByNameItemAndExit() {
+    public void selectMenuItemFiveAddItemTestFindByNameItemAndExit() throws IOException {
         Item item = new Item();
         item.setName("test name");
         item.setDesc("test desk");

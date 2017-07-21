@@ -72,71 +72,6 @@ public class StubInput implements Input {
     @Override
     public String ask(String question) {
         String result = "";
-//        //Выбран пункт меню "0. Add new Item"
-//        if (selectMenu1 == 0  && countArray == 1) {
-//            switch (question) {
-//                case "Enter you name: ":
-//                    result = userInputSimulate[0];
-//                    break;
-//                case "Enter desc: ":
-//                    result = userInputSimulate[1];
-//                    break;
-//                case "Enter comments: ":
-//                    result = userInputSimulate[2];
-//                    break;
-//                default:
-//                    result = "";
-//            }
-//            ++countArray;
-//        }
-//        //Выбран пункт меню "1. Show all items"
-//        if (selectMenu1 == 1  && countArray == 1) {
-//            result = "";
-//            ++countArray;
-//        }
-//        //Выбран пункт меню "2. Edit item"
-//        if (selectMenu1 == 2  && countArray == 1) {
-//            switch (question) {
-//                case "Enter application id to edit: ":
-//                    result = userInputSimulate[0];
-//                    break;
-//                case "Enter new name: ":
-//                    result = userInputSimulate[1];
-//                    break;
-//                case "Enter new desc: ":
-//                    result = userInputSimulate[2];
-//                    break;
-//                case "Enter new comments: ":
-//                    result = userInputSimulate[3];
-//                    break;
-//                default:
-//                    result = "";
-//            }
-//            ++countArray;
-//        }
-//        //Выбран пункт меню "3. Delete item"
-//        if (selectMenu1 == 3 && question.equals("Enter application id to delete: ") && countArray == 1) {
-//            result = userInputSimulate[0];
-//            ++countArray;
-//        }
-//        //Выбран пункт меню "4. Find item by Id"
-//        if (selectMenu1 == 4 && question.equals("Enter application id to find: ")  && countArray == 1) {
-//            result = userInputSimulate[0];
-//            ++countArray;
-//        }
-//        //Выбран пункт меню "5. Find items by name"
-//        if (selectMenu1 == 5 && question.equals("Enter name to find Item: ")  && countArray == 1) {
-//            result = userInputSimulate[0];
-//            ++countArray;
-//        }
-//
-//        if (countArray == 2) {
-//            result = Integer.toString(selectMenu2);
-//        }
-//        if (question.equals("Select: ")  && countArray == 0 ) {
-//            ++countArray;
-//            result = Integer.toString(selectMenu1);
-//        }
         if (countArray < 2) {
             switch (question) {
                 case "Select: ":
@@ -186,5 +121,9 @@ public class StubInput implements Input {
             result = Integer.toString(selectMenu2);
         }
         return result;
+    }
+
+    public int ask(String question, int rangMin, int rangeMax)  {
+        return 0;
     }
 }
