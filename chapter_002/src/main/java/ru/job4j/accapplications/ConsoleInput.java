@@ -3,7 +3,6 @@ package ru.job4j.accapplications;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -31,6 +30,14 @@ public class ConsoleInput implements Input {
         return result;
     }
 
+    /**
+     * Метод запроса и ожидания на ввод информации из консоли.
+     * @param str строка запроса
+     * @param rangeMin нижняя граница диапазона возвращаемого целочисленного параметра
+     * @param rangeMax верхняя граница диапазона возвращаемого целочисленного параметра
+     * @return целочисленный параметр ответа на запрос, в диапазоне от 0 .. 9.
+     * @throws IOException
+     */
     @Override
     public int ask(String str, int rangeMin, int rangeMax) throws IOException {
         int result = -1;

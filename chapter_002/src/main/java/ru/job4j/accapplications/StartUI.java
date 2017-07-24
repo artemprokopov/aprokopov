@@ -38,6 +38,7 @@ public class StartUI {
     /**
      * Метод main.
      * @param args параметры командной строки.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     public static void main(String[] args) throws IOException {
          new StartUI().init();
@@ -45,6 +46,7 @@ public class StartUI {
 
     /**
      * Метод запускает основной цикл программы.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     public void init() throws IOException {
         ActionType notExit = ActionType.NORMAL;

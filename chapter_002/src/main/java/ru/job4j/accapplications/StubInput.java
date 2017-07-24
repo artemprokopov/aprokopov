@@ -72,58 +72,63 @@ public class StubInput implements Input {
     @Override
     public String ask(String question) {
         String result = "";
-        if (countArray < 2) {
-            switch (question) {
-                case "Select: ":
-                    result = Integer.toString(selectMenu1);
-                    ++countArray;
-                    break;
-                case "Enter you name: ":
-                    result = userInputSimulate[0];
-                    break;
-                case "Enter desc: ":
-                    result = userInputSimulate[1];
-                    break;
-                case "Enter comments: ":
-                    result = userInputSimulate[2];
-                    ++countArray;
-                    break;
-                case "Enter application id to edit: ":
-                    result = userInputSimulate[0];
-                    break;
-                case "Enter new name: ":
-                    result = userInputSimulate[1];
-                    break;
-                case "Enter new desc: ":
-                    result = userInputSimulate[2];
-                    break;
-                case "Enter new comments: ":
-                    result = userInputSimulate[3];
-                    ++countArray;
-                    break;
-                case "Enter application id to delete: ":
-                    result = userInputSimulate[0];
-                    ++countArray;
-                    break;
-                case "Enter application id to find: ":
-                    result = userInputSimulate[0];
-                    ++countArray;
-                    break;
-                case "Enter name to find Item: ":
-                    result = userInputSimulate[0];
-                    ++countArray;
-                    break;
-                default:
-                    ++countArray;
-                    result = "";
-            }
-        } else {
-            result = Integer.toString(selectMenu2);
+        switch (question) {
+            case "Select: ":
+                result = Integer.toString(selectMenu1);
+                ++countArray;
+                break;
+            case "Enter you name: ":
+                result = userInputSimulate[0];
+                break;
+            case "Enter desc: ":
+                result = userInputSimulate[1];
+                break;
+            case "Enter comments: ":
+                result = userInputSimulate[2];
+                ++countArray;
+                break;
+            case "Enter application id to edit: ":
+                result = userInputSimulate[0];
+                break;
+            case "Enter new name: ":
+                result = userInputSimulate[1];
+                break;
+            case "Enter new desc: ":
+                result = userInputSimulate[2];
+                break;
+            case "Enter new comments: ":
+                result = userInputSimulate[3];
+                ++countArray;
+                break;
+            case "Enter application id to delete: ":
+                result = userInputSimulate[0];
+                ++countArray;
+                break;
+            case "Enter application id to find: ":
+                result = userInputSimulate[0];
+                ++countArray;
+                break;
+            case "Enter name to find Item: ":
+                result = userInputSimulate[0];
+                ++countArray;
+                break;
+            default:
+                ++countArray;
+                result = "";
         }
         return result;
     }
 
+    /**
+     * Имплементируемый метод интерфейса {@link Input#ask(String, int, int)}.
+     * @param question параметр запроса.
+     * @param rangMin нижняя граница возвращаемого целочисленного параметра
+     * @param rangeMax верхняя граница диапазона возвращаемого целочисленного параметра
+     * @return номер выбранного пункта меню, либо {@link StubInput#selectMenu1} или
+     * {@link StubInput#selectMenu2}.
+     */
     public int ask(String question, int rangMin, int rangeMax)  {
-        return 0;
+        countArray++;
+        return countArray < 2 ? selectMenu1 : selectMenu2;
     }
 }

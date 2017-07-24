@@ -15,9 +15,9 @@ public interface Action {
      * @param tracker хранилище заявок
      * @param input интерфейс ввода информации с консоли.
      * @return ActionType сигнал результата выполнения заявки.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
     ActionType execute(Tracker tracker, Input input) throws IOException;
-
     /**
      *  Метод отображения объекта.
      * @return возвращает строку отображения объекта.

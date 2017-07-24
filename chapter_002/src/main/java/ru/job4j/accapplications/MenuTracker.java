@@ -51,9 +51,11 @@ public class MenuTracker {
     /**
      * Инициализирует выполнения функционала объекта.
      * @return результат операции типа {@link ActionType}. В случае успеха {@link ActionType#NORMAL}
-     * в случае ошибки {@link ActionType#ERROR}, при инициализации выхода из программы {@link ActionType#EXIT}.
+     * в случае ошибки {@link ActionType#ERROR}, при инициализации выхода
+     * из программы {@link ActionType#EXIT}.
+     * @throws IOException если происходит ошибка ввода вывода.
      */
-    public ActionType init() throws IOException{
+    public ActionType init() throws IOException {
         ActionType result = ActionType.NORMAL;
         int userAction = 6;
         for (Action action: actions) {
