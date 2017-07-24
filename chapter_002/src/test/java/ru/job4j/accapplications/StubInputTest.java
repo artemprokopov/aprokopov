@@ -54,26 +54,47 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "Id: " + tracker.findAll()[0].getId() + "\n"
-                        + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\n"
-                        + "Add Item success!\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[0].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Add Item success!")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 
     /**
@@ -86,28 +107,47 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getDesc(), is("test desk"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "Id: " + tracker.findAll()[0].getId()
-                        + "\n"
-                        + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\n"
-                        + "Add Item success!\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[0].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Add Item success!")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 
     /**
@@ -120,26 +160,47 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getComments()[0], is("test comment"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                + "1. Show all items\n"
-                + "2. Edit item\n"
-                + "3. Delete item\n"
-                + "4. Find item by Id\n"
-                + "5. Find items by name\n"
-                + "6. Exit Program\n"
-                + "***************************************************************\n"
-                + "Id: " + tracker.findAll()[0].getId() + "\n"
-                + "Data: "
-                + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())) + "\n"
-                + "Add Item success!\n"
-                + "***************************************************************\n"
-                + "0. Add new Item\n"
-                + "1. Show all items\n2. "
-                + "Edit item\n"
-                + "3. Delete item\n"
-                + "4. Find item by Id\n"
-                + "5. Find items by name\n"
-                + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[0].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Add Item success!")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 
     /**
@@ -162,48 +223,75 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
         assertThat(outputStream.toString(),  is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "Id: " + tracker.findAll()[0].getId()
-                        + "\n"
-                        + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\n"
-                        + "Name: " + tracker.findAll()[0].getName()
-                        + "\n"
-                        + "Desc: " + tracker.findAll()[0].getDesc()
-                        + "\n"
-                        + "Comments: \n"
-                        + tracker.findAll()[0].getComments()[0]
-                        + "\n"
-                        + "***************************************************************\n"
-                        + "***************************************************************\n"
-                        + "Id: " + tracker.findAll()[1].getId()
-                        + "\n"
-                        + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[1].getCreated()))
-                        + "\n"
-                        + "Name: " + tracker.findAll()[1].getName()
-                        + "\n"
-                        + "Desc: " + tracker.findAll()[1].getDesc()
-                        + "\n"
-                        + "Comments: \n"
-                        + tracker.findAll()[1].getComments()[0]
-                        + "\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[0].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Name: ")
+                        .append(tracker.findAll()[0].getName())
+                        .append(System.lineSeparator())
+                        .append("Desc: ")
+                        .append(tracker.findAll()[0].getDesc())
+                        .append(System.lineSeparator())
+                        .append("Comments: ")
+                        .append(System.lineSeparator())
+                        .append(tracker.findAll()[0].getComments()[0])
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[1].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[1].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Name: ")
+                        .append(tracker.findAll()[1].getName())
+                        .append(System.lineSeparator())
+                        .append("Desc: ")
+                        .append(tracker.findAll()[1].getDesc())
+                        .append(System.lineSeparator())
+                        .append("Comments: ")
+                        .append(System.lineSeparator())
+                        .append(tracker.findAll()[1].getComments()[0])
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 
     /**
@@ -220,36 +308,59 @@ public class StubInputTest {
         tracker.add(item);
         new StartUI(tracker, input).init();
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "***************************************************************\n"
-                        + "Id: " + tracker.findAll()[0].getId()
-                        + "\n"
-                        + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\n"
-                        + "Name: " + "test name"
-                        + "\n"
-                        + "Desc: " + "test desk"
-                        + "\n"
-                        + "Comments: \n"
-                        + tracker.findAll()[0].getComments()[0]
-                        + "\n"
-                        + "***************************************************************\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[0].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Name: ")
+                        .append("test name")
+                        .append(System.lineSeparator())
+                        .append("Desc: ")
+                        .append("test desk")
+                        .append(System.lineSeparator())
+                        .append("Comments: ")
+                        .append(System.lineSeparator())
+                        .append(tracker.findAll()[0].getComments()[0])
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
         assertThat(tracker.findAll()[0].getId(), is(item.getId()));
         assertThat(tracker.findAll()[0].getName(), is("test name1"));
         assertThat(tracker.findAll()[0].getDesc(), is("test desk1"));
@@ -272,24 +383,41 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll(), is(Tracker.NULL_ITEM_ARRAY));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "Item removed!"
-                        + "\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Item removed!")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 
     /**
@@ -307,24 +435,41 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "Item not found!"
-                        + "\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Item not found!")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 
     /**
@@ -342,36 +487,59 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0], is(item));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "***************************************************************\n"
-                        + "Id: " + tracker.findAll()[0].getId()
-                        + "\n"
-                        + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\n"
-                        + "Name: " + tracker.findAll()[0].getName()
-                        + "\n"
-                        + "Desc: " + tracker.findAll()[0].getDesc()
-                        + "\n"
-                        + "Comments: \n"
-                        + tracker.findAll()[0].getComments()[0]
-                        + "\n"
-                        + "***************************************************************\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[0].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Name: ")
+                        .append(tracker.findAll()[0].getName())
+                        .append(System.lineSeparator())
+                        .append("Desc: ")
+                        .append(tracker.findAll()[0].getDesc())
+                        .append(System.lineSeparator())
+                        .append("Comments: ")
+                        .append(System.lineSeparator())
+                        .append(tracker.findAll()[0].getComments()[0])
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 
     /**
@@ -389,35 +557,58 @@ public class StubInputTest {
         new StartUI(tracker, input).init();
         assertThat(tracker.findAll()[0].getName(), is("test name"));
         assertThat(outputStream.toString(), is(
-                "0. Add new Item\n"
-                        + "1. Show all items\n"
-                        + "2. Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"
-                        + "***************************************************************\n"
-                        + "***************************************************************\n"
-                        + "Id: " + tracker.findAll()[0].getId()
-                        + "\n"
-                        + "Data: "
-                        + new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated()))
-                        + "\n"
-                        + "Name: " + tracker.findAll()[0].getName()
-                        + "\n"
-                        + "Desc: " + tracker.findAll()[0].getDesc()
-                        + "\n"
-                        + "Comments: \n"
-                        + tracker.findAll()[0].getComments()[0]
-                        + "\n"
-                        + "***************************************************************\n"
-                        + "***************************************************************\n"
-                        + "0. Add new Item\n"
-                        + "1. Show all items\n2. "
-                        + "Edit item\n"
-                        + "3. Delete item\n"
-                        + "4. Find item by Id\n"
-                        + "5. Find items by name\n"
-                        + "6. Exit Program\n"));
+                new StringBuilder("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("Id: ")
+                        .append(tracker.findAll()[0].getId())
+                        .append(System.lineSeparator())
+                        .append("Data: ")
+                        .append(new SimpleDateFormat().format(new Date(tracker.findAll()[0].getCreated())))
+                        .append(System.lineSeparator())
+                        .append("Name: ")
+                        .append(tracker.findAll()[0].getName())
+                        .append(System.lineSeparator())
+                        .append("Desc: ")
+                        .append(tracker.findAll()[0].getDesc())
+                        .append(System.lineSeparator())
+                        .append("Comments: ")
+                        .append(System.lineSeparator())
+                        .append(tracker.findAll()[0].getComments()[0])
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("***************************************************************")
+                        .append(System.lineSeparator())
+                        .append("0. Add new Item")
+                        .append(System.lineSeparator())
+                        .append("1. Show all items")
+                        .append(System.lineSeparator())
+                        .append("2. Edit item")
+                        .append(System.lineSeparator())
+                        .append("3. Delete item")
+                        .append(System.lineSeparator())
+                        .append("4. Find item by Id")
+                        .append(System.lineSeparator())
+                        .append("5. Find items by name")
+                        .append(System.lineSeparator())
+                        .append("6. Exit Program")
+                        .append(System.lineSeparator())
+                        .toString()));
     }
 }

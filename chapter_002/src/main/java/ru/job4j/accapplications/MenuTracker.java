@@ -30,13 +30,13 @@ public class MenuTracker {
      * Инициализация массива действий пользователя.
      */
     {
-        actions[0] = new ActionAddNewItem();
-        actions[1] = new ActionShowAllItem();
-        actions[2] = new ActionEditItem();
-        actions[3] = new ActionDeletItem();
-        actions[4] = new ActionFindItemById();
-        actions[5] = new ActionFindItemByName();
-        actions[6] = new ActionExitProgramme();
+        actions[0] = new AddNewItemAction();
+        actions[1] = new ShowAllItemAction();
+        actions[2] = new EditItemAction();
+        actions[3] = new DeletItemAction();
+        actions[4] = new FindItemByIdAction();
+        actions[5] = new FindItemByNameAction();
+        actions[6] = new ExitProgrammeAction();
     }
     /**
      * Конструктор класса задает хранилище заявок и систему ввода вывода.
@@ -76,14 +76,14 @@ public class MenuTracker {
 
     /**
      *Внутренний класс реализует добавление новой заявки {@link Item} в хранилище заявок {@link Tracker}.
-     * Наследует абстрактный класс {@link ActionBase}, и до конца имплементирует интерфейс {@link Action}
+     * Наследует абстрактный класс {@link BaseAction}, и до конца имплементирует интерфейс {@link Action}
      */
-    private class ActionAddNewItem extends ActionBase {
+    private class AddNewItemAction extends BaseAction {
 
         /**
-         * Конструктор вызывает конструктор суперкласса {@link ActionBase#ActionBase(int, String)}.
+         * Конструктор вызывает конструктор суперкласса {@link BaseAction#BaseAction(int, String)}.
          */
-        ActionAddNewItem() {
+        AddNewItemAction() {
             super(0, "Add new Item");
         }
 
@@ -115,13 +115,13 @@ public class MenuTracker {
 
     /**
      *Внутренний класс реализует показ всех заявок {@link Item} в хранилище заявок {@link Tracker}.
-     * Наследует абстрактный класс {@link ActionBase}, и до конца имплементирует интерфейс {@link Action}
+     * Наследует абстрактный класс {@link BaseAction}, и до конца имплементирует интерфейс {@link Action}
      */
-    public class ActionShowAllItem extends  ActionBase {
+    public class ShowAllItemAction extends BaseAction {
         /**
-         * Конструктор вызывает конструктор суперкласса {@link ActionBase#ActionBase(int, String)}.
+         * Конструктор вызывает конструктор суперкласса {@link BaseAction#BaseAction(int, String)}.
          */
-        public ActionShowAllItem() {
+        public ShowAllItemAction() {
             super(1, "Show all items");
         }
         /**
@@ -146,13 +146,13 @@ public class MenuTracker {
 
     /**
      *Внутренний класс реализует редактирование заявки {@link Item} в хранилище заявок {@link Tracker}.
-     * Наследует абстрактный класс {@link ActionBase}, и до конца имплементирует интерфейс {@link Action}
+     * Наследует абстрактный класс {@link BaseAction}, и до конца имплементирует интерфейс {@link Action}
      */
-    public class ActionEditItem extends ActionBase {
+    public class EditItemAction extends BaseAction {
         /**
-         * Конструктор вызывает конструктор суперкласса {@link ActionBase#ActionBase(int, String)}.
+         * Конструктор вызывает конструктор суперкласса {@link BaseAction#BaseAction(int, String)}.
          */
-        public ActionEditItem() {
+        public EditItemAction() {
             super(2, "Edit item");
         }
         /**
@@ -182,13 +182,13 @@ public class MenuTracker {
 
     /**
      *Внутренний класс реализует удаление заявки {@link Item} в хранилище заявок {@link Tracker}.
-     * Наследует абстрактный класс {@link ActionBase}, и до конца имплементирует интерфейс {@link Action}
+     * Наследует абстрактный класс {@link BaseAction}, и до конца имплементирует интерфейс {@link Action}
      */
-    private class ActionDeletItem extends ActionBase {
+    private class DeletItemAction extends BaseAction {
         /**
-         * Конструктор вызывает конструктор суперкласса {@link ActionBase#ActionBase(int, String)}.
+         * Конструктор вызывает конструктор суперкласса {@link BaseAction#BaseAction(int, String)}.
          */
-        ActionDeletItem() {
+        DeletItemAction() {
             super(3, "Delete item");
         }
         /**
@@ -216,13 +216,13 @@ public class MenuTracker {
 
     /**
      *Внутренний класс реализует нахождение заявки {@link Item} по Id в хранилище заявок {@link Tracker}.
-     * Наследует абстрактный класс {@link ActionBase}, и до конца имплементирует интерфейс {@link Action}
+     * Наследует абстрактный класс {@link BaseAction}, и до конца имплементирует интерфейс {@link Action}
      */
-    public class ActionFindItemById extends ActionBase {
+    public class FindItemByIdAction extends BaseAction {
         /**
-         * Конструктор вызывает конструктор суперкласса {@link ActionBase#ActionBase(int, String)}.
+         * Конструктор вызывает конструктор суперкласса {@link BaseAction#BaseAction(int, String)}.
          */
-        ActionFindItemById() {
+        FindItemByIdAction() {
             super(4, "Find item by Id");
         }
         /**
@@ -251,13 +251,13 @@ public class MenuTracker {
 
     /**
      *Внутренний класс реализует нахождение заявки {@link Item} по name в хранилище заявок {@link Tracker}.
-     * Наследует абстрактный класс {@link ActionBase}, и до конца имплементирует интерфейс {@link Action}
+     * Наследует абстрактный класс {@link BaseAction}, и до конца имплементирует интерфейс {@link Action}
      */
-    private class ActionFindItemByName extends ActionBase {
+    private class FindItemByNameAction extends BaseAction {
         /**
-         * Конструктор вызывает конструктор суперкласса {@link ActionBase#ActionBase(int, String)}.
+         * Конструктор вызывает конструктор суперкласса {@link BaseAction#BaseAction(int, String)}.
          */
-        ActionFindItemByName() {
+        FindItemByNameAction() {
             super(5, "Find items by name");
         }
 
@@ -312,13 +312,13 @@ public class MenuTracker {
 
 /**
  *Внутренний класс реализует событие выход из программы.
- * Наследует абстрактный класс {@link ActionBase}, и до конца имплементирует интерфейс {@link Action}.
+ * Наследует абстрактный класс {@link BaseAction}, и до конца имплементирует интерфейс {@link Action}.
  */
-class ActionExitProgramme extends ActionBase {
+class ExitProgrammeAction extends BaseAction {
     /**
-     * Конструктор вызывает конструктор суперкласса {@link ActionBase#ActionBase(int, String)}.
+     * Конструктор вызывает конструктор суперкласса {@link BaseAction#BaseAction(int, String)}.
      */
-     ActionExitProgramme() {
+     ExitProgrammeAction() {
         super(6,  "Exit Program");
     }
 

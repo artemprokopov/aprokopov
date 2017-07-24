@@ -3,7 +3,7 @@ package ru.job4j.accapplications;
 /**
  * Created by A003 on 11.07.2017.
  */
-public abstract class ActionBase implements Action {
+public abstract class BaseAction implements Action {
     /**
      * Уникальный индификатор действия.
      */
@@ -14,11 +14,11 @@ public abstract class ActionBase implements Action {
     private final String actionName;
 
     /**
-     * Конструктор инициальзирует поля {@link ActionBase#keyAction} и {@link ActionBase#actionName}.
+     * Конструктор инициальзирует поля {@link BaseAction#keyAction} и {@link BaseAction#actionName}.
      * @param keyAction уникальный индификатор действия.
      * @param actionName наименование действия.
      */
-    protected ActionBase(int keyAction, String actionName) {
+    protected BaseAction(int keyAction, String actionName) {
         this.keyAction = keyAction;
         this.actionName = actionName;
     }
@@ -33,7 +33,7 @@ public abstract class ActionBase implements Action {
     }
 
     /**
-     * Метод формирует строку из полей {@link ActionBase#keyAction} и {@link ActionBase#actionName}.
+     * Метод формирует строку из полей {@link BaseAction#keyAction} и {@link BaseAction#actionName}.
      * @return строку информирующую о уникальном индификаторе и наименовании действия в формате "%s. %s".
      */
     @Override
