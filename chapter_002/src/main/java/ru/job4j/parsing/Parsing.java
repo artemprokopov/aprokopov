@@ -19,13 +19,6 @@ public class Parsing {
         SimpleDateFormat formatForDate = new SimpleDateFormat("dd MM yy, hh:mm");
         StringBuffer formatDate = new StringBuffer(date);
         Calendar calendar = Calendar.getInstance();
-        String dateStr = String.format("%s %s %s",
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.YEAR));
-
-        Pattern.compile("сегодня").matcher(date).replaceFirst(dateStr);
-        Pattern.compile("вчера").matcher(date).replaceFirst(dateStr);
 
         if (formatDate.indexOf("сегодня") != -1) {
             formatDate.replace(formatDate.indexOf("сегодня"),
@@ -96,13 +89,41 @@ public class Parsing {
         try {
             long dateOffer = formatForDate.parse(formatDate.toString()).getTime();
             long startYear = formatForDate.parse(String.format("%s %s %s, 00:00", "01", "01", calendar.get(Calendar.YEAR))).getTime();
-            /*if ((lastStart == 0 && startYear < dateOffer) || (lastStart > 0 && dateOffer > lastStart)) {
+            if ((lastStart == 0 && startYear < dateOffer) || (lastStart > 0 && dateOffer > lastStart)) {
                 return true;
-            }*/
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+    boolean checkDateOfferNewTest(String date) {
+        return checkDateOfferNew(date);
+    }
+
+    private boolean checkDateOfferNew(String date) {
+        long lastStart = 0;
+        boolean result = false;
+        SimpleDateFormat formatForDate = new SimpleDateFormat("dd MM yy, hh:mm");
+        StringBuffer formatDate = new StringBuffer(date);
+        Calendar calendar = Calendar.getInstance();
+        String dateStr = String.format("%s %s %s",
+                calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.YEAR));
+
+        /*Pattern.compile("сегодня").matcher(date).replaceFirst(dateStr);
+        Pattern.compile("вчера").matcher(date).replaceFirst(dateStr);*/
+        try {
+            long dateOffer = formatForDate.parse(formatDate.toString()).getTime();
+            long startYear = formatForDate.parse(String.format("%s %s %s, 00:00", "01", "01", calendar.get(Calendar.YEAR))).getTime();
             result = lastStart >= 0 && startYear > dateOffer ;
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return result;
+
     }
 }
