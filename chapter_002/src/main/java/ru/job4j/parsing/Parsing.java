@@ -8,16 +8,12 @@ import java.util.regex.Pattern;
 
 public class Parsing {
 
-    boolean checkDateOfferTest(String date) {
-        return checkDateOffer(date);
-    }
-
-    private boolean checkDateOffer(String date) {
+    public boolean checkDateOffer(StringBuffer date) {
         //Добавил не объявленную переменную
         long lastStart = 0;
         boolean result = false;
         SimpleDateFormat formatForDate = new SimpleDateFormat("dd MM yy, hh:mm");
-        StringBuffer formatDate = new StringBuffer(date);
+        StringBuffer formatDate = date;
         Calendar calendar = Calendar.getInstance();
 
         if (formatDate.indexOf("сегодня") != -1) {
@@ -99,11 +95,9 @@ public class Parsing {
     }
 
 
-    boolean checkDateOfferNewTest(String date) {
-        return checkDateOfferNew(date);
-    }
 
-    private boolean checkDateOfferNew(String date) {
+
+    public boolean checkDateOfferNew(String date) {
         long lastStart = 0;
         boolean result = false;
         SimpleDateFormat formatForDate = new SimpleDateFormat("dd MM yy, hh:mm");
