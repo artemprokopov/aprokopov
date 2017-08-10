@@ -9,39 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parsing {
-    Calendar calendar = Calendar.getInstance();
-    String dateStrToday;
-    String dateStrYesterday;
 
-    {
-        dateStrToday = String.format("%s %s %s",
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.YEAR));
-        calendar.add(Calendar.DATE, -1);
-        dateStrYesterday = String.format("%s %s %s",
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.YEAR));
-    }
-
-    HashMap<String, String> stringMap = new HashMap<>();
-    {
-        stringMap.put("янв", " 1 ");
-        stringMap.put("фев", " 2 ");
-        stringMap.put("мар", " 3 ");
-        stringMap.put("апр", " 4 ");
-        stringMap.put("май", " 5 ");
-        stringMap.put("июн", " 6 ");
-        stringMap.put("июл", " 7 ");
-        stringMap.put("авг", " 8 ");
-        stringMap.put("сен", " 9 ");
-        stringMap.put("окт", " 10 ");
-        stringMap.put("ноя", " 11 ");
-        stringMap.put("дек", " 12 ");
-        stringMap.put("сегодня", dateStrToday);
-        stringMap.put("вчера", dateStrYesterday);
-    }
 
     /**
      *
@@ -135,7 +103,39 @@ public class Parsing {
     }
 
 
+    private final Calendar calendar = Calendar.getInstance();
+    private final String dateStrToday;
+    private final String dateStrYesterday;
 
+    {
+        dateStrToday = String.format("%s %s %s",
+                calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.YEAR));
+        calendar.add(Calendar.DATE, -1);
+        dateStrYesterday = String.format("%s %s %s",
+                calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.YEAR));
+    }
+
+    private final HashMap<String, String> stringMap = new HashMap<>();
+    {
+        stringMap.put("янв", " 1 ");
+        stringMap.put("фев", " 2 ");
+        stringMap.put("мар", " 3 ");
+        stringMap.put("апр", " 4 ");
+        stringMap.put("май", " 5 ");
+        stringMap.put("июн", " 6 ");
+        stringMap.put("июл", " 7 ");
+        stringMap.put("авг", " 8 ");
+        stringMap.put("сен", " 9 ");
+        stringMap.put("окт", " 10 ");
+        stringMap.put("ноя", " 11 ");
+        stringMap.put("дек", " 12 ");
+        stringMap.put("сегодня", dateStrToday);
+        stringMap.put("вчера", dateStrYesterday);
+    }
 
     public boolean checkDateOfferNew(String date) {
 
