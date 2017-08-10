@@ -26,34 +26,51 @@ public class ParsingTest {
    @Test
     public  void checkDateOfferTestWhenStringSegodnyaThenTrue() {
        Calendar calendar = Calendar.getInstance();
-        StringBuffer date = new StringBuffer("сегодня, 11:11");
+        String date = new String("сегодня, 11:11");
         boolean ex = new Parsing().checkDateOffer(date);
-        assertEquals(date.toString(), new StringBuilder(String.format("%s %s %s",
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.YEAR))).append(", 11:11").toString());
         assertEquals(true, ex);
     }
 
     @Test
     public  void checkDateOfferTestWhenStringVcheraThenTrue() {
         Calendar calendar = Calendar.getInstance();
-        StringBuffer date = new StringBuffer("вчера, 11:11");
+        String date = new String("вчера, 11:11");
         boolean ex = new Parsing().checkDateOffer(date);
+
+        assertEquals(true, ex);
+    }
+
+    @Test
+    public  void checkDateOfferNewTestWhenStringDataThenTrue() {
+        for (int i = 0; i < 12; i++) {
+            String date = new String(test[i]);
+            boolean ex = new Parsing().checkDateOffer(date);
+            assertEquals(true, ex);
+        }
+    }
+
+    @Test
+    public  void checkDateOfferNewTestWhenStringSegodnyaThenTrue() {
+        Calendar calendar = Calendar.getInstance();
+        String date = new String(" сегодня , 11:11");
+        boolean ex = new Parsing().checkDateOfferNew(date);
+        assertEquals(true, ex);
+    }
+
+    @Test
+    public  void checkDateOfferNewTestWhenStringVcheraThenTrue() {
+        Calendar calendar = Calendar.getInstance();
+        String date = new String("вчера, 11:11");
+        boolean ex = new Parsing().checkDateOfferNew(date);
         calendar.add(Calendar.DATE, -1);
-        assertEquals(date.toString(), new StringBuilder(String.format("%s %s %s",
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.YEAR))).append(", 11:11").toString());
         assertEquals(true, ex);
     }
 
     @Test
     public  void checkDateOfferTestWhenStringDataThenTrue() {
         for (int i = 0; i < 12; i++) {
-            StringBuffer date = new StringBuffer(test[i]);
-            boolean ex = new Parsing().checkDateOffer(date);
-            assertEquals(date.toString(), exepected[i]);
+            String date = new String(test[i]);
+            boolean ex = new Parsing().checkDateOfferNew(date);
             assertEquals(true, ex);
         }
     }

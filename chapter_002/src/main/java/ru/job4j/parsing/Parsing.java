@@ -3,17 +3,57 @@ package ru.job4j.parsing;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parsing {
+    Calendar calendar = Calendar.getInstance();
+    String dateStrToday;
+    String dateStrYesterday;
 
-    public boolean checkDateOffer(StringBuffer date) {
+    {
+        dateStrToday = String.format("%s %s %s",
+                calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.YEAR));
+        calendar.add(Calendar.DATE, -1);
+        dateStrYesterday = String.format("%s %s %s",
+                calendar.get(Calendar.DAY_OF_MONTH),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.YEAR));
+    }
+
+    HashMap<String, String> stringMap = new HashMap<>();
+    {
+        stringMap.put("янв", " 1 ");
+        stringMap.put("фев", " 2 ");
+        stringMap.put("мар", " 3 ");
+        stringMap.put("апр", " 4 ");
+        stringMap.put("май", " 5 ");
+        stringMap.put("июн", " 6 ");
+        stringMap.put("июл", " 7 ");
+        stringMap.put("авг", " 8 ");
+        stringMap.put("сен", " 9 ");
+        stringMap.put("окт", " 10 ");
+        stringMap.put("ноя", " 11 ");
+        stringMap.put("дек", " 12 ");
+        stringMap.put("сегодня", dateStrToday);
+        stringMap.put("вчера", dateStrYesterday);
+    }
+
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public boolean checkDateOffer(String date) {
         //Добавил не объявленную переменную
         long lastStart = 0;
         boolean result = false;
         SimpleDateFormat formatForDate = new SimpleDateFormat("dd MM yy, hh:mm");
-        StringBuffer formatDate = date;
+        StringBuffer formatDate = new StringBuffer(date);
         Calendar calendar = Calendar.getInstance();
 
         if (formatDate.indexOf("сегодня") != -1) {
@@ -98,22 +138,29 @@ public class Parsing {
 
 
     public boolean checkDateOfferNew(String date) {
+
         long lastStart = 0;
         boolean result = false;
         SimpleDateFormat formatForDate = new SimpleDateFormat("dd MM yy, hh:mm");
-        StringBuffer formatDate = new StringBuffer(date);
-        Calendar calendar = Calendar.getInstance();
-        String dateStr = String.format("%s %s %s",
-                calendar.get(Calendar.DAY_OF_MONTH),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.YEAR));
+        StringBuilder formatDate = new StringBuilder();
 
-        /*Pattern.compile("сегодня").matcher(date).replaceFirst(dateStr);
-        Pattern.compile("вчера").matcher(date).replaceFirst(dateStr);*/
+
+        String[] stringSplit = date.trim().split("[,\\s]+");
+        if (stringMap.containsKey(stringSplit[0])) {
+            formatDate.append(stringMap.get(stringSplit[0]))
+                    .append(", ")
+                    .append(stringSplit[1]);
+        } else {
+            formatDate.append(stringSplit[0])
+                    .append(stringMap.get(stringSplit[1]))
+                    .append(stringSplit[2])
+                    .append(", ")
+                    .append(stringSplit[3]);
+        }
         try {
             long dateOffer = formatForDate.parse(formatDate.toString()).getTime();
             long startYear = formatForDate.parse(String.format("%s %s %s, 00:00", "01", "01", calendar.get(Calendar.YEAR))).getTime();
-            result = lastStart >= 0 && startYear > dateOffer ;
+            result = lastStart >= 0 && dateOffer > startYear;
         } catch (ParseException e) {
             e.printStackTrace();
         }
