@@ -6,11 +6,11 @@ public class Cell {
     private final VerticalCoordinate verticalCoordinate;
 
     public Cell(HorizontalCoordinate initHorizontalCoordinate,
-                VerticalCoordinate iniyVerticalCoordinate,
+                VerticalCoordinate initVerticalCoordinate,
                 ColorCell initColorCell) {
         this.colorCell = initColorCell;
         this.horizontalCoordinate = initHorizontalCoordinate;
-        this.verticalCoordinate = iniyVerticalCoordinate;
+        this.verticalCoordinate = initVerticalCoordinate;
     }
 
     @Override
