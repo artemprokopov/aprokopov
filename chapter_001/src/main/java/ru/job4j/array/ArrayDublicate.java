@@ -14,14 +14,11 @@ public class ArrayDublicate {
      *@return an array of remote replays.
      */
     public String[] remove(String[] array) {
-	String temp = "";
 	int count = 0;
 	for (int i = 0; i < array.length - count; i++) {
 	    for (int j = i + 1; j < array.length - count; j++) {
 		if (array[j].equals(array[i])) {
-		    temp = array[j];
 		    array[j] = array[array.length - 1 - count];
-		    array[array.length - 1 - count] = array[j];
 		    count++;
 		    j--;
 		}
