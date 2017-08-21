@@ -4,17 +4,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+/**
+ * Класс парсинг строки, два варианта.
+ * @author Artem Prokopov
+ * @since 11.08.2017
+ * @version 1.0
+ */
 
 public class Parsing {
 
 
     /**
-     *
-     * @param date
-     * @return
+     *Метод реализация была предложеа для разбора Петром в HipChat.
+     * @param date строка для разбора.
+     * @return true если dataOffer > startYear.
      */
     public boolean checkDateOffer(String date) {
         //Добавил не объявленную переменную
@@ -102,11 +105,26 @@ public class Parsing {
         return result;
     }
 
+    /*
+     * Новая реализация метода.
+     */
 
+    /**
+     * Поля для предопределения даты.
+     */
     private final Calendar calendar = Calendar.getInstance();
+    /**
+     * Поле сегодняшней даты.
+     */
     private final String dateStrToday;
+    /**
+     * Поле вчерашней даты.
+     */
     private final String dateStrYesterday;
 
+    /**
+     * Блок инициализации полей даты.
+     */
     {
         dateStrToday = String.format("%s %s %s",
                 calendar.get(Calendar.DAY_OF_MONTH),
@@ -119,6 +137,10 @@ public class Parsing {
                 calendar.get(Calendar.YEAR));
     }
 
+    /**
+     * Map для хранения данных для замены в строке, где ключ это параметр в исходной
+     * строке, а значение это параметр на который заменяется чать строки.
+     */
     private final HashMap<String, String> stringMap = new HashMap<>();
     {
         stringMap.put("янв", " 1 ");
@@ -137,6 +159,11 @@ public class Parsing {
         stringMap.put("вчера", dateStrYesterday);
     }
 
+    /**
+     *Новая реализация метода Петром в HipChat.
+     * @param date строка для разбора.
+     * @return true если dataOffer > startYear.
+     */
     public boolean checkDateOfferNew(String date) {
 
         long lastStart = 0;
