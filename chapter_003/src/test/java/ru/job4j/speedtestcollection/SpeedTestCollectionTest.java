@@ -1,10 +1,11 @@
 package ru.job4j.speedtestcollection;
 
 
+import org.junit.Ignore;
 import org.junit.FixMethodOrder;
 import org.junit.BeforeClass;
-import org.junit.Before;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -31,7 +32,7 @@ import java.util.Set;
  * @since 05.09.2017
  * @version 1.0
  */
-
+@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SpeedTestCollectionTest {
     /**
