@@ -54,4 +54,19 @@ public class ConvertList {
         }
         return intArray;
     }
+
+    /**
+     * Конвертируем List<int[]> в один List<Integer>.
+     * @param list конвертируемый List
+     * @return List<Integer> содержащий все елементы  List<int[]>
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> listResult = new ArrayList<>();
+        for (int[] i: list) {
+            for (int j: i) {
+                listResult.add(j);
+            }
+        }
+        return listResult;
+    }
 }

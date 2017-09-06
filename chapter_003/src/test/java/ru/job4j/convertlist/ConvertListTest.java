@@ -2,6 +2,7 @@ package ru.job4j.convertlist;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -66,4 +67,23 @@ public class ConvertListTest {
         assertArrayEquals(result, expected);
     }
 
+    /**
+     * Тестируем метод convert передаем List<int[]> {{1, 2, 3}, {4, 5}, {6, 7, 8}, {9}},
+     * ожидаем {1, 2, 3, 4, 5, 6, 7, 8, 9}.
+     */
+    @Test
+    public void convertAddListWithArrayThenListInteger() {
+        List<int[]> testList = new ArrayList<>();
+        int[] i1 = new int[]{1, 2, 3};
+        int[] i2 = new int[]{4, 5};
+        int[] i3 = new int[]{6, 7, 8};
+        int[] i4 = new int[]{9};
+        testList.add(i1);
+        testList.add(i2);
+        testList.add(i3);
+        testList.add(i4);
+        List<Integer>  expected = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> result = convertList.convert(testList);
+        assertEquals(result, expected);
+    }
 }
