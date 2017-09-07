@@ -1,5 +1,7 @@
 package ru.job4j.accapplications;
 
+import java.util.ArrayList;
+
 /**
  * Основной класс системы заявок Tracker, работает с массивом заявок, осуществляет добавление удаление заявок,
  * и прочие функции.
@@ -16,7 +18,7 @@ public class Tracker {
     /**
      * Массив заявок.
      */
-    private AccArray<Item> items = new AccArray<>();
+    private ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Добавляет заявку в массив items.
@@ -56,7 +58,7 @@ public class Tracker {
      */
     public boolean delete(Item item) {
         boolean result = false;
-        items.delete(item);
+        items.remove(item);
         result = true;
         return result;
     }

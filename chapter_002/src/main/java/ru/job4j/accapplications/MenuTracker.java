@@ -2,6 +2,7 @@ package ru.job4j.accapplications;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -24,19 +25,19 @@ public class MenuTracker {
     /**
      * Массив действий пользователя над хранилищем заявок и над заявками {@link Action}.
      */
-    private final Action[] actions = new Action[7];
+    private final ArrayList<Action> actions = new ArrayList<>();
 
     /**
      * Инициализация массива действий пользователя.
      */
     {
-        actions[0] = new AddNewItemAction();
-        actions[1] = new ShowAllItemAction();
-        actions[2] = new EditItemAction();
-        actions[3] = new DeletItemAction();
-        actions[4] = new FindItemByIdAction();
-        actions[5] = new FindItemByNameAction();
-        actions[6] = new ExitProgrammeAction();
+        actions.add(new AddNewItemAction());
+        actions.add(new ShowAllItemAction());
+        actions.add(new EditItemAction());
+        actions.add(new DeletItemAction());
+        actions.add(new FindItemByIdAction());
+        actions.add(new FindItemByNameAction());
+        actions.add(new ExitProgrammeAction());
     }
     /**
      * Конструктор класса задает хранилище заявок и систему ввода вывода.
@@ -70,7 +71,7 @@ public class MenuTracker {
                 result = ActionType.ERROR;
             }
         } while (result == ActionType.ERROR);
-        result = actions[userAction].execute(tracker, input);
+        result = actions.get(userAction).execute(tracker, input);
         return result;
     }
 
