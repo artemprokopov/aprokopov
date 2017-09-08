@@ -37,8 +37,11 @@ public class User implements Comparable<User> {
         if (o == null) {
             throw new NullPointerException("The argument is null!");
         }
-
-        return age != o.age ? age > o.age ? 1 : -1 : 0;
+        int result = age != o.age ? age > o.age ? 1 : -1 : 0;
+//        if (result == 0) {
+//            result =  name.compareTo(o.getName());
+//        }
+        return  result;
     }
 
     /**
@@ -57,11 +60,7 @@ public class User implements Comparable<User> {
 
         User user = (User) o;
 
-        if (age != user.age) {
-            return false;
-        }
-
-        return name.equals(user.name);
+        return age == user.age && name.equals(user.name);
     }
 
     /**
@@ -88,5 +87,21 @@ public class User implements Comparable<User> {
                 + ", age="
                 + age
                 + '}';
+    }
+
+    /**
+     * Геттер для age.
+     * @return {@link User#age}
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * Геттер для name.
+     * @return {@link User#name}
+     */
+    public String getName() {
+        return name;
     }
 }
