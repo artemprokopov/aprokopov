@@ -5,10 +5,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+
 /**
  * Класс тестов для класса {@link SortUser}.
  * @author Artem Prokopov
@@ -21,15 +20,49 @@ public class SortUserTest {
      */
     @Test
     public void sortAddListThenTreeSet() {
-        List<User> list = Arrays.asList(new User("aaa", 3),
-                new User("bbb", 4),
-                new User("ccc", 1),
-                new User("ddd", 5));
-        User[] expected = new User[]{new User("ccc", 1),
-                new User("aaa", 3),
-                new User("bbb", 4),
-                new User("ddd", 5)};
+        List<User> list = Arrays.asList(new User("Сергей", 27),
+                new User("Гена", 30),
+                new User("Жора", 20),
+                new User("Иван", 25));
+        User[] expected = new User[]{new User("Жора", 20),
+                new User("Иван", 25),
+                new User("Сергей", 27),
+                new User("Гена", 30)};
         Set<User> userSet = new SortUser().sort(list);
         assertArrayEquals(userSet.toArray(), expected);
+    }
+
+    /**
+     * Тестируем {@link SortUser#sortNameLength(List)}.
+     */
+    @Test
+    public void sortNameLengthAddListThenSortList() {
+        List<User> list = Arrays.asList(new User("Сергей1", 25),
+                new User("Иван1", 30),
+                new User("Сергей", 20),
+                new User("Иван", 25));
+        User[] expected = new User[]{new User("Иван", 25),
+                new User("Иван1", 30),
+                new User("Сергей", 20),
+                new User("Сергей1", 25)};
+        List<User> userList = new SortUser().sortNameLength(list);
+        assertArrayEquals(userList.toArray(), expected);
+    }
+
+    /**
+     * Тестируем {@link SortUser#sortByAllFields(List)}.
+     */
+    @Test
+    public void sortByAllFieldsAddListThenSortList() {
+        List<User> list = Arrays.asList(new User("Сергей", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Иван", 25));
+        User[] expected = new User[]{new User("Иван", 25),
+                new User("Иван", 30),
+                new User("Сергей", 20),
+                new User("Сергей", 25)};
+        List<User> userList = new SortUser().sortByAllFields(list);
+        assertArrayEquals(userList.toArray(), expected);
     }
 }
