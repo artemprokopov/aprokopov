@@ -19,14 +19,14 @@ public class Bank {
     private final Map<User, List<Account>> storageAccount = new HashMap<>();
 
     /**
-     * Add bank customer in {@link Bank#storageAccount}
+     * Add bank customer in {@link Bank#storageAccount}.
      * @param addUser add a bank customer in {@link Bank#storageAccount}.
      */
     public void addUser(User addUser) {
 
     }
     /**
-     * Delete a bank customer in {@link Bank#storageAccount}
+     * Delete a bank customer in {@link Bank#storageAccount}.
      * @param deleteUser delete a bank customer in {@link Bank#storageAccount}.
      */
     public void deleteUser(User deleteUser) {
@@ -46,6 +46,7 @@ public class Bank {
      *  Delete  bank customer account {@link Bank#storageAccount}.
      * @param idUser identification key bank customer who needs to delete the account.
      * @param deleteAccount delete account.
+     * @throws AccountNotExistException created when account is  not exist in {@link Bank#storageAccount} bank customers.
      */
     public void deleteAccountFromUser(User idUser, Account deleteAccount) throws AccountNotExistException {
             if (!storageAccount.get(idUser).remove(deleteAccount)) {
@@ -58,20 +59,20 @@ public class Bank {
      * @param idUser identification key bank customer for which to get the list of accounts.
      * @return list accounts bank customer.
      */
-    public List<Account> getUserAccounts (User idUser) {
+    public List<Account> getUserAccounts(User idUser) {
         return storageAccount.get(idUser);
     }
 
     /**
-     *git pul
-     * @param srcUser
-     * @param srcAccount
-     * @param dstUser
-     * @param dstAccount
-     * @param amount
-     * @return
+     * .
+     * @param srcUser s
+     * @param srcAccount s
+     * @param dstUser s
+     * @param dstAccount s
+     * @param amount s
+     * @return s
      */
-    public boolean transferMoney (User srcUser, Account srcAccount, User dstUser, Account dstAccount, BigDecimal amount) {
+    public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, BigDecimal amount) {
         amount = amount.setScale(2, BigDecimal.ROUND_HALF_UP);
         boolean resultTransferOperation = false;
         return resultTransferOperation;
