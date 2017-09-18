@@ -8,7 +8,7 @@ import java.util.Comparator;
  * @since 15/09/2017
  * @version 1.0
  */
-public class ComparatorSetStringAscending implements Comparator<String> {
+public class ComparatorSetStringAscending implements Comparator<String[]> {
     /**
      *  Compares two strings.
      * @param o1 the {@code String} to be compared.
@@ -20,7 +20,16 @@ public class ComparatorSetStringAscending implements Comparator<String> {
      *          lexicographically greater than the string argument.
      */
     @Override
-    public int compare(String o1, String o2) {
-        return o1.compareTo(o2);
+    public int compare(String[] o1, String[] o2) {
+        int result = 0;
+
+        for (int i = 0; i < o1.length && i < o2.length && result == 0; i++) {
+            result = o1[i].compareTo(o2[i]);
+        }
+        if (result == 0) {
+            result = o1.length - o2.length;
+        }
+        return result;
     }
 }
+
