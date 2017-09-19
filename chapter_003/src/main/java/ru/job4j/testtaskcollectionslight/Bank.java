@@ -1,10 +1,7 @@
 package ru.job4j.testtaskcollectionslight;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class for operations on a bank account.
@@ -33,7 +30,9 @@ public class Bank {
      * @param deleteUser delete a bank customer in {@link Bank#storageAccount}.
      */
     public void deleteUser(final User deleteUser) {
-        storageAccount.remove(deleteUser);
+        if (storageAccount.remove(deleteUser) == null ) {
+            throw new UserNotExistException("User not exist in storage!");
+        };
     }
     /**
      * Add new account for bank {@link Bank#storageAccount}.
@@ -62,8 +61,12 @@ public class Bank {
      * @param idUser identification key bank customer for which to get the list of accounts.
      * @return list accounts bank customer.
      */
-    public List<Account> getUserAccounts(final User idUser) {
-        return storageAccount.get(idUser);
+    public  List<Account> getUserAccounts(final User idUser) {
+        List<Account>  list = storageAccount.get(idUser);
+        if(Objects.isNull(list)) {
+            throw new UserNotExistException("User not exist in storage!");
+        }
+        return list;
     }
 
     /**
@@ -78,10 +81,25 @@ public class Bank {
     public boolean transferMoney(final User srcUser, final Account srcAccount,
                                  final User dstUser, final Account dstAccount, final BigDecimal amount) {
         BigDecimal amountFormat = amount.setScale(2, BigDecimal.ROUND_HALF_UP);
-
+        List<Account> scrUserListAccount = new LinkedList<>();
+        List<Account> dstUserListAccount = new LinkedList<>();
         boolean resultTransferOperation = false;
 
-
+        if (storageAccount.containsKey(srcUser) && storageAccount.containsKey(dstUser)) {
+            scrUserListAccount = this.getUserAccounts(srcUser);
+            dstUserListAccount = this.getUserAccounts(dstUser);
+            if(scrUserListAccount.contains(srcAccount) && dstUserListAccount.contains(dstAccount)) {
+                int scrUserAccountIndex = scrUserListAccount.indexOf(srcAccount);
+                int dstUserAccountIndex = dstUserListAccount.indexOf(dstAccount);
+                if (scrUserListAccount.get(scrUserAccountIndex).testsSufficiencyAmountMoneyTransfer(amountFormat)){
+                    scrUserListAccount.set(scrUserAccountIndex,
+                            scrUserListAccount.get(scrUserAccountIndex).withdrawalMoneyAccount(amountFormat));
+                    dstUserListAccount.set(dstUserAccountIndex,
+                            scrUserListAccount.get(dstUserAccountIndex).depositMoneyToAccount(amountFormat));
+                    resultTransferOperation = true;
+                }
+            }
+        }
         return resultTransferOperation;
     }
 }
