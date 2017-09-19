@@ -24,7 +24,9 @@ public class Bank {
      * @param addUser add a bank customer in {@link Bank#storageAccount}.
      */
     public void addUser(final User addUser) {
-        storageAccount.put(addUser, new LinkedList<>());
+        if (!storageAccount.containsKey(addUser)) {
+            storageAccount.put(addUser, new LinkedList<>());
+        }
     }
     /**
      * Delete a bank customer in {@link Bank#storageAccount}.
@@ -78,6 +80,8 @@ public class Bank {
         BigDecimal amountFormat = amount.setScale(2, BigDecimal.ROUND_HALF_UP);
 
         boolean resultTransferOperation = false;
+
+
         return resultTransferOperation;
     }
 }
