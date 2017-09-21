@@ -62,7 +62,7 @@ public class Bank {
      * @return list accounts bank customer.
      */
     public  List<Account> getUserAccounts(final User idUser) {
-        List<Account>  list = storageAccount.get(idUser);
+        final List<Account>  list = storageAccount.get(idUser);
         if(Objects.isNull(list)) {
             throw new UserNotExistException("User not exist in storage!");
         }
@@ -80,9 +80,9 @@ public class Bank {
      */
     public boolean transferMoney(final User srcUser, final Account srcAccount,
                                  final User dstUser, final Account dstAccount, final BigDecimal amount) {
-        BigDecimal amountFormat = amount.setScale(2, BigDecimal.ROUND_HALF_UP);
-        List<Account> scrUserListAccount = new LinkedList<>();
-        List<Account> dstUserListAccount = new LinkedList<>();
+        final BigDecimal amountFormat = amount.setScale(2, BigDecimal.ROUND_HALF_UP);
+        final List<Account> scrUserListAccount;
+        final List<Account> dstUserListAccount;
         boolean resultTransferOperation = false;
 
         if (storageAccount.containsKey(srcUser) && storageAccount.containsKey(dstUser)) {
