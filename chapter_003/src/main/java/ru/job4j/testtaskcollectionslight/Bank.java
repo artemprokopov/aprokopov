@@ -26,6 +26,7 @@ public class Bank {
         }
     }
     /**
+     *
      * Delete a bank customer in {@link Bank#storageAccount}.
      * @param deleteUser delete a bank customer in {@link Bank#storageAccount}.
      */
@@ -95,7 +96,7 @@ public class Bank {
                     scrUserListAccount.set(scrUserAccountIndex,
                             scrUserListAccount.get(scrUserAccountIndex).withdrawalMoneyAccount(amountFormat));
                     dstUserListAccount.set(dstUserAccountIndex,
-                            scrUserListAccount.get(dstUserAccountIndex).depositMoneyToAccount(amountFormat));
+                            dstUserListAccount.get(dstUserAccountIndex).depositMoneyToAccount(amountFormat));
                     resultTransferOperation = true;
                 }
             }

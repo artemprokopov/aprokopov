@@ -67,13 +67,16 @@ public class Account {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()){
+        if (o == null){
             return false;
         }
 
 
         Account account = (Account) o;
-        return requisites.equals(account.requisites);
+        if (!this.requisites.equals(account.requisites)) {
+            return false;
+        }
+        return this.value.equals(account.value);
     }
 
     /**
