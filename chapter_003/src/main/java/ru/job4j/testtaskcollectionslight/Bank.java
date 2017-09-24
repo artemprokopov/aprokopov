@@ -1,7 +1,12 @@
 package ru.job4j.testtaskcollectionslight;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 
 /**
  * Class for operations on a bank account.
@@ -31,9 +36,9 @@ public class Bank {
      * @param deleteUser delete a bank customer in {@link Bank#storageAccount}.
      */
     public void deleteUser(final User deleteUser) {
-        if (storageAccount.remove(deleteUser) == null ) {
+        if (storageAccount.remove(deleteUser) == null) {
             throw new UserNotExistException("User not exist in storage!");
-        };
+        }
     }
     /**
      * Add new account for bank {@link Bank#storageAccount}.
@@ -64,7 +69,7 @@ public class Bank {
      */
     public  List<Account> getUserAccounts(final User idUser) {
         final List<Account>  list = storageAccount.get(idUser);
-        if(Objects.isNull(list)) {
+        if (Objects.isNull(list)) {
             throw new UserNotExistException("User not exist in storage!");
         }
         return list;
@@ -89,10 +94,10 @@ public class Bank {
         if (storageAccount.containsKey(srcUser) && storageAccount.containsKey(dstUser)) {
             scrUserListAccount = this.getUserAccounts(srcUser);
             dstUserListAccount = this.getUserAccounts(dstUser);
-            if(scrUserListAccount.contains(srcAccount) && dstUserListAccount.contains(dstAccount)) {
+            if (scrUserListAccount.contains(srcAccount) && dstUserListAccount.contains(dstAccount)) {
                 int scrUserAccountIndex = scrUserListAccount.indexOf(srcAccount);
                 int dstUserAccountIndex = dstUserListAccount.indexOf(dstAccount);
-                if (scrUserListAccount.get(scrUserAccountIndex).testsSufficiencyAmountMoneyTransfer(amountFormat)){
+                if (scrUserListAccount.get(scrUserAccountIndex).testsSufficiencyAmountMoneyTransfer(amountFormat)) {
                     scrUserListAccount.set(scrUserAccountIndex,
                             scrUserListAccount.get(scrUserAccountIndex).withdrawalMoneyAccount(amountFormat));
                     dstUserListAccount.set(dstUserAccountIndex,

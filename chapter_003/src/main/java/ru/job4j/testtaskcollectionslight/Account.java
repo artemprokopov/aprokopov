@@ -31,8 +31,9 @@ public class Account {
     /**
      * Tests the sufficiency of the amount of money on translation.
      * @param testSum the amount of the transfer.
+     * @return true if the transfer amount is less jr equal than the amount of money in the account, otherwise false.
      */
-    public boolean testsSufficiencyAmountMoneyTransfer (BigDecimal testSum) {
+    public boolean testsSufficiencyAmountMoneyTransfer(BigDecimal testSum) {
         testSum = testSum.setScale(2, BigDecimal.ROUND_HALF_UP);
         int compare = this.value.compareTo(testSum);
         return  compare >= 0;
@@ -43,8 +44,9 @@ public class Account {
      * @param depositMoney transferred money.
      * @return account with increased funds.
      */
-    public Account depositMoneyToAccount (BigDecimal depositMoney) {
+    public Account depositMoneyToAccount(BigDecimal depositMoney) {
         depositMoney = depositMoney.setScale(2, BigDecimal.ROUND_HALF_UP);
+
         return new Account(this.value.add(depositMoney), requisites);
     }
     /**
@@ -52,7 +54,7 @@ public class Account {
      * @param withdrawalMoney transferred money.
      * @return account with decreased funds.
      */
-    public Account withdrawalMoneyAccount (BigDecimal withdrawalMoney) {
+    public Account withdrawalMoneyAccount(BigDecimal withdrawalMoney) {
         withdrawalMoney = withdrawalMoney.setScale(2, BigDecimal.ROUND_HALF_UP);
         return new Account(this.value.subtract(withdrawalMoney), requisites);
     }
@@ -63,15 +65,12 @@ public class Account {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
         }
-
-        if (o == null){
+        if (o == null) {
             return false;
         }
-
-
         Account account = (Account) o;
         if (!this.requisites.equals(account.requisites)) {
             return false;
