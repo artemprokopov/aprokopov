@@ -46,6 +46,9 @@ public class Bank {
      * @param addAccount add account.
      */
     public void addAccountToUser(final User idUser, final Account addAccount) {
+        if (!storageAccount.containsKey(idUser)) {
+            throw new UserNotExistException("Account can not add because user not exist in storage!");
+        }
         if (!storageAccount.get(idUser).add(addAccount)) {
             throw new CanNotAddAccountException("Can not adds account to the list accounts the bank customer!");
         }
@@ -57,9 +60,12 @@ public class Bank {
      * @throws AccountNotExistException created when account is  not exist in {@link Bank#storageAccount} bank customers.
      */
     public void deleteAccountFromUser(final User idUser, final Account deleteAccount) throws AccountNotExistException {
-            if (!storageAccount.get(idUser).remove(deleteAccount)) {
-                throw new AccountNotExistException("Account not exist in the list accounts the bank customer!!!");
-            }
+        if (!storageAccount.containsKey(idUser)) {
+            throw new UserNotExistException("User can not delete because not exist in storage!");
+        }
+        if (!storageAccount.get(idUser).remove(deleteAccount)) {
+            throw new AccountNotExistException("Account not exist in the list accounts the bank customer!!!");
+        }
     }
 
     /**

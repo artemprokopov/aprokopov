@@ -2,6 +2,7 @@ package ru.job4j.testtaskcollectionslight;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Class {@link Account} saves amount of money and bank account details.
@@ -68,9 +69,10 @@ public class Account {
         if (this == o) {
             return true;
         }
-        if (o == null) {
+        if (Objects.isNull(o) || getClass() != o.getClass()) {
             return false;
         }
+
         Account account = (Account) o;
         if (!this.requisites.equals(account.requisites)) {
             return false;
