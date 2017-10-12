@@ -13,6 +13,5 @@
 <packaging>pom</packaging>
   <modules>
     <module>iteratordoublearray</module>
-    <module>iteratorevennumbers</module>
   </modules>
 </project>
