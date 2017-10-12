@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ru.job4j</groupId>
+    <artifactId>chapter_005</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>chapter_005</groupId>
+  <artifactId>iteratorevennumbers</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>iteratorevennumbers</name>
+</project>
