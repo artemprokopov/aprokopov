@@ -9,9 +9,19 @@ import java.util.NoSuchElementException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Test class for class {@link Converter}.
+ * @author Artem Prokopov
+ * @since 19/10/2017
+ * @version 1.0
+ */
+
 public class ConverterTest {
+    /**
+     *
+     */
     @Test(expected = NoSuchElementException.class)
-    public void hasNextNextSequentialInvocation () {
+    public void hasNextNextSequentialInvocation() {
         Iterator<Integer> it1 = Arrays.asList(1, 2, 3).iterator();
         Iterator<Integer> it2 = Arrays.asList(4, 5, 6).iterator();
         Iterator<Integer> it3 = Arrays.asList(7, 8, 9).iterator();
@@ -40,8 +50,11 @@ public class ConverterTest {
         it.next();
     }
 
+    /**
+     * 
+     */
     @Test(expected = NoSuchElementException.class)
-    public void nextInvocationsOnly () {
+    public void nextInvocationsOnly() {
         Iterator<Integer> it1 = Arrays.asList(1, 2, 3).iterator();
         Iterator<Integer> it2 = Arrays.asList(4, 5, 6).iterator();
         Iterator<Integer> it3 = Arrays.asList(7, 8, 9).iterator();
