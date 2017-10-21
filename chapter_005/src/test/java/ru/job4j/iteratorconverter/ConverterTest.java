@@ -1,5 +1,6 @@
 package ru.job4j.iteratorconverter;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -17,17 +18,22 @@ import static org.junit.Assert.assertThat;
  */
 
 public class ConverterTest {
-    /**
-     *  Test the method hasNext of the iterator class {@link Converter#convert(Iterator)}.
-     */
-    @Test(expected = NoSuchElementException.class)
-    public void hasNextNextSequentialInvocation() {
+    Iterator<Integer> it;
+
+    @Before
+    public void setUp () {
         Iterator<Integer> it1 = Arrays.asList(1, 2, 3).iterator();
         Iterator<Integer> it2 = Arrays.asList(4, 5, 6).iterator();
         Iterator<Integer> it3 = Arrays.asList(7, 8, 9).iterator();
         Iterator<Iterator<Integer>> its = Arrays.asList(it1, it2, it3).iterator();
         Converter converter = new Converter();
-        Iterator it = converter.convert(its);
+        it = converter.convert(its);
+    }
+    /**
+     *  Test the method hasNext of the iterator class {@link Converter#convert(Iterator)}.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void hasNextNextSequentialInvocation () {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));
         assertThat(it.hasNext(), is(true));
@@ -49,18 +55,29 @@ public class ConverterTest {
         assertThat(it.hasNext(), is(false));
         it.next();
     }
-
     /**
      * Test the method next of the iterator class {@link Converter#convert(Iterator)}.
      */
     @Test(expected = NoSuchElementException.class)
-    public void nextInvocationsOnly() {
-        Iterator<Integer> it1 = Arrays.asList(1, 2, 3).iterator();
-        Iterator<Integer> it2 = Arrays.asList(4, 5, 6).iterator();
-        Iterator<Integer> it3 = Arrays.asList(7, 8, 9).iterator();
-        Iterator<Iterator<Integer>> its = Arrays.asList(it1, it2, it3).iterator();
-        Converter converter = new Converter();
-        Iterator it = converter.convert(its);
+    public void testsThatNextMethodDoesntDependsOnPriorHasNextInvocation () {
+        assertThat(it.next(), is(1));
+        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(3));
+        assertThat(it.next(), is(4));
+        assertThat(it.next(), is(5));
+        assertThat(it.next(), is(6));
+        assertThat(it.next(), is(7));
+        assertThat(it.next(), is(8));
+        assertThat(it.next(), is(9));
+        it.next();
+    }
+    /**
+     * Test the method sequential next and hasNext of the iterator class {@link Converter#convert(Iterator)}.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void sequentialHasNextInvocationDoesntAffectRetrievalOrder () {
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));
         assertThat(it.next(), is(2));
         assertThat(it.next(), is(3));
