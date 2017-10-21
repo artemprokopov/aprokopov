@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 
 public class ConverterTest {
     /**
-     *
+     *  Test the method hasNext of the iterator class {@link Converter#convert(Iterator)}.
      */
     @Test(expected = NoSuchElementException.class)
     public void hasNextNextSequentialInvocation() {
@@ -51,7 +51,7 @@ public class ConverterTest {
     }
 
     /**
-     * 
+     * Test the method next of the iterator class {@link Converter#convert(Iterator)}.
      */
     @Test(expected = NoSuchElementException.class)
     public void nextInvocationsOnly() {
