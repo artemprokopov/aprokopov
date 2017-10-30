@@ -29,7 +29,7 @@ public class SimpleArray<T> {
         chekIndex(indexAddItem);
         checkAddSizeArray();
         copyTailArrayWhenAddItem(indexAddItem);
-        currentItem++;
+        this.currentItem++;
         array[indexAddItem] = addItem;
         return true;
     }
@@ -44,6 +44,7 @@ public class SimpleArray<T> {
         chekIndex(indexDeleteItem);
         T oldValue = (T) array[indexDeleteItem];
         copyTailArrayWhenDeletItem(indexDeleteItem);
+        this.currentItem--;
         return oldValue;
     }
 
@@ -53,6 +54,7 @@ public class SimpleArray<T> {
         if (indexDeleteItem != -1) {
             oldValue = (T) array[indexDeleteItem];
             copyTailArrayWhenDeletItem(indexDeleteItem);
+            this.currentItem--;
         }
         return oldValue;
     }
@@ -113,15 +115,13 @@ public class SimpleArray<T> {
                 ? size =+ size : ARRAY_MAX_SIZE;
     }
 
-    private boolean copyTailArrayWhenDeletItem(int indexDeleteItem) {
+    private void copyTailArrayWhenDeletItem(int indexDeleteItem) {
         System.arraycopy(array, indexDeleteItem + 1,
                 array, indexDeleteItem, currentItem + 1 - indexDeleteItem + 1);
-        return true;
     }
 
-    private boolean copyTailArrayWhenAddItem(int indexAddItem) {
+    private void copyTailArrayWhenAddItem(int indexAddItem) {
         System.arraycopy(array, indexAddItem,
                 array, indexAddItem + 1, currentItem + 1 - indexAddItem + 1);
-        return true;
     }
 }
