@@ -45,9 +45,10 @@ public class SimpleArray<T> {
      * Конструктор с параметром инициализации размера массива {@link SimpleArray#array}.
      * @param initSize параметр инициализации размера массива {@link SimpleArray#array}.
      */
+    @SuppressWarnings("unchecked")
     public SimpleArray(int initSize) {
         this.size = initSize;
-        this.array = new Object[initSize];
+        this.array =  new Object[initSize];
     }
 
     /**
@@ -58,7 +59,8 @@ public class SimpleArray<T> {
      */
     public boolean add(T addItem) {
         checkAddSizeArray();
-        this.array[++currentItem] = addItem;
+        ++currentItem;
+        this.array[currentItem] = addItem;
         return true;
     }
 
@@ -92,10 +94,11 @@ public class SimpleArray<T> {
      * @param indexDeleteItem индекс удаляемого элемента.
      * @return в слуучае успеха возвращает удаленный элемент.
      */
+    @SuppressWarnings("unchecked")
     public T delete(int indexDeleteItem) {
         checkIndex(indexDeleteItem);
         T oldValue = (T) array[indexDeleteItem];
-        copyTailArrayWhenDeletItem(indexDeleteItem);
+        copyTailArrayWhenDeleteItem(indexDeleteItem);
         this.currentItem--;
         return oldValue;
     }
@@ -105,12 +108,13 @@ public class SimpleArray<T> {
      * @param deleteItem Удаляемый элемент.
      * @return в случае успеха возвращает удаленный элемент, в противном случае если такого элемента нет null.
      */
+    @SuppressWarnings("unchecked")
     public T delete(T deleteItem) {
         T oldValue = null;
         int indexDeleteItem = findItem(deleteItem);
         if (indexDeleteItem != -1) {
             oldValue = (T) array[indexDeleteItem];
-            copyTailArrayWhenDeletItem(indexDeleteItem);
+            copyTailArrayWhenDeleteItem(indexDeleteItem);
             this.currentItem--;
         }
         return oldValue;
@@ -121,6 +125,7 @@ public class SimpleArray<T> {
      * @param indexItem индекс элемента.
      * @return элемент контейнера.
      */
+    @SuppressWarnings("unchecked")
     public T get(int indexItem) {
         checkIndex(indexItem);
         return (T) array[indexItem];
@@ -174,7 +179,7 @@ public class SimpleArray<T> {
             return -1;
         }
         for (int i = 0; i <= currentItem; i++) {
-            if (searchItem.equals((T) array[i])) {
+            if (searchItem.equals(array[i])) {
                 return i;
             }
         }
@@ -210,7 +215,7 @@ public class SimpleArray<T> {
      * Копирует хвост массива начиная indexDeleteItem + 1 на один эемент в лево.
      * @param indexDeleteItem индекс удаляемого элемента.
      */
-    private void copyTailArrayWhenDeletItem(int indexDeleteItem) {
+    private void copyTailArrayWhenDeleteItem(int indexDeleteItem) {
         System.arraycopy(array, indexDeleteItem + 1,
                 array, indexDeleteItem, currentItem + 1 - indexDeleteItem + 1);
     }
