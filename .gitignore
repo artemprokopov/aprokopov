@@ -5,7 +5,8 @@ target
 *.*~
 *.log
 log
-
+.project
+RemoteSystemsTempFiles
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -19,3 +20,4 @@ hs_err_pid*
 
 
 nbproject
+/.metadata/

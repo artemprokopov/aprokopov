@@ -20,12 +20,12 @@
 -->
 
 <module name="Checker">
-
+	
     <!--Расширение файла должно быть java, properties, xml-->
     <property name="fileExtensions" value="java, properties, xml"/>
 
     <!--Пакеты должны иметь JavaDoc-->
-    <module name="JavadocPackage"/>
+    <!--<module name="JavadocPackage"/>-->
 
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
@@ -142,5 +142,5 @@
         <module name="UpperEll"/>
 
     </module>
-
+    
 </module>
