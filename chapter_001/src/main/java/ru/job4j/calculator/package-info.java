@@ -4,4 +4,4 @@
 * @version $Id$
 * @since 10.03.2017
 */
-package ru.job4j;
+package ru.job4j.calculator;
