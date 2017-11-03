@@ -105,6 +105,6 @@ public class EvenItTest {
         Iterator<Integer> iterator = new EvenIt(testArray1);
         iterator.next();
         iterator.next();
-        int result = iterator.next();
+        iterator.next();
     }
 }

@@ -1,11 +1,18 @@
 package ru.job4j.simplearray;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+/**
+ * Тесты для класса SimpleArray.
+ * @author Arterm Prokopov
+ * @since 04/11/2017
+ * @version 1.0
+ */
 
 public class SimpleArrayTest {
-    @Test
+	/**
+	 * Тестируем метод {@link SimpleArray#}
+	 */
+    @Test(expected=IndexOutOfBoundsException.class)
     public void toArray()  {
         SimpleArray<Integer> simpleArray = new SimpleArray<>();
         simpleArray.add(1);

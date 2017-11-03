@@ -45,7 +45,6 @@ public class SimpleArray<T> {
      * Конструктор с параметром инициализации размера массива {@link SimpleArray#array}.
      * @param initSize параметр инициализации размера массива {@link SimpleArray#array}.
      */
-    @SuppressWarnings("unchecked")
     public SimpleArray(int initSize) {
         this.size = initSize;
         this.array =  new Object[initSize];
@@ -69,7 +68,8 @@ public class SimpleArray<T> {
      * @param indexAddItem индекс элемента вставки.
      * @param addItem элемент вставки.
      */
-    private void add(int indexAddItem, T addItem) {
+    @SuppressWarnings("unused")
+	private void add(int indexAddItem, T addItem) {
         checkIndex(indexAddItem);
         checkAddSizeArray();
         copyTailArrayWhenAddItem(indexAddItem);
