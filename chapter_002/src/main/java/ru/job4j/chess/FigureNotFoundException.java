@@ -8,7 +8,7 @@ package ru.job4j.chess;
  */
 public class FigureNotFoundException extends RuntimeException {
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2135127157042031839L;
 

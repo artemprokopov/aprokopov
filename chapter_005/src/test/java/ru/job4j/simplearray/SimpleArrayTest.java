@@ -10,9 +10,9 @@ import org.junit.Test;
 
 public class SimpleArrayTest {
 	/**
-	 * Тестируем метод {@link SimpleArray#}
+	 * Тестируем метод {@link SimpleArray#}.
 	 */
-    @Test(expected=IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void toArray()  {
         SimpleArray<Integer> simpleArray = new SimpleArray<>();
         simpleArray.add(1);

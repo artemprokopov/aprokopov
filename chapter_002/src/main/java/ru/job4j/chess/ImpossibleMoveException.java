@@ -9,7 +9,7 @@ package ru.job4j.chess;
  */
 public class ImpossibleMoveException extends RuntimeException {
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -603193920940086393L;
 
