@@ -3,7 +3,7 @@ package ru.job4j.simplearray;
 import java.util.Arrays;
 
 /**
- * Клас простого контейнера основанного на массиве(За аналог взят ArrayList).
+ * Класс простого контейнера основанного на массиве(За аналог взят ArrayList).
  * @param <T> тип контейнера.
  */
 public class SimpleArray<T> {
@@ -64,7 +64,7 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Добавляет элемент в конрейнер по индексу, хвост массива сдвигаетс в право.
+     * Добавляет элемент в контейнер по индексу, хвост массива сдвигаетс в право.
      * @param indexAddItem индекс элемента вставки.
      * @param addItem элемент вставки.
      */
@@ -78,9 +78,9 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Заменяет элеммент в контейнере.
+     * Заменяет элемент в контейнере.
      * @param indexUpdateItem индекс заменяемого элемента.
-     * @param itemUpdate обновляемы элемент.
+     * @param itemUpdate обновляемый элемент.
      * @return если операция добавления завершилась успешно возвращает true.
      */
     public boolean update(int indexUpdateItem, T itemUpdate) {
@@ -104,9 +104,9 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Удаляет первый найденный с началаконтейнера элемент.
+     * Удаляет первый найденный с начала контейнера элемент.
      * @param deleteItem Удаляемый элемент.
-     * @return в случае успеха возвращает удаленный элемент, в противном случае если такого элемента нет null.
+     * @return в случае успеха возвращает удалённый элемент, в противном случае если такого элемента нет null.
      */
     @SuppressWarnings("unchecked")
     public T delete(T deleteItem) {
@@ -130,16 +130,15 @@ public class SimpleArray<T> {
         checkIndex(indexItem);
         return (T) array[indexItem];
     }
-
     /**
-     * Проверка есть ли элементы в контейнере.
-     * @return true если контейнер не содержит ни одного элемента.
-     */
-    public boolean isEmpty() {
-        return this.currentItem == -1;
-    }
+	 * Проверка есть ли элементы в контейнере.
+	 * @return true если контейнер не содержит ни одного элемента.
+	 */
+	public boolean isEmpty() {
+	    return this.currentItem == -1;
+	}
 
-    /**
+	/**
      * Уменьшает размер массива {@link SimpleArray#array}
      * до размера {@link SimpleArray#currentItem} + 1.
      */
@@ -149,7 +148,7 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Виртуально число размера массива(общее число элементов размещенных в контейнере).
+     * Виртуально число размера массива(общее число элементов размещённых в контейнере).
      * @return число элементов в контейнере.
      */
     public int size() {
@@ -172,7 +171,7 @@ public class SimpleArray<T> {
     /**
      * Поиск элемента в контейнере.
      * @param searchItem искомый элемент.
-     * @return индекс найденого элемента, в противном случае если элемент не найден -1.
+     * @return индекс найденного элемента, в противном случае если элемент не найден -1.
      */
     private int findItem(T searchItem) {
         if (isEmpty()) {
@@ -187,7 +186,7 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Провернка на то что размер массива {@link SimpleArray#array} позволяет провести добавление элемента
+     * Проверка на то что размер массива {@link SimpleArray#array} позволяет провести добавление элемента
      * если не позволяет, массив расширяется.
      */
     private void checkAddSizeArray() {
@@ -198,9 +197,9 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Провернка на то что размер массива {@link SimpleArray#array} не выходит за максимально возможный размер
+     * Проверка на то что размер массива {@link SimpleArray#array} не выходит за максимально возможный размер
      * {@link SimpleArray#ARRAY_MAX_SIZE}, если не выходит возвращает новый возможный размер массива.
-     * Если увеличение размара не возможно, то генерирует исключение {@link OutOfMemoryError}
+     * Если увеличение размера не возможно, то генерирует исключение {@link OutOfMemoryError}
      * @return новый допустимый размер массива.
      */
     private int checkMaxSizeArray() {
@@ -212,7 +211,7 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Копирует хвост массива начиная indexDeleteItem + 1 на один эемент в лево.
+     * Копирует хвост массива начиная indexDeleteItem + 1 на один элемент влево.
      * @param indexDeleteItem индекс удаляемого элемента.
      */
     private void copyTailArrayWhenDeleteItem(int indexDeleteItem) {
@@ -221,7 +220,7 @@ public class SimpleArray<T> {
     }
 
     /**
-     * Копирует хвост массива начиная indexAddItem на один эемент в лево, осовобождает элемент для добавления нового.
+     * Копирует хвост массива начиная indexAddItem на один элемент влево, освобождает элемент для добавления нового.
      * @param indexAddItem индекс добавляемого элемента.
      */
     private void copyTailArrayWhenAddItem(int indexAddItem) {
@@ -231,7 +230,7 @@ public class SimpleArray<T> {
 
     /**
      * Метод формирует сообщение для генерируемых исключений в методе {@link SimpleArray#checkIndex(int)}.
-     * @param index индекс для формированя строки сообщения.
+     * @param index индекс для формирования строки сообщения.
      * @return сформированную строку.
      */
     private String outOfBoundsMsg(int index) {
