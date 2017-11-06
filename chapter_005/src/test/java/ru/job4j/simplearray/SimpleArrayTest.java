@@ -1,5 +1,6 @@
 package ru.job4j.simplearray;
 
+import org.junit.Before;
 import org.junit.Test;
 /**
  * Тесты для класса SimpleArray.
@@ -9,6 +10,12 @@ import org.junit.Test;
  */
 
 public class SimpleArrayTest {
+    private  SimpleArray<Integer> simpleArrayTestAdd;
+
+    @Before
+    public void init() {
+
+    }
 	/**
 	 * Тестируем метод {@link SimpleArray#}.
 	 */

@@ -1,6 +1,7 @@
 package ru.job4j.simplearray;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Класс простого контейнера основанного на массиве(За аналог взят ArrayList).
@@ -27,11 +28,11 @@ public class SimpleArray<T> {
     /**
      * Номер последнего элемента в контейнере, при пустом контейнере равен -1.
      */
-    private int currentItem = -1;
+    private int currentItem = 0;
     /**
      * Текущий размер хранилища {@link SimpleArray#array}.
      */
-    private int size;
+    private int size = 0;
 
     /**
      * Конструктор по умолчанию, вызывает конструктор с параметром {@link SimpleArray#SimpleArray(int)}
@@ -58,8 +59,7 @@ public class SimpleArray<T> {
      */
     public boolean add(T addItem) {
         checkAddSizeArray();
-        ++currentItem;
-        this.array[currentItem] = addItem;
+        this.array[++currentItem] = addItem;
         return true;
     }
 
@@ -135,7 +135,7 @@ public class SimpleArray<T> {
 	 * @return true если контейнер не содержит ни одного элемента.
 	 */
 	public boolean isEmpty() {
-	    return this.currentItem == -1;
+	    return this.size == 0;
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class SimpleArray<T> {
      * @return число элементов в контейнере.
      */
     public int size() {
-        return currentItem + 1;
+        return this.currentItem + 1;
     }
 
     /**
@@ -163,7 +163,7 @@ public class SimpleArray<T> {
         if (isEmpty()) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
-        if (checkIndex > currentItem || checkIndex < 0) {
+        if (checkIndex > currentItem || checkIndex <= 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
     }
@@ -227,7 +227,6 @@ public class SimpleArray<T> {
         System.arraycopy(array, indexAddItem,
                 array, indexAddItem + 1, currentItem + 1 - indexAddItem + 1);
     }
-
     /**
      * Метод формирует сообщение для генерируемых исключений в методе {@link SimpleArray#checkIndex(int)}.
      * @param index индекс для формирования строки сообщения.
@@ -236,4 +235,30 @@ public class SimpleArray<T> {
     private String outOfBoundsMsg(int index) {
         return "Index: " + index + ", Size: " + (currentItem + 1);
     }
+
+    /**
+     * Переопределяем метод equals.
+     * @param o объект с которым сравниваетм.
+     * @return true если объекты равны, в противном случае false.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SimpleArray<?> that = (SimpleArray<?>) o;
+        return currentItem == that.currentItem &&
+                size == that.size &&
+                Arrays.equals(array, that.array);
+    }
+
+    /**
+     * Переопределяем метод hashCode.
+     * @return новый сгенерированный hashCode объекта.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(array, currentItem, size);
+    }
+
+
 }
