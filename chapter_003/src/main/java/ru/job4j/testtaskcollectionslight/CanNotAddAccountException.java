@@ -8,6 +8,11 @@ package ru.job4j.testtaskcollectionslight;
  */
 public class CanNotAddAccountException extends RuntimeException {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8747548896710702655L;
+
+	/**
      * Constructor.
      * @param s string message for identification Exception.
      */

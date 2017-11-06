@@ -96,7 +96,8 @@ public class AccArray<T> {
      * @param index индекс элемента массива.
      * @return T возвращаемый объект массива.
      */
-    public T get(int index) {
+    @SuppressWarnings("unchecked")
+	public T get(int index) {
       if (array == AccArray.EMPTY_ARRAY) {
           throw new IllegalArgumentException("Array empty");
       }
@@ -151,7 +152,7 @@ public class AccArray<T> {
      * @param <T> Контрольный тип.
      * @return T[] массив  объектов заданного типа.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "hiding" })
     public <T> T[] toArray(T[] a) {
         return (T[]) Arrays.copyOf(array, size, a.getClass());
     }

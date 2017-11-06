@@ -226,8 +226,8 @@ public class AccArrayTest {
     @Test(expected = IllegalArgumentException.class)
     public void testGetWhenIndexOutOfRangeIndexArray() {
         int index = 12;
-        Item[] expResult = instance10.toArray(new Item[instance10.size()]);
-        Object result = instance10.get(index);
+        instance10.toArray(new Item[instance10.size()]);
+        instance10.get(index);
     }
 
     /**

@@ -40,7 +40,7 @@ public class SpeedTestCollection {
      */
     public long delete(Collection<String> collection, int amount) {
         long timeStart = System.nanoTime();
-        Iterator iterator = collection.iterator();
+        Iterator<String> iterator = collection.iterator();
         for (int i = 0; i < amount && iterator.hasNext(); i++) {
             iterator.next();
             iterator.remove();

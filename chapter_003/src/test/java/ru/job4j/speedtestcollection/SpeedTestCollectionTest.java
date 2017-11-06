@@ -118,7 +118,7 @@ public class SpeedTestCollectionTest {
                             "Время выполнения нс:")
             );
             bufferedWriter.newLine();
-            for (Map.Entry e
+            for (Map.Entry<String, LinkedHashMap<String, Long>> e
                     :resultTest.entrySet()) {
                 bufferedWriter.write(
                         String.format("%18s %12d %12d %12d %12d",

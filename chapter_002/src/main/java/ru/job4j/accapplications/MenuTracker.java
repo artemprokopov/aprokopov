@@ -234,7 +234,6 @@ public class MenuTracker {
          */
         @Override
         public ActionType execute(Tracker tracker, Input input) throws IOException {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             System.out.println("***************************************************************");
             String id = input.ask("Enter application id to find: ");
             Item item = tracker.findById(id);

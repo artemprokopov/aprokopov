@@ -9,6 +9,11 @@ package ru.job4j.chess;
  */
 public class OccupiedWayException extends RuntimeException {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4644644258181826934L;
+
+	/**
      * Констуктор.
      * @param message сообщение.
      */

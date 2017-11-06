@@ -7,6 +7,11 @@ package ru.job4j.chess;
  * @version 1.0*/
 public class VerticalCoordinateIllegalParametersException extends RuntimeException {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -78717189416194017L;
+
+	/**
      * Конструктор.
      * @param message сообщение.
      */

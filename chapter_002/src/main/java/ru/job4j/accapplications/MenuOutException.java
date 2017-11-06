@@ -10,6 +10,11 @@ package ru.job4j.accapplications;
 
 public class MenuOutException extends RuntimeException {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8425222286675090525L;
+
+	/**
      * Конструктор класса.
      * @param message страка сообщения об исключительной ситуации.
      */

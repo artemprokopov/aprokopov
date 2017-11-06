@@ -17,11 +17,13 @@ public class User {
     /**
      * Имя пользователя.
      */
-    private final String name;
+    @SuppressWarnings("unused")
+	private final String name;
     /**
      * Место нахождение пользователя.
      */
-    private final String city;
+    @SuppressWarnings("unused")
+	private final String city;
 
     /**
      * Конструктор.

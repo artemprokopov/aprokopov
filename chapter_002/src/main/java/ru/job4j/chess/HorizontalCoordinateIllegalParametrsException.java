@@ -8,6 +8,11 @@ package ru.job4j.chess;
  */
 public class HorizontalCoordinateIllegalParametrsException extends RuntimeException {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3335632739422682964L;
+
+	/**
      * Конструктор.
      * @param message сообщение.
      */

@@ -34,7 +34,7 @@ public class Account {
      * @param testSum the amount of the transfer.
      * @return true if the transfer amount is less jr equal than the amount of money in the account, otherwise false.
      */
-    public boolean testsSufficiencyAmountMoneyTransfer(BigDecimal testSum) {
+	public boolean testsSufficiencyAmountMoneyTransfer(BigDecimal testSum) {
         testSum = testSum.setScale(2, BigDecimal.ROUND_HALF_UP);
         int compare = this.value.compareTo(testSum);
         return  compare >= 0;

@@ -18,7 +18,8 @@ public class ParsingTest {
     /**
      * Массив строк содержащий ожидаемые значения.
      */
-    private String[] exepected;
+    @SuppressWarnings("unused")
+	private String[] exepected;
 
     /**
      * Блок инициализации массивов.
@@ -39,7 +40,6 @@ public class ParsingTest {
      */
    @Test
     public  void checkDateOfferTestWhenStringSegodnyaThenTrue() {
-       Calendar calendar = Calendar.getInstance();
         String date = new String("сегодня, 11:11");
         boolean ex = new Parsing().checkDateOffer(date);
         assertEquals(true, ex);
@@ -50,7 +50,6 @@ public class ParsingTest {
      */
     @Test
     public  void checkDateOfferTestWhenStringVcheraThenTrue() {
-        Calendar calendar = Calendar.getInstance();
         String date = new String("вчера, 11:11");
         boolean ex = new Parsing().checkDateOffer(date);
 
@@ -75,7 +74,6 @@ public class ParsingTest {
      */
     @Test
     public  void checkDateOfferNewTestWhenStringSegodnyaThenTrue() {
-        Calendar calendar = Calendar.getInstance();
         String date = new String(" сегодня , 11:11");
         boolean ex = new Parsing().checkDateOfferNew(date);
         assertEquals(true, ex);

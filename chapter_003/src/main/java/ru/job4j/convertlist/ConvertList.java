@@ -42,7 +42,7 @@ public class ConvertList {
         } else {
             rows = 0;
         }
-        Iterator iterator = list.iterator();
+        Iterator<Integer> iterator = list.iterator();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < k; j++) {
                 if (iterator.hasNext()) {

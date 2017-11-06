@@ -10,6 +10,11 @@ package ru.job4j.testtaskcollectionslight;
 
 public class AccountNotExistException extends RuntimeException {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1166417771223114L;
+
+	/**
      * Constructor.
      * @param stringException string message for identification Exception.
      */

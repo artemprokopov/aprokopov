@@ -8,6 +8,11 @@ package ru.job4j.testtaskcollectionslight;
  */
 public class UserNotExistException extends RuntimeException {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7669380920274166690L;
+
+	/**
      * Constructor.
      * @param s string message for identification Exception.9
      */
