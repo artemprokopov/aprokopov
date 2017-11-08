@@ -69,7 +69,7 @@ public class SimpleArray<T> {
      * @param addItem элемент вставки.
      */
     @SuppressWarnings("unused")
-	private void add(int indexAddItem, T addItem) {
+	public void add(int indexAddItem, T addItem) {
         checkIndex(indexAddItem);
         checkAddSizeArray();
         copyTailArrayWhenAddItem(indexAddItem);
