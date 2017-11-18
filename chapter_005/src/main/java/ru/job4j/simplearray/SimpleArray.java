@@ -24,7 +24,7 @@ public class SimpleArray<T> {
     /**
      * Хранилище элементов контейнера.
      */
-    private  Object[] array;
+    private Object[] array;
     /**
      * Номер последнего элемента в контейнере, при пустом контейнере равен -1.
      */
@@ -44,16 +44,18 @@ public class SimpleArray<T> {
 
     /**
      * Конструктор с параметром инициализации размера массива {@link SimpleArray#array}.
+     *
      * @param initSize параметр инициализации размера массива {@link SimpleArray#array}.
      */
     public SimpleArray(int initSize) {
         this.size = initSize;
-        this.array =  new Object[initSize];
+        this.array = new Object[initSize];
     }
 
     /**
      * Метод добавления элемента в контейнер.
      * Добавляет элемент в хвост массива {@link SimpleArray#array}
+     *
      * @param addItem добавляемый в контейнер элемент тип T.
      * @return возвращает true если операция выполняется успешно.
      */
@@ -65,11 +67,12 @@ public class SimpleArray<T> {
 
     /**
      * Добавляет элемент в контейнер по индексу, хвост массива сдвигаетс в право.
+     *
      * @param indexAddItem индекс элемента вставки.
-     * @param addItem элемент вставки.
+     * @param addItem      элемент вставки.
      */
     @SuppressWarnings("unused")
-	public void add(int indexAddItem, T addItem) {
+    public void add(int indexAddItem, T addItem) {
         checkIndex(indexAddItem);
         checkAddSizeArray();
         copyTailArrayWhenAddItem(indexAddItem);
@@ -79,8 +82,9 @@ public class SimpleArray<T> {
 
     /**
      * Заменяет элемент в контейнере.
+     *
      * @param indexUpdateItem индекс заменяемого элемента.
-     * @param itemUpdate обновляемый элемент.
+     * @param itemUpdate      обновляемый элемент.
      * @return если операция добавления завершилась успешно возвращает true.
      */
     public boolean update(int indexUpdateItem, T itemUpdate) {
@@ -91,6 +95,7 @@ public class SimpleArray<T> {
 
     /**
      * Удаляет элемент по индексу.
+     *
      * @param indexDeleteItem индекс удаляемого элемента.
      * @return в слуучае успеха возвращает удаленный элемент.
      */
@@ -105,6 +110,7 @@ public class SimpleArray<T> {
 
     /**
      * Удаляет первый найденный с начала контейнера элемент.
+     *
      * @param deleteItem Удаляемый элемент.
      * @return в случае успеха возвращает удалённый элемент, в противном случае если такого элемента нет null.
      */
@@ -122,6 +128,7 @@ public class SimpleArray<T> {
 
     /**
      * Возвращает элемент контейнера по индексу.
+     *
      * @param indexItem индекс элемента.
      * @return элемент контейнера.
      */
@@ -130,15 +137,17 @@ public class SimpleArray<T> {
         checkIndex(indexItem);
         return (T) array[indexItem];
     }
-    /**
-	 * Проверка есть ли элементы в контейнере.
-	 * @return true если контейнер не содержит ни одного элемента.
-	 */
-	public boolean isEmpty() {
-	    return this.size == 0;
-	}
 
-	/**
+    /**
+     * Проверка есть ли элементы в контейнере.
+     *
+     * @return true если контейнер не содержит ни одного элемента.
+     */
+    public boolean isEmpty() {
+        return this.size == 0;
+    }
+
+    /**
      * Уменьшает размер массива {@link SimpleArray#array}
      * до размера {@link SimpleArray#currentItem} + 1.
      */
@@ -149,6 +158,7 @@ public class SimpleArray<T> {
 
     /**
      * Виртуально число размера массива(общее число элементов размещённых в контейнере).
+     *
      * @return число элементов в контейнере.
      */
     public int size() {
@@ -156,7 +166,18 @@ public class SimpleArray<T> {
     }
 
     /**
+     * Поиск элемента в контейнере.
+     *
+     * @param searchItem искомый элемент.
+     * @return индекс найденного элемента, в противном случае если элемент не найден -1.
+     */
+    public int findItem(T searchItem) {
+        return Arrays.binarySearch(array, searchItem);
+    }
+
+    /**
      * Проверка индекса на принадлежность диапазону 0 <= i <= {@link SimpleArray#currentItem}.
+     *
      * @param checkIndex проверяемый индекс.
      */
     private void checkIndex(int checkIndex) {
@@ -166,15 +187,6 @@ public class SimpleArray<T> {
         if (checkIndex > currentItem || checkIndex <= 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
-    }
-
-    /**
-     * Поиск элемента в контейнере.
-     * @param searchItem искомый элемент.
-     * @return индекс найденного элемента, в противном случае если элемент не найден -1.
-     */
-    public int findItem(T searchItem) {
-        return Arrays.binarySearch(array, searchItem);
     }
 
     /**
@@ -192,6 +204,7 @@ public class SimpleArray<T> {
      * Проверка на то что размер массива {@link SimpleArray#array} не выходит за максимально возможный размер
      * {@link SimpleArray#ARRAY_MAX_SIZE}, если не выходит возвращает новый возможный размер массива.
      * Если увеличение размера не возможно, то генерирует исключение {@link OutOfMemoryError}
+     *
      * @return новый допустимый размер массива.
      */
     private int checkMaxSizeArray() {
@@ -204,6 +217,7 @@ public class SimpleArray<T> {
 
     /**
      * Копирует хвост массива начиная indexDeleteItem + 1 на один элемент влево.
+     *
      * @param indexDeleteItem индекс удаляемого элемента.
      */
     private void copyTailArrayWhenDeleteItem(int indexDeleteItem) {
@@ -213,14 +227,17 @@ public class SimpleArray<T> {
 
     /**
      * Копирует хвост массива начиная indexAddItem на один элемент вправо, освобождает элемент для добавления нового.
+     *
      * @param indexAddItem индекс добавляемого элемента.
      */
     private void copyTailArrayWhenAddItem(int indexAddItem) {
         System.arraycopy(array, indexAddItem,
                 array, indexAddItem + 1, currentItem + 1 - indexAddItem + 1);
     }
+
     /**
      * Метод формирует сообщение для генерируемых исключений в методе {@link SimpleArray#checkIndex(int)}.
+     *
      * @param index индекс для формирования строки сообщения.
      * @return сформированную строку.
      */
@@ -230,27 +247,32 @@ public class SimpleArray<T> {
 
     /**
      * Переопределяем метод equals.
+     *
      * @param o объект с которым сравниваетм.
      * @return true если объекты равны, в противном случае false.
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SimpleArray<?> that = (SimpleArray<?>) o;
-        return currentItem == that.currentItem &&
-                size == that.size &&
-                Arrays.equals(array, that.array);
+        return currentItem == that.currentItem
+                && size == that.size
+                && Arrays.equals(array, that.array);
     }
 
     /**
      * Переопределяем метод hashCode.
+     *
      * @return новый сгенерированный hashCode объекта.
      */
     @Override
     public int hashCode() {
         return Objects.hash(array, currentItem, size);
     }
-
 
 }
