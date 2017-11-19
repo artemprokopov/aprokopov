@@ -28,11 +28,8 @@ public class SimpleArray<T> {
     /**
      * Номер последнего элемента в контейнере, при пустом контейнере равен -1.
      */
-    private int currentItem = 0;
-    /**
-     * Текущий размер хранилища {@link SimpleArray#array}.
-     */
-    private int size = 0;
+    private int currentItem = -1;
+
 
     /**
      * Конструктор по умолчанию, вызывает конструктор с параметром {@link SimpleArray#SimpleArray(int)}
@@ -48,7 +45,6 @@ public class SimpleArray<T> {
      * @param initSize параметр инициализации размера массива {@link SimpleArray#array}.
      */
     public SimpleArray(int initSize) {
-        this.size = initSize;
         this.array = new Object[initSize];
     }
 
@@ -118,7 +114,7 @@ public class SimpleArray<T> {
     public T delete(T deleteItem) {
         T oldValue = null;
         int indexDeleteItem = findItem(deleteItem);
-        if (indexDeleteItem != -1) {
+        if (indexDeleteItem >= 0) {
             oldValue = (T) array[indexDeleteItem];
             copyTailArrayWhenDeleteItem(indexDeleteItem);
             this.currentItem--;
@@ -144,7 +140,7 @@ public class SimpleArray<T> {
      * @return true если контейнер не содержит ни одного элемента.
      */
     public boolean isEmpty() {
-        return this.size == 0;
+        return this.currentItem == -1;
     }
 
     /**
@@ -152,8 +148,7 @@ public class SimpleArray<T> {
      * до размера {@link SimpleArray#currentItem} + 1.
      */
     public void trim() {
-        this.array = Arrays.copyOf(array, this.currentItem + 1);
-        this.size = this.currentItem + 1;
+        this.array = Arrays.copyOf(this.array, currentItem + 1);
     }
 
     /**
@@ -169,15 +164,27 @@ public class SimpleArray<T> {
      * Поиск элемента в контейнере.
      *
      * @param searchItem искомый элемент.
-     * @return индекс найденного элемента, в противном случае если элемент не найден -1.
+     * @return индекс найденного элемента, в противном случае если элемент не найден < 0.
      */
     public int findItem(T searchItem) {
+        this.trim();
         return Arrays.binarySearch(array, searchItem);
+    }
+
+    public <T> T[] toArray(T[] resultArray) {
+        if (resultArray.length < currentItem + 1) {
+            // Make a new array of a's runtime type, but my contents:
+            return (T[]) Arrays.copyOf(array, currentItem + 1, resultArray.getClass());
+        }
+        System.arraycopy(array, 0, resultArray, 0, currentItem + 1);
+        if (resultArray.length > currentItem + 1) {
+            resultArray[currentItem + 1] = null;
+        }
+        return resultArray;
     }
 
     /**
      * Проверка индекса на принадлежность диапазону 0 <= i <= {@link SimpleArray#currentItem}.
-     *
      * @param checkIndex проверяемый индекс.
      */
     private void checkIndex(int checkIndex) {
@@ -194,8 +201,8 @@ public class SimpleArray<T> {
      * если не позволяет, массив расширяется.
      */
     private void checkAddSizeArray() {
-        if (currentItem + 1 >= size) {
-            size = checkMaxSizeArray();
+        if (currentItem + 1 >= array.length) {
+            int size = checkMaxSizeArray();
             array = Arrays.copyOf(array, size);
         }
     }
@@ -211,8 +218,8 @@ public class SimpleArray<T> {
         if (ARRAY_MAX_SIZE - (currentItem + 1) == 0) {
             throw new OutOfMemoryError("The array index is greater than the maximum possible values");
         }
-        int newSize = size + size;
-        return ARRAY_MAX_SIZE - size > size ? newSize : ARRAY_MAX_SIZE;
+        int newSize = array.length * 2;
+        return ARRAY_MAX_SIZE - array.length > array.length ? newSize : ARRAY_MAX_SIZE;
     }
 
     /**
@@ -222,7 +229,7 @@ public class SimpleArray<T> {
      */
     private void copyTailArrayWhenDeleteItem(int indexDeleteItem) {
         System.arraycopy(array, indexDeleteItem + 1,
-                array, indexDeleteItem, currentItem + 1 - indexDeleteItem + 1);
+                array, indexDeleteItem, currentItem - indexDeleteItem);
     }
 
     /**
@@ -261,7 +268,6 @@ public class SimpleArray<T> {
         }
         SimpleArray<?> that = (SimpleArray<?>) o;
         return currentItem == that.currentItem
-                && size == that.size
                 && Arrays.equals(array, that.array);
     }
 
@@ -272,7 +278,6 @@ public class SimpleArray<T> {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(array, currentItem, size);
+        return Objects.hash(array, currentItem);
     }
-
 }
