@@ -1,7 +1,6 @@
 package ru.job4j.simplearray;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Класс простого контейнера основанного на массиве(За аналог взят ArrayList).
@@ -13,8 +12,7 @@ public class SimpleArray<T> {
      */
     private static final int ARRAY_INDEX_MAX_VALUE_OFFSET = 5;
     /**
-     * Максимальный размер массива принимается  как
-     * {@link Integer#MAX_VALUE} - {@link SimpleArray#ARRAY_INDEX_MAX_VALUE_OFFSET}.
+     * Максимальный размер массива принимается как {@link Integer#MAX_VALUE} - {@link SimpleArray#ARRAY_INDEX_MAX_VALUE_OFFSET}.
      */
     private static final int ARRAY_MAX_SIZE = Integer.MAX_VALUE - ARRAY_INDEX_MAX_VALUE_OFFSET;
     /**
@@ -41,12 +39,21 @@ public class SimpleArray<T> {
 
     /**
      * Конструктор с параметром инициализации размера массива {@link SimpleArray#array}.
-     *
      * @param initSize параметр инициализации размера массива {@link SimpleArray#array}.
      */
     public SimpleArray(int initSize) {
         this.array = new Object[initSize];
     }
+
+    /**
+     * Конструктор принимет в качестве параметра массив типа T, копия которого используется как элементы
+     * контейнера.
+     * @param initArray массив иницыализирующий контейнер.
+     */
+   public SimpleArray(T[] initArray) {
+        this.array = Arrays.copyOf(initArray, initArray.length);
+        this.currentItem = array.length - 1;
+   }
 
     /**
      * Метод добавления элемента в контейнер.
@@ -78,9 +85,8 @@ public class SimpleArray<T> {
 
     /**
      * Заменяет элемент в контейнере.
-     *
      * @param indexUpdateItem индекс заменяемого элемента.
-     * @param itemUpdate      обновляемый элемент.
+     * @param itemUpdate обновляемый элемент.
      * @return если операция добавления завершилась успешно возвращает true.
      */
     public boolean update(int indexUpdateItem, T itemUpdate) {
@@ -91,7 +97,6 @@ public class SimpleArray<T> {
 
     /**
      * Удаляет элемент по индексу.
-     *
      * @param indexDeleteItem индекс удаляемого элемента.
      * @return в слуучае успеха возвращает удаленный элемент.
      */
@@ -171,9 +176,14 @@ public class SimpleArray<T> {
         return Arrays.binarySearch(array, searchItem);
     }
 
+    /**
+     * Метод возвращает все элементы контейнера как массив типа T.
+     * @param resultArray массив определяющий тип возвращаемого массива.
+     * @param <T> Тип возвращаемого массива.
+     * @return массив содержащий все элементы контейнера.
+     */
     public <T> T[] toArray(T[] resultArray) {
         if (resultArray.length < currentItem + 1) {
-            // Make a new array of a's runtime type, but my contents:
             return (T[]) Arrays.copyOf(array, currentItem + 1, resultArray.getClass());
         }
         System.arraycopy(array, 0, resultArray, 0, currentItem + 1);
@@ -191,7 +201,7 @@ public class SimpleArray<T> {
         if (isEmpty()) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
-        if (checkIndex > currentItem || checkIndex <= 0) {
+        if (checkIndex > currentItem || checkIndex < 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
     }
@@ -211,7 +221,6 @@ public class SimpleArray<T> {
      * Проверка на то что размер массива {@link SimpleArray#array} не выходит за максимально возможный размер
      * {@link SimpleArray#ARRAY_MAX_SIZE}, если не выходит возвращает новый возможный размер массива.
      * Если увеличение размера не возможно, то генерирует исключение {@link OutOfMemoryError}
-     *
      * @return новый допустимый размер массива.
      */
     private int checkMaxSizeArray() {
@@ -224,7 +233,6 @@ public class SimpleArray<T> {
 
     /**
      * Копирует хвост массива начиная indexDeleteItem + 1 на один элемент влево.
-     *
      * @param indexDeleteItem индекс удаляемого элемента.
      */
     private void copyTailArrayWhenDeleteItem(int indexDeleteItem) {
@@ -234,7 +242,6 @@ public class SimpleArray<T> {
 
     /**
      * Копирует хвост массива начиная indexAddItem на один элемент вправо, освобождает элемент для добавления нового.
-     *
      * @param indexAddItem индекс добавляемого элемента.
      */
     private void copyTailArrayWhenAddItem(int indexAddItem) {
@@ -244,7 +251,6 @@ public class SimpleArray<T> {
 
     /**
      * Метод формирует сообщение для генерируемых исключений в методе {@link SimpleArray#checkIndex(int)}.
-     *
      * @param index индекс для формирования строки сообщения.
      * @return сформированную строку.
      */
@@ -254,7 +260,6 @@ public class SimpleArray<T> {
 
     /**
      * Переопределяем метод equals.
-     *
      * @param o объект с которым сравниваетм.
      * @return true если объекты равны, в противном случае false.
      */
@@ -273,11 +278,12 @@ public class SimpleArray<T> {
 
     /**
      * Переопределяем метод hashCode.
-     *
      * @return новый сгенерированный hashCode объекта.
      */
     @Override
     public int hashCode() {
-        return Objects.hash(array, currentItem);
+        int result = Arrays.hashCode(array);
+        result = 31 * result + currentItem;
+        return result;
     }
 }
