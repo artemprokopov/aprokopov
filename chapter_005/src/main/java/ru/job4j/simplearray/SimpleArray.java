@@ -58,7 +58,6 @@ public class SimpleArray<T> {
     /**
      * Метод добавления элемента в контейнер.
      * Добавляет элемент в хвост массива {@link SimpleArray#array}
-     *
      * @param addItem добавляемый в контейнер элемент тип T.
      * @return возвращает true если операция выполняется успешно.
      */
@@ -70,7 +69,6 @@ public class SimpleArray<T> {
 
     /**
      * Добавляет элемент в контейнер по индексу, хвост массива сдвигаетс в право.
-     *
      * @param indexAddItem индекс элемента вставки.
      * @param addItem      элемент вставки.
      */
@@ -111,7 +109,6 @@ public class SimpleArray<T> {
 
     /**
      * Удаляет первый найденный с начала контейнера элемент.
-     *
      * @param deleteItem Удаляемый элемент.
      * @return в случае успеха возвращает удалённый элемент, в противном случае если такого элемента нет null.
      */
@@ -129,7 +126,6 @@ public class SimpleArray<T> {
 
     /**
      * Возвращает элемент контейнера по индексу.
-     *
      * @param indexItem индекс элемента.
      * @return элемент контейнера.
      */
@@ -141,7 +137,6 @@ public class SimpleArray<T> {
 
     /**
      * Проверка есть ли элементы в контейнере.
-     *
      * @return true если контейнер не содержит ни одного элемента.
      */
     public boolean isEmpty() {
@@ -158,7 +153,6 @@ public class SimpleArray<T> {
 
     /**
      * Виртуально число размера массива(общее число элементов размещённых в контейнере).
-     *
      * @return число элементов в контейнере.
      */
     public int size() {
@@ -167,13 +161,18 @@ public class SimpleArray<T> {
 
     /**
      * Поиск элемента в контейнере.
-     *
      * @param searchItem искомый элемент.
      * @return индекс найденного элемента, в противном случае если элемент не найден < 0.
      */
     public int findItem(T searchItem) {
-        this.trim();
-        return Arrays.binarySearch(array, searchItem);
+        int result = -1;
+        for (int i = 0; i <= currentItem; i++) {
+            if (array[i].equals(searchItem)) {
+                result = i;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -182,6 +181,7 @@ public class SimpleArray<T> {
      * @param <T> Тип возвращаемого массива.
      * @return массив содержащий все элементы контейнера.
      */
+    @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] resultArray) {
         if (resultArray.length < currentItem + 1) {
             return (T[]) Arrays.copyOf(array, currentItem + 1, resultArray.getClass());
