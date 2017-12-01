@@ -42,7 +42,7 @@ public abstract class Base {
      * @return <strong>true</strong> если объекты равны.
      */
     @Override
-    public boolean equals(Object o) {
+    public  boolean equals(Object o) {
         if (this == o) {
             return true;
         }
