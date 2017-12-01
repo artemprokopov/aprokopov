@@ -4,6 +4,9 @@ import java.util.Iterator;
 import java.util.function.Consumer;
 
 public class SimpleListContainer<E> implements SimpleContainer<E> {
+
+    private Node<E> first;
+    private Node<E> last;
     @Override
     public boolean add(E addItem) {
         return false;
@@ -62,5 +65,17 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     @Override
     public void forEach(Consumer<? super E> action) {
 
+    }
+
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> prev;
+
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
     }
 }
