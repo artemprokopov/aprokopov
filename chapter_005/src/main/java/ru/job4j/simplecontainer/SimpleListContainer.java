@@ -152,10 +152,9 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     }
 
     /**
-     * Проверка индекса на принадлежность диапазону 0 <= i <= {@link
-     * SimpleListContainer#currentItem}. @param checkIndex проверяемый индек
-     *
-     * с.
+     * Проверка индекса на принадлежность диапазону i больше равен 0 
+     * или меньше равен {@linkSimpleListContainer#currentItem}. 
+     * @param checkIndex проверяемый индекс.
      */
     private void checkIndex(int checkIndex) {
         if (checkIndex > currentItem || checkIndex < 0) {
