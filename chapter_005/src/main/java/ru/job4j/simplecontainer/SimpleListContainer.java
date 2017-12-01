@@ -1,13 +1,13 @@
 package ru.job4j.simplecontainer;
 
+import java.util.Arrays;
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class SimpleListContainer<E> implements SimpleContainer<E> {
+
     /**
-     * Первый элемент двусвязного списка.
-     * Если список пуст равен null.
+     * Первый элемент двусвязного списка. Если список пуст равен null.
      */
     private Node<E> first;
     /**
@@ -26,15 +26,24 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     public SimpleListContainer(E[] array) {
 
     }
+
+    /**
+     * Метод добавления элемента в контейнер.
+     * Добавляет элемент в хвост списка, указатель на хвост списка {@link SimpleListContainer#last}
+     * после операции указывает на добавленный элемент.
+     * @param addItem добавляемый элемент.
+     * @return true если добавление прошло успешно.
+     */
     @Override
     public boolean add(E addItem) {
         if (this.first == null) {
             this.first = new Node<>(null, addItem, null);
             this.last = this.first;
-            currentItem++;
+            this.currentItem++;
             return true;
         }
         addLast(addItem);
+        this.currentItem++;
         return true;
     }
 
@@ -70,7 +79,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     @Override
     public int size() {
-        return 0;
+        return this.currentItem + 1;
     }
 
     @Override
@@ -79,8 +88,15 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     }
 
     @Override
-    public <E1> E1[] toArray(E1[] resultArray) {
-        return null;
+    @SuppressWarnings("unchecked")
+    public <E> E[] toArray(E[] resultArray) {
+        resultArray = Arrays.copyOf(resultArray, currentItem + 1);
+        Node temp = this.first;
+        for (int i = 0; i < resultArray.length; i++) {
+            resultArray[i] = (E) temp.item;
+            temp = temp.next;
+        }
+        return resultArray;
     }
 
     @Override
@@ -94,6 +110,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     }
 
     private static class Node<E> {
+
         E item;
         Node<E> next;
         Node<E> prev;
@@ -107,7 +124,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     private void addLast(E addItem) {
         Node<E> temp = this.last;
-        this.last = new Node<>(temp, addItem, null );
+        this.last = new Node<>(temp, addItem, null);
         temp.next = this.last;
     }
 
@@ -124,7 +141,9 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     }
 
     /**
-     * Метод формирует сообщение для генерируемых исключений в методе {@link SimpleArrayContainer#checkIndex(int)}.
+     * Метод формирует сообщение для генерируемых исключений в методе
+     * {@link SimpleArrayContainer#checkIndex(int)}.
+     *
      * @param index индекс для формирования строки сообщения.
      * @return сформированную строку.
      */
@@ -133,14 +152,16 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     }
 
     /**
-     * Проверка индекса на принадлежность диапазону 0 <= i <= {@link SimpleListContainer#currentItem}.
-     * @param checkIndex проверяемый индекс.
+     * Проверка индекса на принадлежность диапазону 0 <= i <= {@link
+     * SimpleListContainer#currentItem}. @param checkIndex проверяемый индек
+     *
+     * с.
      */
     private void checkIndex(int checkIndex) {
         if (checkIndex > currentItem || checkIndex < 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
-        if (checkIndex > Integer.MAX_VALUE - 1 ) {
+        if (checkIndex > Integer.MAX_VALUE - 1) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
     }
