@@ -149,7 +149,7 @@ public class SimpleArrayContainer<E> implements SimpleContainer<E> {
      * @return true если контейнер не содержит ни одного элемента.
      */
     public boolean isEmpty() {
-        return this.currentItem == -1;
+        return this.currentItem < 0;
     }
 
     /**
@@ -207,9 +207,6 @@ public class SimpleArrayContainer<E> implements SimpleContainer<E> {
      * @param checkIndex проверяемый индекс.
      */
     private void checkIndex(int checkIndex) {
-        if (isEmpty()) {
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
-        }
         if (checkIndex > currentItem || checkIndex < 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
