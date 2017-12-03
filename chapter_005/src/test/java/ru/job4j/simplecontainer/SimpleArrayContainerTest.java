@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
-import java.util.function.Consumer;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -330,7 +329,7 @@ public class SimpleArrayContainerTest {
     }
 
     /**
-     * Тестируем метод {@link SimpleArrayContainer#forEach(Consumer)}.
+     * Тестируем метод {@link SimpleArrayContainer#forEach}.
      */
     @Test
     public void forEach() {

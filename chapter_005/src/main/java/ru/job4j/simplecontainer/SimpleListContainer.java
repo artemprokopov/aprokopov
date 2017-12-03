@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
+/**
+ *
+ * @param <E>
+ */
 public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     /**
@@ -19,10 +23,17 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      */
     private int currentItem = -1;
 
+    /**
+     *
+     */
     public SimpleListContainer() {
 
     }
 
+    /**
+     *
+     * @param array
+     */
     public SimpleListContainer(E[] array) {
 
     }
@@ -99,22 +110,51 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         return resultArray;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Iterator<E> iterator() {
         return null;
     }
 
+    /**
+     *
+     * @param action
+     */
     @Override
     public void forEach(Consumer<? super E> action) {
 
     }
 
+    /**
+     *
+     * @param <E>
+     */
     private static class Node<E> {
-
+        /**
+         *
+         */
+        @SuppressWarnings("all")
         E item;
+        /**
+         *
+         */
+        @SuppressWarnings("CheckStyle")
         Node<E> next;
+        /**
+         *
+         */
+        @SuppressWarnings("CheckStyle")
         Node<E> prev;
 
+        /**
+         *
+         * @param prevNode
+         * @param element
+         * @param nextNode
+         */
         Node(Node<E> prevNode, E element, Node<E> nextNode) {
             this.item = element;
             this.next = nextNode;
@@ -122,20 +162,36 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         }
     }
 
+    /**
+     *
+     * @param addItem
+     */
     private void addLast(E addItem) {
         Node<E> temp = this.last;
         this.last = new Node<>(temp, addItem, null);
         temp.next = this.last;
     }
 
+    /**
+     *
+     * @param index
+     * @param addItem
+     */
     private void addIndex(int index, E addItem) {
 
     }
 
+    /**
+     *
+     */
     private void deleteLast() {
 
     }
 
+    /**
+     *
+     * @param index
+     */
     private void deleteIndex(int index) {
 
     }
