@@ -179,8 +179,7 @@ public class SimpleArrayTest {
      * Тестируем метод {@link SimpleArray#get(int)}.
      * Запрашиваем элемент -1, ожидаем исключение IndexOutOfBoundsException.
      */
-    @Test
-            (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void get1() {
         SimpleArray<Integer> testSimpleArrayForGet = new SimpleArray<>(testArray);
         testSimpleArrayForGet.get(-1);

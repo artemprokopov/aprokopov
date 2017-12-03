@@ -115,10 +115,10 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         Node<E> next;
         Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next) {
+        Node(Node<E> prevNode, E element, Node<E> nextNode) {
             this.item = element;
-            this.next = next;
-            this.prev = prev;
+            this.next = nextNode;
+            this.prev = prevNode;
         }
     }
 
@@ -152,8 +152,8 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     }
 
     /**
-     * Проверка индекса на принадлежность диапазону i больше равен 0 
-     * или меньше равен {@linkSimpleListContainer#currentItem}. 
+     * Проверка индекса на принадлежность диапазону i больше равен 0
+     * или меньше равен {@linkSimpleListContainer#currentItem}.
      * @param checkIndex проверяемый индекс.
      */
     private void checkIndex(int checkIndex) {
