@@ -32,7 +32,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     /**
      *
-     * @param array
+     * @param array 1
      */
     public SimpleListContainer(E[] array) {
 
@@ -136,7 +136,9 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         /**
          *
          */
-        @SuppressWarnings("all")
+
+        @SuppressWarnings("CheckStyle")
+        //CHECKSTYLE:OFF
         E item;
         /**
          *
@@ -148,12 +150,12 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
          */
         @SuppressWarnings("CheckStyle")
         Node<E> prev;
-
+        //CHECKSTYLE:ON
         /**
          *
-         * @param prevNode
-         * @param element
-         * @param nextNode
+         * @param prevNode 1
+         * @param element 1
+         * @param nextNode 1
          */
         Node(Node<E> prevNode, E element, Node<E> nextNode) {
             this.item = element;
@@ -164,7 +166,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     /**
      *
-     * @param addItem
+     * @param addItem 1
      */
     private void addLast(E addItem) {
         Node<E> temp = this.last;
@@ -174,8 +176,8 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     /**
      *
-     * @param index
-     * @param addItem
+     * @param index 1
+     * @param addItem 1
      */
     private void addIndex(int index, E addItem) {
 
@@ -190,7 +192,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     /**
      *
-     * @param index
+     * @param index 1
      */
     private void deleteIndex(int index) {
 
