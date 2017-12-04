@@ -133,22 +133,18 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      * @param <E>
      */
     private static class Node<E> {
+        //CHECKSTYLE:OFF
         /**
          *
          */
-
-        @SuppressWarnings("CheckStyle")
-        //CHECKSTYLE:OFF
         E item;
         /**
          *
          */
-        @SuppressWarnings("CheckStyle")
         Node<E> next;
         /**
          *
          */
-        @SuppressWarnings("CheckStyle")
         Node<E> prev;
         //CHECKSTYLE:ON
         /**

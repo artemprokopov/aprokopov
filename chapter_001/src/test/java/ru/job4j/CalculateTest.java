@@ -1,5 +1,6 @@
 package ru.job4j;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -18,6 +19,7 @@ public class CalculateTest {
 /**
 * Test add.
 */
+	@Ignore
     @Test
     public void whenAddOneToOneThenTwo() {
 	ByteArrayOutputStream out = new ByteArrayOutputStream();
