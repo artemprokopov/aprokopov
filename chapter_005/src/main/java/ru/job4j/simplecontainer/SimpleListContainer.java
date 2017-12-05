@@ -35,7 +35,9 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      * @param array 1
      */
     public SimpleListContainer(E[] array) {
-
+        for (E e : array) {
+            this.add(e);
+        }
     }
 
     /**
@@ -47,6 +49,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      */
     @Override
     public boolean add(E addItem) {
+        checkOutOfMemory(this.currentItem + 1);
         if (this.first == null) {
             this.first = new Node<>(null, addItem, null);
             this.last = this.first;
@@ -60,7 +63,10 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     @Override
     public void add(int indexAddItem, E addItem) {
-
+        checkOutOfMemory(this.currentItem + 1);
+        checkIndex(indexAddItem);
+        addIndex(indexAddItem, addItem);
+        this.currentItem++;
     }
 
     @Override
@@ -133,6 +139,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      * @param <E>
      */
     private static class Node<E> {
+
         //CHECKSTYLE:OFF
         /**
          *
@@ -159,7 +166,6 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
             this.prev = prevNode;
         }
     }
-
     /**
      *
      * @param addItem 1
@@ -170,13 +176,29 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         temp.next = this.last;
     }
 
+
     /**
      *
      * @param index 1
      * @param addItem 1
      */
     private void addIndex(int index, E addItem) {
+        Node<E> location = findItem(index);
+        Node<E> addNode = new Node<E>(location.prev, addItem, location);
+        location.prev.next = addNode;
+    }
 
+    private Node<E> findItem (int index) {
+        Node<E> result = first;
+        for (int i = 0; i < index; i++) {
+            result = result.next;
+        }
+        return result;
+    }
+
+
+    private int findIndex(E requiedItem) {
+        return 0;
     }
 
     /**
@@ -185,7 +207,6 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     private void deleteLast() {
 
     }
-
     /**
      *
      * @param index 1
@@ -214,8 +235,11 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         if (checkIndex > currentItem || checkIndex < 0) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
-        if (checkIndex > Integer.MAX_VALUE - 1) {
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
+    }
+
+    private void checkOutOfMemory(int checkIndex) {
+        if (Integer.MAX_VALUE - checkIndex == 0) {
+            throw new OutOfMemoryError("The array index is greater than the maximum possible values");
         }
     }
 }

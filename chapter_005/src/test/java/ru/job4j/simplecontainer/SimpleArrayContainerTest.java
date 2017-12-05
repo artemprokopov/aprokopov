@@ -12,6 +12,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -86,8 +88,8 @@ public class SimpleArrayContainerTest {
      * Добавляем больше элементов чем максимальное количество элементов в контейнере,
      * ожидаем исключение OutOfMemoryError.
      */
-    @Test
-            (expected = OutOfMemoryError.class)
+    @Ignore
+    @Test(expected = OutOfMemoryError.class)
     public void add2() {
         Integer[] initArray = new Integer[Integer.MAX_VALUE - 6];
         Arrays.fill(initArray, 1);
@@ -95,7 +97,6 @@ public class SimpleArrayContainerTest {
         for (int i = 0; i < 6; i++) {
             testSimpleArrayContainerForAdd1.add(1);
         }
-
     }
 
     /**
