@@ -5,7 +5,6 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Spliterator;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -197,8 +196,7 @@ public class SimpleListContainerTest {
      * Тестируем метод {@link SimpleListContainer#get(int)}.
      * Запрашиваем элемент больше текщего размера, ожидаем исключение IndexOutOfBoundsException.
      */
-    @Test
-            (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void get2() {
         SimpleListContainer<Integer> testSimpleListContainerForGet = new SimpleListContainer<>(testArray);
         testSimpleListContainerForGet.get(testSimpleListContainerForGet.size() + 1);
@@ -207,8 +205,7 @@ public class SimpleListContainerTest {
      * Тестируем метод {@link SimpleListContainer#get(int)}.
      * Запрашиваем элемент при пустом массиве, ожидаем исключение IndexOutOfBoundsException.
      */
-    @Test
-            (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void get3() {
         SimpleListContainer<Integer> testSimpleListContainerForGet = new SimpleListContainer<>();
         testSimpleListContainerForGet.get(1);
@@ -314,8 +311,8 @@ public class SimpleListContainerTest {
     @Test
             (expected = NoSuchElementException.class)
     public void iterator() {
-        SimpleListContainer<Integer> SimpleListContainer = new SimpleListContainer<>(testArray);
-        Iterator<Integer> iterator = SimpleListContainer.iterator();
+        SimpleListContainer<Integer> simpleListContainer = new SimpleListContainer<>(testArray);
+        Iterator<Integer> iterator = simpleListContainer.iterator();
         assertTrue(iterator.hasNext());
         assertEquals(iterator.next(), testArray[0]);
         assertTrue(iterator.hasNext());
@@ -335,11 +332,11 @@ public class SimpleListContainerTest {
      */
     @Test
     public void forEach() {
-        SimpleListContainer<Integer> SimpleListContainer = new SimpleListContainer<>(testArray);
+        SimpleListContainer<Integer> simpleListContainer = new SimpleListContainer<>(testArray);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
         System.setOut(printStream);
-        SimpleListContainer.forEach(System.out::println);
+        simpleListContainer.forEach(System.out::println);
         printStream.close();
         System.setOut(null);
         String result = String.format("1%1$s2%1$s3%1$s4%1$s5%1$s", System.lineSeparator());

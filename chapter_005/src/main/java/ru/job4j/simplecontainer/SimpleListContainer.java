@@ -2,6 +2,7 @@ package ru.job4j.simplecontainer;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
@@ -69,9 +70,21 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         this.currentItem++;
     }
 
+    /**
+     * 1.
+     * @param indexUpdateItem индекс заменяемого элемента.
+     * @param itemUpdate обновляемый элемент.
+     * @return    1
+     */
     @Override
     public boolean update(int indexUpdateItem, E itemUpdate) {
-        return false;
+        checkIndex(indexUpdateItem);
+        Node<E> findUpdate = findItem(indexUpdateItem);
+        if (Objects.isNull(findUpdate)) {
+            return false;
+        }
+        findUpdate.item = itemUpdate;
+        return true;
     }
 
     @Override
@@ -101,8 +114,19 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     @Override
     public int findItem(E searchItem) {
-        return 0;
+        int result = -1;
+        Node<E> temp = first;
+        for (int i = 0; i <= this.currentItem; i++) {
+            if (temp.item.equals(searchItem)) {
+                result = i;
+                break;
+            }
+            temp = temp.next;
+        }
+        return result;
     }
+
+
 
     @Override
     @SuppressWarnings("unchecked")
@@ -133,7 +157,6 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     public void forEach(Consumer<? super E> action) {
 
     }
-
     /**
      *
      * @param <E>
@@ -166,6 +189,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
             this.prev = prevNode;
         }
     }
+
     /**
      *
      * @param addItem 1
@@ -188,25 +212,14 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         location.prev.next = addNode;
     }
 
-    private Node<E> findItem (int index) {
-        Node<E> result = first;
-        for (int i = 0; i < index; i++) {
-            result = result.next;
-        }
-        return result;
-    }
-
-
-    private int findIndex(E requiedItem) {
-        return 0;
-    }
-
     /**
      *
+     * @param deleteItem    1
      */
-    private void deleteLast() {
+    private void deleteFirstItem(E deleteItem) {
 
     }
+
     /**
      *
      * @param index 1
@@ -236,7 +249,22 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
     }
-
+    /**
+     *
+     * @param index       1
+     * @return       1
+     */
+    private Node<E> findItem(int index) {
+        Node<E> result = first;
+        for (int i = 0; i < index; i++) {
+            result = result.next;
+        }
+        return result;
+    }
+    /**
+     *
+     * @param checkIndex 1
+     */
     private void checkOutOfMemory(int checkIndex) {
         if (Integer.MAX_VALUE - checkIndex == 0) {
             throw new OutOfMemoryError("The array index is greater than the maximum possible values");
