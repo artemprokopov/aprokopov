@@ -79,27 +79,48 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     @Override
     public boolean update(int indexUpdateItem, E itemUpdate) {
         checkIndex(indexUpdateItem);
-        Node<E> findUpdate = findItem(indexUpdateItem);
+        Node<E> findUpdate = findItemIndex(indexUpdateItem);
         if (Objects.isNull(findUpdate)) {
             return false;
         }
         findUpdate.item = itemUpdate;
         return true;
     }
-
+    //решить проблему с удалением перовго элемента
     @Override
     public E delete(int indexDeleteItem) {
-        return null;
+        checkIndex(indexDeleteItem);
+        Node<E> deleteNode = this.findItemIndex(indexDeleteItem);
+        if (Objects.nonNull(deleteNode.prev)) {
+            deleteNode.prev.next = deleteNode.next;
+        }
+        if (Objects.nonNull(deleteNode.next)) {
+            deleteNode.next.prev = deleteNode.prev;
+        }
+        this.currentItem--;
+        return  deleteNode.item;
     }
-
+    //решить проблему с удалением перовго элемента
     @Override
     public E delete(E deleteItem) {
-        return null;
+        Node<E> deleteNode = findeItemNode(deleteItem);
+        if (deleteNode == null) {
+            return null;
+        }
+        if (Objects.nonNull(deleteNode.prev)) {
+            deleteNode.prev.next = deleteNode.next;
+        }
+        if (Objects.nonNull(deleteNode.next)) {
+            deleteNode.next.prev = deleteNode.prev;
+        }
+        this.currentItem--;
+        return deleteNode.item;
     }
 
     @Override
     public E get(int indexItem) {
-        return null;
+        checkIndex(indexItem);
+        return (E) findItemIndex(indexItem).item;
     }
 
     @Override
@@ -207,26 +228,11 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      * @param addItem 1
      */
     private void addIndex(int index, E addItem) {
-        Node<E> location = findItem(index);
+        Node<E> location = findItemIndex(index);
         Node<E> addNode = new Node<E>(location.prev, addItem, location);
         location.prev.next = addNode;
     }
 
-    /**
-     *
-     * @param deleteItem    1
-     */
-    private void deleteFirstItem(E deleteItem) {
-
-    }
-
-    /**
-     *
-     * @param index 1
-     */
-    private void deleteIndex(int index) {
-
-    }
 
     /**
      * Метод формирует сообщение для генерируемых исключений в методе
@@ -254,9 +260,25 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      * @param index       1
      * @return       1
      */
-    private Node<E> findItem(int index) {
+    private Node<E> findItemIndex(int index) {
         Node<E> result = first;
         for (int i = 0; i < index; i++) {
+            result = result.next;
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @param findNodeItem 1
+     * @return 1
+     */
+    private Node<E> findeItemNode(E findNodeItem) {
+        Node<E> result = first;
+        for (int i = 0; i <= this.currentItem; i++) {
+            if (findNodeItem.equals(result.item)) {
+                break;
+            }
             result = result.next;
         }
         return result;

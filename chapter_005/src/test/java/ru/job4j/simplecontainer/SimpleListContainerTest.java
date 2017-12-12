@@ -185,8 +185,7 @@ public class SimpleListContainerTest {
      * Тестируем метод {@link SimpleListContainer#get(int)}.
      * Запрашиваем элемент -1, ожидаем исключение IndexOutOfBoundsException.
      */
-    @Test
-            (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void get1() {
         SimpleListContainer<Integer> testSimpleListContainerForGet = new SimpleListContainer<>(testArray);
         testSimpleListContainerForGet.get(-1);
