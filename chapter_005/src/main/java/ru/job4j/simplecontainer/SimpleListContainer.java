@@ -91,32 +91,16 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     public E delete(int indexDeleteItem) {
         checkIndex(indexDeleteItem);
         Node<E> deleteNode = this.findItemIndex(indexDeleteItem);
-        if (Objects.nonNull(deleteNode.prev)) {
-            deleteNode.prev.next = deleteNode.next;
-        }
-        if (Objects.nonNull(deleteNode.next)) {
-            deleteNode.next.prev = deleteNode.prev;
-        }
-        this.currentItem--;
-        return  deleteNode.item;
+        return  deleteNodeList(deleteNode);
     }
+
     //решить проблему с удалением перовго элемента
+
     @Override
     public E delete(E deleteItem) {
         Node<E> deleteNode = findeItemNode(deleteItem);
-        if (deleteNode == null) {
-            return null;
-        }
-        if (Objects.nonNull(deleteNode.prev)) {
-            deleteNode.prev.next = deleteNode.next;
-        }
-        if (Objects.nonNull(deleteNode.next)) {
-            deleteNode.next.prev = deleteNode.prev;
-        }
-        this.currentItem--;
-        return deleteNode.item;
+        return deleteNodeList(deleteNode);
     }
-
     @Override
     public E get(int indexItem) {
         checkIndex(indexItem);
@@ -178,6 +162,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     public void forEach(Consumer<? super E> action) {
 
     }
+
     /**
      *
      * @param <E>
@@ -189,6 +174,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
          *
          */
         E item;
+
         /**
          *
          */
@@ -233,7 +219,32 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         location.prev.next = addNode;
     }
 
-
+    /**
+     *
+     * @param deleteNode 1
+     * @return        1
+     */
+    private E deleteNodeList(Node<E> deleteNode) {
+        if (Objects.isNull(deleteNode)) {
+            return null;
+        }
+        if (deleteNode == this.first) {
+            this.first = deleteNode.next;
+        }
+        if (deleteNode == this.last) {
+            this.last = deleteNode.prev;
+        }
+        if (Objects.nonNull(deleteNode.prev)) {
+            deleteNode.prev.next = deleteNode.next;
+        }
+        if (Objects.nonNull(deleteNode.next)) {
+            deleteNode.next.prev = deleteNode.prev;
+        }
+        deleteNode.next = null;
+        deleteNode.prev = null;
+        this.currentItem--;
+        return deleteNode.item;
+    }
     /**
      * Метод формирует сообщение для генерируемых исключений в методе
      * {@link SimpleArrayContainer#checkIndex(int)}.
@@ -291,5 +302,25 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         if (Integer.MAX_VALUE - checkIndex == 0) {
             throw new OutOfMemoryError("The array index is greater than the maximum possible values");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SimpleListContainer<?> that = (SimpleListContainer<?>) o;
+
+        if (currentItem != that.currentItem) return false;
+        if (!first.equals(that.first)) return false;
+        return last.equals(that.last);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = first.hashCode();
+        result = 31 * result + last.hashCode();
+        result = 31 * result + currentItem;
+        return result;
     }
 }
