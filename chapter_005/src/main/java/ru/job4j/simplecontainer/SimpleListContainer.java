@@ -2,6 +2,7 @@ package ru.job4j.simplecontainer;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -98,7 +99,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
 
     @Override
     public E delete(E deleteItem) {
-        Node<E> deleteNode = findeItemNode(deleteItem);
+        Node<E> deleteNode = findItemNode(deleteItem);
         return deleteNodeList(deleteNode);
     }
     @Override
@@ -151,7 +152,26 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            private Node<E> temp = first;
+            private E result;
+
+            @Override
+            public boolean hasNext() {
+                return Objects.nonNull(temp);
+            }
+
+            @Override
+            @SuppressWarnings("unchecked")
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException("No next element! End of SimpleListContainer!");
+                }
+                result = temp.item;
+                temp = temp.next;
+                return result;
+            }
+        };
     }
 
     /**
@@ -160,7 +180,11 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      */
     @Override
     public void forEach(Consumer<? super E> action) {
-
+        Objects.requireNonNull(action);
+        Iterator<E> iterator = this.iterator();
+       while (iterator.hasNext()) {
+            action.accept((E) iterator.next());
+        }
     }
 
     /**
@@ -197,6 +221,39 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SimpleListContainer<?> that = (SimpleListContainer<?>) o;
+
+        if (currentItem != that.currentItem) {
+            return false;
+        }
+        Iterator<?> iteratorThat = that.iterator();
+        for (E e : this) {
+            if (e != iteratorThat.next()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        for (E e : this) {
+            result = 31 * result + (e == null ? 0 : e.hashCode());
+        }
+        result = 31 * result + currentItem;
+        return result;
+    }
+
     /**
      *
      * @param addItem 1
@@ -218,7 +275,6 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         Node<E> addNode = new Node<E>(location.prev, addItem, location);
         location.prev.next = addNode;
     }
-
     /**
      *
      * @param deleteNode 1
@@ -245,6 +301,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         this.currentItem--;
         return deleteNode.item;
     }
+
     /**
      * Метод формирует сообщение для генерируемых исключений в методе
      * {@link SimpleArrayContainer#checkIndex(int)}.
@@ -255,7 +312,6 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     private String outOfBoundsMsg(int index) {
         return "Index: " + index + ", Size: " + (currentItem + 1);
     }
-
     /**
      * Проверка индекса на принадлежность диапазону i больше равен 0
      * или меньше равен {@linkSimpleListContainer#currentItem}.
@@ -266,6 +322,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(checkIndex));
         }
     }
+
     /**
      *
      * @param index       1
@@ -278,13 +335,12 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         }
         return result;
     }
-
     /**
      *
      * @param findNodeItem 1
      * @return 1
      */
-    private Node<E> findeItemNode(E findNodeItem) {
+    private Node<E> findItemNode(E findNodeItem) {
         Node<E> result = first;
         for (int i = 0; i <= this.currentItem; i++) {
             if (findNodeItem.equals(result.item)) {
@@ -294,6 +350,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         }
         return result;
     }
+
     /**
      *
      * @param checkIndex 1
@@ -302,25 +359,5 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         if (Integer.MAX_VALUE - checkIndex == 0) {
             throw new OutOfMemoryError("The array index is greater than the maximum possible values");
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SimpleListContainer<?> that = (SimpleListContainer<?>) o;
-
-        if (currentItem != that.currentItem) return false;
-        if (!first.equals(that.first)) return false;
-        return last.equals(that.last);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = first.hashCode();
-        result = 31 * result + last.hashCode();
-        result = 31 * result + currentItem;
-        return result;
     }
 }

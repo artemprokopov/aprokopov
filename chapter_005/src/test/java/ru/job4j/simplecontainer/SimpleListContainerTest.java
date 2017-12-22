@@ -307,8 +307,7 @@ public class SimpleListContainerTest {
     /**
      * Тестируем метод {@link SimpleListContainer#iterator()}.
      */
-    @Test
-            (expected = NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class)
     public void iterator() {
         SimpleListContainer<Integer> simpleListContainer = new SimpleListContainer<>(testArray);
         Iterator<Integer> iterator = simpleListContainer.iterator();
