@@ -13,6 +13,9 @@ import static java.util.Spliterator.ORDERED;
 /**
  * Класс контейнера основанного на массиве, реализует интерфейс {@link SimpleContainer} и {@link Iterable}.
  * @param <E> тип контейнера.
+ * @author Artem Prokopov
+ * @since 21/11/2017
+ * @version 1.0
  */
 
 public class SimpleArrayContainer<E> implements SimpleContainer<E> {
