@@ -287,7 +287,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
         }
         Iterator<?> iteratorThat = that.iterator();
         for (E e : this) {
-            if (e != iteratorThat.next()) {
+            if (!e.equals(iteratorThat.next())) {
                 return false;
             }
         }
