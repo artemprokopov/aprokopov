@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
+//CHECKSTYLE:OFF
 import java.util.function.Consumer;
+//CHECKSTYLE:ON
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;

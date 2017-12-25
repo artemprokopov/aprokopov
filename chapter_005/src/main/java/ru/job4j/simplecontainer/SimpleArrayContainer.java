@@ -1,7 +1,5 @@
 package ru.job4j.simplecontainer;
 
-import ru.job4j.simplecontainer.SimpleContainer;
-
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;

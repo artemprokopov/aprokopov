@@ -1,5 +1,5 @@
-package ru.otus.l021;
-
+package ru.job4j.simplecontainer;
+//CHECKSTYLE:OFF
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
@@ -235,3 +235,4 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
     }
 
 }
+//CHECKSTYLE:ON
