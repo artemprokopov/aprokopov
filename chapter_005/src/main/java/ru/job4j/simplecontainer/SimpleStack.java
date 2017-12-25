@@ -6,11 +6,13 @@ package ru.job4j.simplecontainer;
  * @since 25/12/2017
  * @version 1.0
  */
-public class SimpleStack<E> implements Stack<E> {
+public class SimpleStack<E> extends SimpleListContainer<E> implements Stack<E> {
     /**
-     * Хранилище элементов стека.
+     * Конструктор по умолчанию.
      */
-    private final StackContainer<E> stack = new SimpleListContainer<>();
+    public SimpleStack() {
+        super();
+    }
 
     /**
      * Метод возвращает элемент из стека FILO(очереди FIFO) и удаляет его.
@@ -18,7 +20,7 @@ public class SimpleStack<E> implements Stack<E> {
      */
     @Override
     public E poll() {
-        return stack.deleteFirst();
+        return super.deleteFirst();
     }
     /**
      * Метод помещает элемент в стек FILO.
@@ -26,6 +28,6 @@ public class SimpleStack<E> implements Stack<E> {
      */
     @Override
     public void push(E value) {
-       stack.addFirst(value);
+      super.addFirst(value);
     }
 }

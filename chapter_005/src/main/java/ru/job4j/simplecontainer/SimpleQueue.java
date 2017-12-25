@@ -6,18 +6,21 @@ package ru.job4j.simplecontainer;
  * @since 25/12/2017
  * @version 1.0
  */
-public class SimpleQueue<E> implements Stack<E> {
+public class SimpleQueue<E> extends SimpleListContainer<E> implements Stack<E> {
     /**
-     * Хранилище элементов очереди.
+     * Конструктор по умолчанию.
      */
-    private final StackContainer<E> queue = new SimpleListContainer<>();
+    public SimpleQueue() {
+        super();
+    }
+
     /**
      * Метод возвращает элемент из очереди FIFO и удаляет его.
      * @return элемент стека(очереди)
      */
     @Override
     public E poll() {
-        return queue.deleteLast();
+        return super.deleteLast();
     }
     /**
      * Метод помещает элемент в стек очередь FIFO.
@@ -25,7 +28,7 @@ public class SimpleQueue<E> implements Stack<E> {
      */
     @Override
     public void push(E value) {
-        queue.addFirst(value);
+       super.addFirst(value);
 
     }
 }
