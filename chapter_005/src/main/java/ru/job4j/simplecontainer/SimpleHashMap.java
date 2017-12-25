@@ -352,7 +352,6 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
      * @param addLocation индекс массива в позицию которого добаляется узел.
      */
     private void addNodeLocation(Node<K, V> kvNode, int addLocation) {
-        boolean t = false;
         if (this.store[addLocation] == null
                 || (this.store[addLocation].hash == kvNode.hash
                 && !this.store[addLocation].key.equals(kvNode.key))) {
