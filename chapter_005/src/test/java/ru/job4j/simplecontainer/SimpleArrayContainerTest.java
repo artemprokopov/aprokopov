@@ -349,7 +349,7 @@ public class SimpleArrayContainerTest {
      * Тестируем метод {@link SimpleArrayContainer#spliterator()}.
      */
     @Test
-    public void spliterator() {
+    public void spliterator1() {
         SimpleArrayContainer<Integer> simpleArrayContainer = new SimpleArrayContainer<>(testArray);
         Spliterator<Integer> spliterator = simpleArrayContainer.spliterator();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -360,5 +360,10 @@ public class SimpleArrayContainerTest {
         System.setOut(null);
         String result = "12345";
         assertEquals(result, byteArrayOutputStream.toString());
+    }
+
+    @Test
+    public void trim1() {
+
     }
 }
