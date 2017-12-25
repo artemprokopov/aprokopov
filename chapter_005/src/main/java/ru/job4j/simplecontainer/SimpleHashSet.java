@@ -9,24 +9,30 @@ import java.util.Iterator;
  * @since 04/03/2018
  * @version 1.0
  */
-public class SimpleListSet<E> implements SimpleSet<E> {
+public class SimpleHashSet<E> implements SimpleSet<E> {
     /**
      * Хранилище Set на основе {@link SimpleListContainer}.
      */
-    final SimpleListContainer<E> simpleListContainer;
+    final SimpleHashMap<E, Object> simpleHashContainer;
+    /**
+     * Буферный объект для значения Map.
+     */
+    private static final Integer TEMP_OBJECT = 0;
 
     /**
-     * Конструктор по умолчанию. Инициализируем {@link SimpleListSet#simpleListContainer}
+     * Конструктор по умолчанию. Инициализируем {@link SimpleHashSet#simpleHashContainer}
      */
-    public SimpleListSet() {
-        this.simpleListContainer = new SimpleListContainer<>();
+    public SimpleHashSet() {
+        this.simpleHashContainer = new SimpleHashMap<>();
     }
+
+
+
     /**
-     * Конструктор принимет в качестве параметра массив типа T, копия которого используется как элементы
-     * контейнера.
+     * Конструктор принимет в качестве параметра массив типа E, копия которого используется как элементы контейнера.
      * @param initArray массив иницыализирующий контейнер.
      */
-    public SimpleListSet(E[] initArray) {
+    public SimpleHashSet(E[] initArray) {
         this();
         for (E e : initArray) {
             add(e);
@@ -36,35 +42,40 @@ public class SimpleListSet<E> implements SimpleSet<E> {
     /**
      * Добавляет элемент в контейнер, если добавляемый элемент addItem существует в контейнере возвращает false,
      * если операция закончилась неудачей, возвращает false, в случае успеха возвращате true.
+     *
      * @param addItem добавляемый в контейнер элемент тип E.
      * @return если добавляемый элемент addItem существует в контейнере возвращает false,
      * если операция закончилась неудачей, возвращает false, в случае успеха возвращате true.
      */
     @Override
     public boolean add(E addItem) {
-        boolean result = false;
-        if (this.simpleListContainer.findItem(addItem) == -1) {
-            result = simpleListContainer.add(addItem);
-        }
-        return result;
-    }
-
-    @Override
-    public boolean contains(E e) {
-        throw new UnsupportedOperationException("contains");
-    }
-
-    @Override
-    public boolean remove(E e) {
-        throw new UnsupportedOperationException("remove");
+        return  simpleHashContainer.put(addItem, TEMP_OBJECT) == TEMP_OBJECT;
     }
 
     /**
-     * Реализуем метод интерфейса {@link Iterable#iterator()}.
-     * @return итератор типа <E>.
+     * Метод поиска элемента в контейнере.
+     *
+     * @param e искомый элемент.
+     * @return true если элемнтв существует в контейнере, в противном случа false.
      */
     @Override
+    public boolean contains(E e) {
+        return simpleHashContainer.containsKey(e);
+    }
+
+    /**
+     * Метод удаления элемента из контейнера.
+     *
+     * @param e удаляемый элемент.
+     * @return true если операция завершена, в противном случа false.
+     */
+    @Override
+    public boolean remove(E e) {
+        return simpleHashContainer.remove(e) == TEMP_OBJECT;
+    }
+
+    @Override
     public Iterator<E> iterator() {
-        return simpleListContainer.iterator();
+        return null;
     }
 }

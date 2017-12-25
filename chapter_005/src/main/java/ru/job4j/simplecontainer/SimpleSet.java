@@ -10,7 +10,20 @@ public interface SimpleSet<E> extends SimpleContainer<E> {
     /**
      * Метод добавления элемента в контейнер.
      * @param addItem добавляемый в контейнер элемент тип E.
-     * @return добавляемый в контейнер элемент тип T.
+     * @return true если операция завершена, в противном случа false.
      */
     boolean add(E addItem);
+
+    /**
+     * Метод поиска элемента в контейнере.
+     * @param e искомый элемент.
+     * @return true если элемнтв существует в контейнере, в противном случа false.
+     */
+    boolean contains(E e);
+    /**
+     * Метод удаления элемента из контейнера.
+     * @param e удаляемый элемент.
+     * @return true если операция завершена, в противном случа false.
+     */
+    boolean remove(E e);
 }

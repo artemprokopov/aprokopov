@@ -17,4 +17,8 @@
             checks="VisibilityModifier"
             files="SimpleListSet.java"
             lines="16"/>
+    <suppress
+            checks="VisibilityModifier"
+            files="SimpleHashSet.java"
+            lines="16"/>
 </suppressions>

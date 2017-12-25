@@ -47,6 +47,17 @@ public class SimpleArraySet<E> implements SimpleSet<E> {
         }
         return result;
     }
+
+    @Override
+    public boolean contains(E e) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(E e) {
+        return false;
+    }
+
     /**
      * Реализуем метод интерфейса {@link Iterable#iterator()}.
      * @return итератор типа <E>.
