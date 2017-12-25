@@ -86,10 +86,34 @@ public class CycleListTest {
     }
     /**
      * Тестируем метод {@link CycleList#hasCycle(Node)}, для теста используем список с указателем на голову списка
-     * {@link CycleListTest#secondTestNode}, ожидаем результат действия метода равный false.
+     * {@link CycleListTest#thirdTestNode}, ожидаем результат действия метода равный false.
      */
     @Test
     public void hasCycle3() {
         assertFalse(new CycleList().hasCycle(thirdTestNode));
+    }
+    /**
+     * Тестируем метод {@link CycleList#hasCycleFindLoop(Node)}, для теста используем список с указателем на голову списка
+     * {@link CycleListTest#firstTestNode}, ожидаем результат действия метода равный true.
+     */
+    @Test
+    public void hasCycle4() {
+        assertTrue(new CycleList().hasCycleFindLoop(firstTestNode));
+    }
+    /**
+     * Тестируем метод {@link CycleList#hasCycleFindLoop(Node)}, для теста используем список с указателем на голову списка
+     * {@link CycleListTest#secondTestNode}, ожидаем результат действия метода равный true.
+     */
+    @Test
+    public void hasCycle5() {
+        assertTrue(new CycleList().hasCycleFindLoop(secondTestNode));
+    }
+    /**
+     * Тестируем метод {@link CycleList#hasCycleFindLoop(Node)}, для теста используем список с указателем на голову списка
+     * {@link CycleListTest#thirdTestNode}, ожидаем результат действия метода равный false.
+     */
+    @Test
+    public void hasCycle6() {
+        assertFalse(new CycleList().hasCycleFindLoop(thirdTestNode));
     }
 }
