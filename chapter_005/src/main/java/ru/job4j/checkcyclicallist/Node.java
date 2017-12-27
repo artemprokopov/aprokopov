@@ -7,6 +7,23 @@ package ru.job4j.checkcyclicallist;
  * @version 1.0
  */
 public class Node<T> {
+    //CHECKSTYLE:OFF
+    /**
+     * Значение узла.
+     */
     T value;
+    /**
+     * Ссылка на следующий узел.
+     */
     Node<T> next;
+    //CHECKSTYLE:ON
+
+    /**
+     * Конструктор узла.
+     * @param initValue значение узла.
+     */
+    Node(T initValue) {
+        this.value = initValue;
+    }
 }
+
