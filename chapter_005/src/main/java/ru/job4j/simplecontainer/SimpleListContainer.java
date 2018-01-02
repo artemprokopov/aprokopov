@@ -13,7 +13,7 @@ import java.util.function.Consumer;
  * @since 21/12/2017
  * @version 1.0
  */
-public class SimpleListContainer<E> implements SimpleContainer<E>, StackUtilContainer<E> {
+public class SimpleListContainer<E> implements SimpleContainer<E>, StackContainer<E> {
 
     /**
      * Первый элемент двусвязного списка. Если список пуст равен null.

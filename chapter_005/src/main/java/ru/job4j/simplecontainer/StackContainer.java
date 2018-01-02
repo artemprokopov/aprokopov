@@ -6,7 +6,7 @@ package ru.job4j.simplecontainer;
  * @since 25/12/2017
  * @version 1.0
  */
-public interface StackUtilContainer<E> {
+public interface StackContainer<E> {
     /**
      * Добавляет элемент в голову стека FILO(очереди FIFO).
      * @param value добавляемый элемент в стек FILO(очередь FIFO).

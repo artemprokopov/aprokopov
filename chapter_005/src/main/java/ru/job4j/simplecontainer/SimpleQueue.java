@@ -10,7 +10,7 @@ public class SimpleQueue<E> implements Stack<E> {
     /**
      * Хранилище элементов очереди.
      */
-    private final StackUtilContainer<E> queue = new SimpleListContainer<>();
+    private final StackContainer<E> queue = new SimpleListContainer<>();
     /**
      * Метод возвращает элемент из очереди FIFO и удаляет его.
      * @return элемент стека(очереди)

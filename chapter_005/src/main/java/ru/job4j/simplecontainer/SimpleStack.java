@@ -10,7 +10,7 @@ public class SimpleStack<E> implements Stack<E> {
     /**
      * Хранилище элементов стека.
      */
-    private final StackUtilContainer<E> stack = new SimpleListContainer<>();
+    private final StackContainer<E> stack = new SimpleListContainer<>();
 
     /**
      * Метод возвращает элемент из стека FILO(очереди FIFO) и удаляет его.
