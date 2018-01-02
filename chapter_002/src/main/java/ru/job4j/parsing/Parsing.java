@@ -96,7 +96,7 @@ public class Parsing {
         try {
             long dateOffer = formatForDate.parse(formatDate.toString()).getTime();
             long startYear = formatForDate.parse(String.format("%s %s %s, 00:00", "01", "01", calendar.get(Calendar.YEAR))).getTime();
-            if ((lastStart == 0 && startYear < dateOffer) || (lastStart > 0 && dateOffer > lastStart)) {
+            if ((lastStart == 0 && startYear < dateOffer) || (lastStart >= 0 && dateOffer > lastStart)) {
                 return true;
             }
         } catch (ParseException e) {
