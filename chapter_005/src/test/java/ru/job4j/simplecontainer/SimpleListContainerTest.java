@@ -340,4 +340,62 @@ public class SimpleListContainerTest {
         String result = String.format("1%1$s2%1$s3%1$s4%1$s5%1$s", System.lineSeparator());
         assertEquals(result, byteArrayOutputStream.toString());
     }
+
+    /**
+     *  Тестируем метод {@link SimpleListContainer#addFirst(Object)}.
+     */
+    @Test
+    public void addFirst1() {
+        SimpleListContainer<Integer> integerSimpleListContainerForAdd = new SimpleListContainer<>();
+        int k = 1;
+        for (Integer i : testArray) {
+            integerSimpleListContainerForAdd.add(i);
+            assertEquals(integerSimpleListContainerForAdd.size(), k++);
+            Integer[] resultArray = integerSimpleListContainerForAdd.toArray(new Integer[integerSimpleListContainerForAdd.size()]);
+            assertEquals(resultArray[0], testArray[0]);
+        }
+        assertEquals(integerSimpleListContainerForAdd.size(), testArray.length);
+        Integer[] resultArray = integerSimpleListContainerForAdd.toArray(new Integer[integerSimpleListContainerForAdd.size()]);
+        assertArrayEquals(resultArray, testArray);
+    }
+    /**
+     *  Тестируем метод {@link SimpleListContainer#deleteFirst()}.
+     */
+    @Test
+    public void deleteFirst1() {
+        SimpleListContainer<Integer> integerSimpleListContainerForAdd = new SimpleListContainer<>(testArray);
+        //первая итерация
+        int k = 1;
+        for (Integer integer : testArray) {
+            Integer returnResult = integerSimpleListContainerForAdd.deleteFirst();
+            assertEquals(returnResult, integer);
+            Integer[] resultArray = integerSimpleListContainerForAdd.toArray(new Integer[integerSimpleListContainerForAdd.size()]);
+            Integer[] exceptedArray = Arrays.copyOfRange(testArray, k++, testArray.length);
+            assertArrayEquals(resultArray, exceptedArray);
+        }
+        Integer[] resultArray = integerSimpleListContainerForAdd.toArray(new Integer[integerSimpleListContainerForAdd.size()]);
+        assertArrayEquals(resultArray, new  Integer[0]);
+        Integer returnResult = integerSimpleListContainerForAdd.deleteFirst();
+        assertNull(returnResult);
+    }
+    /**
+     *  Тестируем метод {@link SimpleListContainer#deleteLast()}.
+     */
+    @Test
+    public void deleteLast1() {
+        SimpleListContainer<Integer> integerSimpleListContainerForAdd = new SimpleListContainer<>(testArray);
+        //первая итерация
+        int k = 1;
+        for (Integer integer : testArray) {
+            Integer returnResult = integerSimpleListContainerForAdd.deleteLast();
+            assertEquals(returnResult, testArray[testArray.length - k]);
+            Integer[] resultArray = integerSimpleListContainerForAdd.toArray(new Integer[integerSimpleListContainerForAdd.size()]);
+            Integer[] exceptedArray = Arrays.copyOfRange(testArray, 0, testArray.length - k++);
+            assertArrayEquals(resultArray, exceptedArray);
+        }
+        Integer[] resultArray = integerSimpleListContainerForAdd.toArray(new Integer[integerSimpleListContainerForAdd.size()]);
+        assertArrayEquals(resultArray, new  Integer[0]);
+        Integer returnResult = integerSimpleListContainerForAdd.deleteLast();
+        assertNull(returnResult);
+    }
 }

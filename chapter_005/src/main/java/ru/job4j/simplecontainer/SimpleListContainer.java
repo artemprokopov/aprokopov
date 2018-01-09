@@ -13,7 +13,7 @@ import java.util.function.Consumer;
  * @since 21/12/2017
  * @version 1.0
  */
-public class SimpleListContainer<E> implements SimpleContainer<E> {
+public class SimpleListContainer<E> implements SimpleContainer<E>, StackContainer<E> {
 
     /**
      * Первый элемент двусвязного списка. Если список пуст равен null.
@@ -61,7 +61,7 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
             this.currentItem++;
             return true;
         }
-        addLast(addItem);
+        addLastItem(addItem);
         this.currentItem++;
         return true;
     }
@@ -233,6 +233,63 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
     }
 
     /**
+     * Добавляет элемент в голову стека FILO(очереди FIFO).
+     * @param value добавляемый элемент в стек FILO(очередь FIFO).
+     * @return возвращает true если операция завершилась успешно, в противном случае возвращает false.
+     */
+    @Override
+    public boolean addFirst(E value) {
+        checkOutOfMemory(this.currentItem + 1);
+        if (this.first == null) {
+            this.first = new Node<>(null, value, null);
+            this.last = this.first;
+            this.currentItem++;
+            return true;
+        }
+        addFirstItem(value);
+        this.currentItem++;
+        return true;
+    }
+
+    /**
+     * Удаляет первый элемент(левый добавленный последним) в хранилище и возвращает его значения,
+     * необхоим для реализации стека FILO.
+     * @return  значение удаленного элемента, если элемента нет стек(очередь) пусты то null.
+     */
+    @Override
+    public E deleteFirst() {
+        E oldValue = null;
+        if (Objects.nonNull(this.first)) {
+            oldValue = this.first.item;
+            this.first = this.first.next;
+            if (Objects.nonNull(this.first)) {
+                this.first.prev = null;
+            }
+            this.currentItem--;
+        }
+        return oldValue;
+    }
+
+    /**
+     *  Удаляет последний элемент(правый доавленный первым) в хранилище и возвращает его значение,
+     *  необходим для реализации очереди FIFO.
+     * @return значение удаленного элемента,  если элемента нет стек(очередь) пусты то null.
+     */
+    @Override
+    public E deleteLast() {
+        E oldValue = null;
+        if (Objects.nonNull(this.last)) {
+            oldValue = this.last.item;
+            this.last = this.last.prev;
+            if (Objects.nonNull(this.last)) {
+                this.last.next = null;
+            }
+            this.currentItem--;
+        }
+        return oldValue;
+    }
+
+    /**
      * Внутренний класс узла двусвязного списка.
      * @param <E> парамет узла.
      */
@@ -312,10 +369,20 @@ public class SimpleListContainer<E> implements SimpleContainer<E> {
      * Добавляет элемент в хвост списка.
      * @param addItem добавляемый элемент.
      */
-    private void addLast(E addItem) {
+    private void addLastItem(E addItem) {
         Node<E> temp = this.last;
         this.last = new Node<>(temp, addItem, null);
         temp.next = this.last;
+    }
+
+    /**
+     * Добавляет элемент в голову списка.
+     * @param addItem добавляемый элемент.
+     */
+    private void addFirstItem(E addItem) {
+        Node<E> temp = this.first;
+        this.first = new Node<>(null, addItem, temp);
+        temp.prev = this.first;
     }
 
 
