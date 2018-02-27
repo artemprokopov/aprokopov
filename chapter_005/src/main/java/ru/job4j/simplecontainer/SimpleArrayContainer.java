@@ -112,7 +112,6 @@ public class SimpleArrayContainer<E> implements SimpleContainer<E> {
         checkIndex(indexDeleteItem);
         E oldValue = (E) array[indexDeleteItem];
         copyTailArrayWhenDeleteItem(indexDeleteItem);
-        this.currentItem--;
         return oldValue;
     }
 
@@ -128,7 +127,6 @@ public class SimpleArrayContainer<E> implements SimpleContainer<E> {
         if (indexDeleteItem >= 0) {
             oldValue = (E) array[indexDeleteItem];
             copyTailArrayWhenDeleteItem(indexDeleteItem);
-            this.currentItem--;
         }
         return oldValue;
     }
@@ -247,6 +245,7 @@ public class SimpleArrayContainer<E> implements SimpleContainer<E> {
     private void copyTailArrayWhenDeleteItem(int indexDeleteItem) {
         System.arraycopy(array, indexDeleteItem + 1,
                 array, indexDeleteItem, currentItem - indexDeleteItem);
+        this.array[currentItem--]=null;
     }
 
     /**
