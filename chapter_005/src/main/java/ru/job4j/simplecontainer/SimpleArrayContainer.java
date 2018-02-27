@@ -245,7 +245,7 @@ public class SimpleArrayContainer<E> implements SimpleContainer<E> {
     private void copyTailArrayWhenDeleteItem(int indexDeleteItem) {
         System.arraycopy(array, indexDeleteItem + 1,
                 array, indexDeleteItem, currentItem - indexDeleteItem);
-        this.array[currentItem--]=null;
+        this.array[currentItem--] = null;
     }
 
     /**
