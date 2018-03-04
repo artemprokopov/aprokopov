@@ -31,7 +31,7 @@ public class SimpleArrayContainer<E> implements SimpleContainer<E> {
     /**
      * Хранилище элементов контейнера.
      */
-    private Object[] array;
+    Object[] array;
     /**
      * Номер последнего элемента в контейнере, при пустом контейнере равен -1.
      */
