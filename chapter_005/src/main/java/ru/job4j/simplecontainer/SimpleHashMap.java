@@ -12,7 +12,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
     private double scaleFactor = 0.75;
     private int size = 0;
 
-    private Node<K, V>[] store;
+    Node<K, V>[] store;
 
     @SuppressWarnings("unchecked")
     public SimpleHashMap() {

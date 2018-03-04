@@ -13,4 +13,8 @@
             checks="VisibilityModifier"
             files="SimpleArraySet.java"
             lines="15"/>
+    <suppress
+            checks="VisibilityModifier"
+            files="SimpleListSet.java"
+            lines="16"/>
 </suppressions>
