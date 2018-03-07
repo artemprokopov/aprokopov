@@ -1,12 +1,9 @@
 package ru.job4j.simplecontainer;
 //CHECKSTYLE:OFF
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class SimpleHashMap<K, V> implements Map<K, V> {
-    private static final int INIT_CAPACITY = 16;
+    private static final int INIT_CAPACITY = 17;
     private int storeCapacity = 0;
     private static final int MAX_STORE_CAPACITY = Integer.MAX_VALUE - 1;
     private double scaleFactor = 0.75;
@@ -51,6 +48,8 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 
     @Override
     public V put(K key, V value) {
+        Objects.requireNonNull(key,"The key should not be null!");
+        Objects.requireNonNull(value,"The value should not be null!");
         addNodeToStore(new Node<>(key, value));
         return value;
     }
@@ -62,6 +61,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
+        Objects.requireNonNull(m,"The map should not be null!");
         for (Map.Entry<? extends K, ? extends V> e: m.entrySet()) {
            addNodeToStore(new Node<>(e.getKey(), e.getValue()));
         };
@@ -76,12 +76,12 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 
     @Override
     public Set<K> keySet() {
-        throw new UnsupportedOperationException("entrySet()");
+        throw new UnsupportedOperationException("keySet()");
     }
 
     @Override
     public Collection<V> values() {
-        throw new UnsupportedOperationException("entrySet()");
+        throw new UnsupportedOperationException("values()");
     }
 
     @Override
@@ -89,7 +89,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
         throw new UnsupportedOperationException("entrySet()");
     }
 
-    private static class Node<K, V> {
+    static class Node<K, V> {
         final int hash;
         final K key;
         V value;
@@ -99,6 +99,21 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
             this.hash = initKey.hashCode();
             this.key = initKey;
             this.value = initValue;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node<?, ?> node = (Node<?, ?>) o;
+            return hash == node.hash &&
+                    Objects.equals(key, node.key) &&
+                    Objects.equals(value, node.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(hash, key, value);
         }
     }
 
@@ -185,7 +200,10 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 
     private void addNodeLocation(Node<K, V> kvNode, int addLocation) {
         if (this.store[addLocation] == null || this.store[addLocation].key.equals(kvNode.key)) {
-            kvNode.next = this.store[addLocation].next;
+            if (this.store[addLocation] != null) {
+                kvNode.next = this.store[addLocation].next;
+                this.store[addLocation].next = null ;
+            }
             this.store[addLocation] = kvNode;
             return;
         }
