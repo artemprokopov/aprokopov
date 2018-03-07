@@ -1,5 +1,5 @@
 package ru.job4j.simplecontainer;
-
+//CHECKSTYLE:OFF
 import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.checkcyclicallist.Node;
@@ -45,5 +45,5 @@ private SimpleHashMap.Node<Integer, String>[] resultArray;
             }
         }
     }
-
+//CHECKSTYLE:ON
 }
