@@ -1,6 +1,11 @@
 package ru.job4j.simplecontainer;
 //CHECKSTYLE:OFF
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 public class SimpleHashMap<K, V> implements Map<K, V> {
     private static final int INIT_CAPACITY = 17;
@@ -72,6 +77,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
     public void clear() {
         this.store = (Node<K, V>[]) new Node[INIT_CAPACITY];
         this.storeCapacity = INIT_CAPACITY;
+        this.size = 0;
     }
 
     @Override
@@ -108,12 +114,12 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
             Node<?, ?> node = (Node<?, ?>) o;
             return hash == node.hash &&
                     Objects.equals(key, node.key) &&
-                    Objects.equals(value, node.value);
+                    Objects.equals(value, node.value) && Objects.equals(next, node.next);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(hash, key, value);
+            return Objects.hash(hash, key, value, next.hashCode());
         }
     }
 
@@ -122,13 +128,16 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
             return null;
         }
         int location = k.hashCode() % this.storeCapacity;
-        if (this.store[location] != null && this.store[location].key.equals(k)) {
+        if (this.store[location] == null) {
+            return null;
+        }
+        if (this.store[location].key.equals(k)) {
             return this.store[location];
         }
         Node<K, V> tempNode = this.store[location];
         while (tempNode.next != null) {
             if (tempNode.next.key.equals(k)) {
-                return tempNode;
+                return tempNode.next;
             }
             tempNode = tempNode.next;
         }
@@ -225,10 +234,8 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
     private void increaseStore() {
         if (MAX_STORE_CAPACITY - this.storeCapacity > INIT_CAPACITY) {
             this.storeCapacity += INIT_CAPACITY;
-            this.store = Arrays.copyOf(this.store, this.storeCapacity);
         } else if (this.storeCapacity != MAX_STORE_CAPACITY) {
             this.storeCapacity = MAX_STORE_CAPACITY;
-            this.store = Arrays.copyOf(this.store, this.storeCapacity);
         }
         distributionNode();
     }
@@ -237,13 +244,15 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
         if (this.storeCapacity > INIT_CAPACITY) {
             this.storeCapacity -= INIT_CAPACITY;
             distributionNode();
-            this.store = Arrays.copyOf(this.store, this.storeCapacity);
         }
     }
-
+    @SuppressWarnings("unchecked")
     private void distributionNode() {
+        Node<K, V>[] tempStore = this.store;
         Node<K, V> tempNode = null;
-        for (Node<K, V> kvNode : store) {
+        this.store = (Node<K, V>[]) new Node[this.storeCapacity];
+        this.size = 0;
+        for (Node<K, V> kvNode : tempStore) {
             tempNode = kvNode;
             while (tempNode != null) {
                 addNodeToStore(tempNode);
@@ -252,5 +261,30 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SimpleHashMap<K, V> that = (SimpleHashMap<K, V>) o;
+        if (size != that.size) {
+            return false;
+        }
+        Node<K, V>[] thatStore = that.store;
+        for (int i = 0; i < this.store.length; i++) {
+            if (this.store[i] != null && thatStore[i] != null) {
+                if (!this.store[i].equals(thatStore[i])) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(size);
+        result = 31 * result + Arrays.hashCode(store);
+        return result;
+    }
 }
 //CHECKSTYLE:ON
