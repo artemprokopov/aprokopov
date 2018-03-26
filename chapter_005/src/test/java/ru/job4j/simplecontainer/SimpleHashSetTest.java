@@ -3,13 +3,7 @@ package ru.job4j.simplecontainer;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Тестовый класс для {@link SimpleHashSet}.
@@ -45,7 +39,14 @@ public class SimpleHashSetTest {
      * Массив результат для тесто метода  {@link SimpleListSet#add(Object)}.
      */
     private static SimpleHashMap<Integer, Integer> resultHashMap2;
+    /**
+     * Массив результат для тесто метода  {@link SimpleListSet#add(Object)}.
+     */
+    private static SimpleHashMap<Integer, Integer> resultHashMap3;
 
+    /**
+     * Заполняем {@link SimpleHashSetTest#resultHashMap}.
+     */
     @Before
     public void initResultHashMap() {
         resultHashMap = new SimpleHashMap<>();
@@ -55,7 +56,9 @@ public class SimpleHashSetTest {
         resultHashMap.put(4, 0);
         resultHashMap.put(5, 0);
     }
-
+    /**
+     * Заполняем {@link SimpleHashSetTest#resultHashMap1}.
+     */
     @Before
     public void initResultHashMap1() {
         resultHashMap1 = new SimpleHashMap<>();
@@ -63,7 +66,9 @@ public class SimpleHashSetTest {
         resultHashMap1.put(2, 0);
         resultHashMap1.put(4, 0);
     }
-
+    /**
+     * Заполняем {@link SimpleHashSetTest#resultHashMap2}.
+     */
     @Before
     public void initResultHashMap2() {
         resultHashMap2 = new SimpleHashMap<>();
@@ -79,6 +84,23 @@ public class SimpleHashSetTest {
         resultHashMap2.put(11, 0);
         resultHashMap2.put(12, 0);
         resultHashMap2.put(3, 0);
+    }
+    /**
+     * Заполняем {@link SimpleHashSetTest#resultHashMap3}.
+     */
+    @Before
+    public void initResultHashMap3() {
+        resultHashMap3 = new SimpleHashMap<>();
+        resultHashMap3.put(1, 0);
+        resultHashMap3.put(2, 0);
+        resultHashMap3.put(4, 0);
+        resultHashMap3.put(6, 0);
+        resultHashMap3.put(7, 0);
+        resultHashMap3.put(8, 0);
+        resultHashMap3.put(10, 0);
+        resultHashMap3.put(11, 0);
+        resultHashMap3.put(12, 0);
+        resultHashMap3.put(3, 0);
     }
 
 
@@ -104,9 +126,26 @@ public class SimpleHashSetTest {
      */
     @Test
     public void add3() {
-        SimpleListSet<Integer> simpleListSet = new SimpleListSet<>(testArray2);
-        assertEquals(resultHashMap2, simpleListSet.simpleListContainer.toArray(new Integer[0]));
+        SimpleHashSet<Integer> simpleHashSet = new SimpleHashSet<>(testArray2);
+        assertEquals(resultHashMap2, simpleHashSet.simpleHashContainer);
     }
-
-
+    /**
+     * Тестируем метод {@link SimpleListSet#contains(Object)}.
+     */
+    @Test
+    public void contains() {
+        SimpleHashSet<Integer> simpleHashSet = new SimpleHashSet<>(testArray2);
+        assertEquals(true, simpleHashSet.contains(6));
+        assertEquals(false, simpleHashSet.contains(20));
+    }
+    /**
+     * Тестируем метод {@link SimpleListSet#remove(Object)}.
+     */
+    @Test
+    public void remove() {
+        SimpleHashSet<Integer> simpleHashSet = new SimpleHashSet<>(testArray2);
+        simpleHashSet.remove(5);
+        simpleHashSet.remove(9);
+        assertEquals(resultHashMap3, simpleHashSet.simpleHashContainer);
+    }
 }
